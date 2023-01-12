@@ -1,23 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+function requestOptions(method: string, body?: any) {
+  const headers = {
+    method: method,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  };
+
+  return headers
+}
+
+function call(url: string, requestOptions: any) {
+  return fetch(url, requestOptions)
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
 function App() {
+  const url = "https://b39b828gcb.execute-api.ap-northeast-1.amazonaws.com";
+
+  const handleClick = (e: any) => {
+    call(`${url}/toggleCheckItem`, requestOptions('POST', { id: "Adela", name: "hello"}));
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={handleClick}>Click me!</button>
       </header>
     </div>
   );

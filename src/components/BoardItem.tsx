@@ -1,4 +1,5 @@
 import { toggleCheckItem } from '../api'
+import "./styles.css"
 
 export default function BoardItem(props : {item: string}) {
   const { item } = props;
@@ -7,6 +8,8 @@ export default function BoardItem(props : {item: string}) {
   }
 
   return (
-    <button onClick={handleOnClick}>{item}</button>
+    <div className="board-item-container">
+      <div className="board-item" onClick={handleOnClick}>{item}</div>
+    </div>
   )
 }

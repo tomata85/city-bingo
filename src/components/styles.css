@@ -1,5 +1,16 @@
 .board-container {
-  display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto;
+    justify-content: center;
+   }
+
+.board-item-container {
+  display: grid;
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  margin: auto;
+  align-content: center;
   justify-content: center;
-  align-items: center;
 }

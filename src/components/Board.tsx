@@ -14,25 +14,12 @@ const itemNames = [
   'Belizmata lake'
 ]
 
-function boardRow (items: string[]) {
-  return (
-    <tr>
-      {
-        items.map((itemName) =>
-        <th>
-          <BoardItem item={itemName}/>
-        </th>)
-      }
-    </tr>);
-}
-
 export default function Board () {
   return (
     <div className="board-container">
-      <table>
-        <tbody>
-          { [0,3,6].map(i => boardRow(itemNames.slice(i,i+3))) }
-      </tbody>
-    </table>
+       {
+        itemNames.map((itemName) =>
+          <BoardItem item={itemName}/>)
+      }
   </div>)
 }

@@ -19,7 +19,7 @@ export default function Board () {
     <div className="board-container">
        {
         itemNames.map((itemName) =>
-          <BoardItem item={itemName}/>)
+          <BoardItem key={itemName} item={itemName}/>)
       }
   </div>)
 }

@@ -10,7 +10,7 @@ export default function Board (props : {userId: string, destinationId: string}) 
     <div className="board-container">
        {
         Object.entries(userBoard).map((item) =>
-          <BoardItem key={item[0]} item={item}/>)
+          <BoardItem key={item[0]} id={item[0]} text={item[1]}/>)
       }
   </div>)
 }

@@ -1,15 +1,15 @@
 import { toggleCheckItem } from '../api'
 import "./styles.css"
 
-export default function BoardItem(props : {item: [string, string]}) {
-  const { item } = props;
+export default function BoardItem(props : {id:string ,text: string}) {
+  const { id, text } = props;
   const handleOnClick = () => {
-    toggleCheckItem(item[0]);
+    toggleCheckItem(id);
   }
 
   return (
     <div className="board-item-container">
-      <div className="board-item" onClick={handleOnClick}>{item[1]}</div>
+      <div className="board-item" onClick={handleOnClick}>{text}</div>
     </div>
   )
 }

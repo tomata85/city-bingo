@@ -1,15 +1,16 @@
+import { BoardItemType } from "../types";
 import "./styles.css"
 
-export default function BoardItem(props : {id: string, text: string, onClick: (id:string)=>void }) {
-  const { id, text, onClick } = props;
+export default function BoardItem(props : {item: BoardItemType, onClick: (id:string)=>void }) {
+  const { item, onClick } = props;
 
   const handleOnClick = () => {
-    onClick(id);
+    onClick(item.id);
   }
 
   return (
     <div className="board-item-container">
-      <div className="board-item" onClick={handleOnClick}>{text}</div>
+      <div className="board-item" onClick={handleOnClick}>{item.text}</div>
     </div>
   )
 }

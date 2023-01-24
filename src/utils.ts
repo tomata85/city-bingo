@@ -1,6 +1,10 @@
-import { BANSKO_BOARD_ITEMS } from './types'
+import { BANSKO_BOARD_ITEMS, BoardItemType } from './types'
 
-export type UserBoardItem = { Id: string,  }
-export function generateUserBoard(data: {userId: string, destinationId: string}) {
-    return BANSKO_BOARD_ITEMS;
+export function generateUserBoard(_: {userId: string, destinationId: string}): BoardItemType[] {
+    return Object.entries(BANSKO_BOARD_ITEMS).map((item) => { 
+        return { 
+            id: item[0],
+            text: item[1],
+            checked: false }  
+    });
 }

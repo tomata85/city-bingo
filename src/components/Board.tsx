@@ -6,7 +6,7 @@ import { toggleCheckItem } from '../api'
 
 export default function Board (props : {userId: string, destinationId: string}) {
   const userBoard = generateUserBoard(props);
-  const [board, setBoard] = useState({userBoard: userBoard})
+  //const [board, setBoard] = useState({userBoard: userBoard})
 
   const onClickItem = (itemId: string) => {
     // setBoard(board);
@@ -16,11 +16,9 @@ export default function Board (props : {userId: string, destinationId: string}) 
   return (
     <div className="board-container">
        {
-        Object.entries(userBoard).map((item) =>
+        userBoard.map((item) =>
           <BoardItem
-            key={item[0]}
-            id={item[0]}
-            text={item[1]}
+            item={item}
             onClick={onClickItem}/>)
       }
   </div>)

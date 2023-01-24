@@ -1,4 +1,4 @@
-export type BoardItem = {
+export type BoardItemType = {
     id: string,
     text: string,
     checked: boolean

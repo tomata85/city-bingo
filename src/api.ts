@@ -18,5 +18,5 @@ function call(url: string, requestOptions: any) {
 }
 
 export function toggleCheckItem (item: string) {
-  call(`${url}/toggleCheckItem`, requestOptions('POST', { id: item, name: "checked"}));
+  call(`${url}/toggleCheckItem`, requestOptions('POST', { id: item, data: "checked"}));
 }

@@ -1,24 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BoardItem from '../components/BoardItem'
 import './styles.css';
+import { generateUserBoard } from '../utils'
 
-const itemNames = [
-  'Hot Springs',
-  'Hike Pirin mountains',
-  'Watch a sunset',
-  'Picnic in Pirin forest',
-  'Have a Banitza',
-  'Visit a co-work',
-  'Hike to Bezbog hut',
-  'Smoothie at Coconut',
-  'Belizmata lake'
-]
-
-export default function Board () {
+export default function Board (props : {userId: string, destinationId: string}) {
+  const userBoard = generateUserBoard(props);
+  const state = useState({...props, userBoard: userBoard})
   return (
     <div className="board-container">
        {
-        itemNames.map((itemName) =>
+        Object.values(userBoard).map((itemName) =>
           <BoardItem key={itemName} item={itemName}/>)
       }
   </div>)

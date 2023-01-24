@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import BoardItem from '../components/BoardItem'
 import './styles.css';
-import { generateUserBoard } from '../utils'
+import { getUserBoard } from '../utils'
 import { toggleCheckItem } from '../api'
 
 export default function Board (props : {userId: string, destinationId: string}) {
-  const userBoard = generateUserBoard(props);
+  const userBoard = getUserBoard(props); 
   //const [board, setBoard] = useState({userBoard: userBoard})
 
   const onClickItem = (itemId: string) => {
@@ -18,6 +18,7 @@ export default function Board (props : {userId: string, destinationId: string}) 
        {
         userBoard.map((item) =>
           <BoardItem
+            key={item.id}
             item={item}
             onClick={onClickItem}/>)
       }

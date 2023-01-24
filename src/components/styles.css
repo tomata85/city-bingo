@@ -14,3 +14,7 @@
   align-content: center;
   justify-content: center;
 }
+
+.board-item_checked {
+  background-color: lime;
+}

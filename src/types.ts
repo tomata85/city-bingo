@@ -3,6 +3,7 @@ export type BoardItemType = {
     text: string,
     checked: boolean
 }
+
 export const BANSKO_BOARD_ITEMS = {
     bansko_1: 'Hot Springs',
     bansko_2: 'Hike Pirin mountains',

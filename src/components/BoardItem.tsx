@@ -1,10 +1,10 @@
-import { toggleCheckItem } from '../api'
 import "./styles.css"
 
-export default function BoardItem(props : {id:string ,text: string}) {
-  const { id, text } = props;
+export default function BoardItem(props : {id: string, text: string, onClick: (id:string)=>void }) {
+  const { id, text, onClick } = props;
+
   const handleOnClick = () => {
-    toggleCheckItem(id);
+    onClick(id);
   }
 
   return (

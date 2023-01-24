@@ -1,4 +1,4 @@
-import { BANSKO_BOARD_ITEMS } from './consts'
+import { BANSKO_BOARD_ITEMS } from './types'
 
 export type UserBoardItem = { Id: string,  }
 export function generateUserBoard(data: {userId: string, destinationId: string}) {

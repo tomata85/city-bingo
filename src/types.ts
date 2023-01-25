@@ -1,3 +1,6 @@
+export type UserBoardType = {
+    [key: string]: BoardItemType
+}
 export type BoardItemType = {
     id: string,
     text: string,

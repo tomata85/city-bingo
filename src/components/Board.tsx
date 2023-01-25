@@ -5,18 +5,17 @@ import { getUserBoard } from '../utils'
 import { toggleCheckItem } from '../api'
 
 export default function Board (props : {userId: string, destinationId: string}) {
-  const userBoard = getUserBoard(props); 
-  //const [board, setBoard] = useState({userBoard: userBoard})
+  const [board, setBoard] = useState(getUserBoard(props));
 
   const onClickItem = (itemId: string) => {
-    // setBoard(board);
+    setBoard({...board, [itemId]: {...board[itemId], checked: !board[itemId].checked}});
     toggleCheckItem(itemId);
   }
 
   return (
     <div className="board-container">
        {
-        userBoard.map((item) =>
+        Object.values(board).map(item =>
           <BoardItem
             key={item.id}
             item={item}

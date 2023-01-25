@@ -12,12 +12,9 @@ export default function BoardItem (props: {
     onClick(item.id)
   }
 
-  // TODO: put it on the container
-  const itemClassName = item.checked ? 'board-item_checked' : 'board-item'
-
   return (
-    <div className="board-item-container">
-      <div className={itemClassName} onClick={handleOnClick}>
+    <div className={`board-item-container ${item.checked ? 'board-item_checked' : ''}`}>
+      <div onClick={handleOnClick}>
         {item.text}
       </div>
     </div>

@@ -1,16 +1,16 @@
-import { BoardItemType } from "../types";
-import "./styles.css"
-import React, { useState } from 'react';
+import { type BoardItemType } from '../types'
+import './styles.css'
+import React, { type ReactElement } from 'react'
 
-export default function BoardItem(props : {item: BoardItemType, onClick: (id:string)=>void }) {
-  const { item, onClick } = props;
+export default function BoardItem (props: { item: BoardItemType, onClick: (id: string) => void }): ReactElement {
+  const { item, onClick } = props
 
-  const handleOnClick = () => {
-    onClick(item.id);
+  const handleOnClick = (): void => {
+    onClick(item.id)
   }
 
   // TODO: put it on the container
-  const itemClassName = item.checked ? 'board-item_checked' : 'board-item';
+  const itemClassName = item.checked ? 'board-item_checked' : 'board-item'
 
   return (
     <div className="board-item-container">

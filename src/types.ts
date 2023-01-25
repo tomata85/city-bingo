@@ -1,9 +1,8 @@
-export type UserBoardType = {
-  [key: string]: BoardItemType
-}
-export type BoardItemType = {
-  id: string,
-  text: string,
+export type UserBoardType = Record<string, BoardItemType>
+
+export interface BoardItemType {
+  id: string
+  text: string
   checked: boolean
 }
 

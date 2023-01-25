@@ -2,7 +2,10 @@ import { type BoardItemType } from '../types'
 import './styles.css'
 import React, { type ReactElement } from 'react'
 
-export default function BoardItem (props: { item: BoardItemType, onClick: (id: string) => void }): ReactElement {
+export default function BoardItem (props: {
+  item: BoardItemType
+  onClick: (id: string) => void
+}): ReactElement {
   const { item, onClick } = props
 
   const handleOnClick = (): void => {
@@ -14,7 +17,9 @@ export default function BoardItem (props: { item: BoardItemType, onClick: (id: s
 
   return (
     <div className="board-item-container">
-      <div className={itemClassName} onClick={handleOnClick}>{item.text}</div>
+      <div className={itemClassName} onClick={handleOnClick}>
+        {item.text}
+      </div>
     </div>
   )
 }

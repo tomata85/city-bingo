@@ -13,10 +13,13 @@ export default function BoardItem (props: {
   }
 
   return (
-    <div className={`board-item-container ${item.checked ? 'board-item_checked' : ''}`}>
-      <div onClick={handleOnClick}>
-        {item.text}
-      </div>
+    <div
+      className={`board-item-container ${
+        item.checked ? 'board-item_checked' : ''
+      }`}
+      onClick={handleOnClick}
+    >
+      <div>{item.text}</div>
     </div>
   )
 }

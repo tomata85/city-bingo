@@ -1,14 +1,23 @@
-import React, { type ReactElement, useState } from 'react'
+import React, { type ReactElement, useState, useEffect } from 'react'
 import BoardItem from '../components/BoardItem'
 import './styles.css'
-import { getUserBoard } from '../utils'
+import { getInitialUserBoard, getBoardFromStorage, storeBoard } from '../utils'
 import { toggleCheckItem } from '../api'
+import { UserBoardType } from '../types'
 
 export default function Board (props: {
   userId: string
   destinationId: string
 }): ReactElement {
-  const [board, setBoard] = useState(getUserBoard(props))
+  const getLatestBoard = (): UserBoardType => (
+    getBoardFromStorage() ?? getInitialUserBoard(props)
+  )
+
+  const [board, setBoard] = useState<UserBoardType>(getLatestBoard())
+
+  useEffect(() => {
+    storeBoard(board)
+  }, [board])
 
   const onClickItem = (itemId: string): void => {
     setBoard({

@@ -9,11 +9,11 @@ export default function Board (props: {
   userId: string
   destinationId: string
 }): ReactElement {
-  const getLatestBoard = (): UserBoardType => (
+  const getUserBoard = (): UserBoardType => (
     getBoardFromStorage() ?? getInitialUserBoard(props)
   )
 
-  const [board, setBoard] = useState<UserBoardType>(getLatestBoard())
+  const [board, setBoard] = useState<UserBoardType>(getUserBoard())
 
   useEffect(() => {
     storeBoard(board)

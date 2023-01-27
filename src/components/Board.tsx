@@ -1,7 +1,8 @@
 import React, { type ReactElement, useState, useEffect } from 'react'
 import BoardItem from '../components/BoardItem'
 import './styles.css'
-import { getInitialUserBoard, getBoardFromStorage, storeBoard, isBoardWin } from '../utils'
+import { getBoardFromStorage, storeBoard } from '../logic/local-storage'
+import { getInitialUserBoard, isBoardWin } from '../logic/board'
 import { UserBoardType } from '../types'
 
 export default function Board (props: {

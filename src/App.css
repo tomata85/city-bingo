@@ -2,7 +2,6 @@
   text-align: center;
   font-family: "Inter", sans-serif;
   font-family: "Open Sans", sans-serif;
-  /* font-family: "Ubuntu", sans-serif; */
 }
 
 .App-logo {
@@ -38,4 +37,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.title {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 45px;
 }

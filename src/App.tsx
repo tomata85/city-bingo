@@ -5,8 +5,8 @@ import Board from './components/Board'
 function App (): ReactElement {
   return (
     <div className="App">
-      <header>Welcome back Oren,</header>
-      <h1 className="title">Koh Lanta Bingo</h1>
+      <header>Welcome back Yulia</header>
+      <h1 className="title">Bansko Bingo</h1>
       <Board userId="Oren Chazan" destinationId="Bansko" />
     </div>
   )

@@ -9,11 +9,6 @@ export interface FileProps {
 const S3_BUCKET = 'city-bingo-storage'
 const REGION = 'ap-northeast-1'
 
-AWS.config.update({
-  accessKeyId: 'AKIA2RIINKMA5F4GQZGP',
-  secretAccessKey: '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'
-})
-
 const myBucket = new AWS.S3({
   params: { Bucket: S3_BUCKET },
   region: REGION

@@ -1,6 +1,7 @@
 import './styles.css'
 import React, { useState, type ReactElement } from 'react'
 import AWS from 'aws-sdk'
+import { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY_ID } from '../SECRETS'
 
 export interface FileProps {
   name: string
@@ -8,6 +9,11 @@ export interface FileProps {
 
 const S3_BUCKET = 'city-bingo-storage'
 const REGION = 'ap-northeast-1'
+
+AWS.config.update({
+  accessKeyId: AWS_ACCESS_KEY_ID,
+  secretAccessKey: AWS_SECRET_ACCESS_KEY_ID
+})
 
 const myBucket = new AWS.S3({
   params: { Bucket: S3_BUCKET },

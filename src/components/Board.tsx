@@ -3,7 +3,8 @@ import BoardItem from '../components/BoardItem'
 import './styles.css'
 import { getBoardFromStorage, storeBoard } from '../logic/local-storage'
 import { getInitialUserBoard, isBoardWin } from '../logic/board'
-import { UserBoardType } from '../types'
+import { BoardItemType, UserBoardType } from '../types'
+import DidItPage from './DidItPage'
 
 export default function Board (props: {
   userId: string
@@ -13,6 +14,7 @@ export default function Board (props: {
     getBoardFromStorage() ?? getInitialUserBoard(props)
   )
 
+  const [selectedItem, setSelectedItem] = useState<BoardItemType | null>(null)
   const [board, setBoard] = useState<UserBoardType>(getUserBoard())
   const [isWin, setIsWin] = useState<boolean>(false)
 
@@ -22,18 +24,23 @@ export default function Board (props: {
   }, [board])
 
   const onClickItem = (itemId: string): void => {
-    setBoard({
-      ...board,
-      [itemId]: { ...board[itemId], checked: !board[itemId].checked }
-    })
+    // setBoard({
+    //   ...board,
+    //   [itemId]: { ...board[itemId], checked: !board[itemId].checked }
+    // })
+    setSelectedItem(board[itemId])
   }
 
   return (
-    <div className="board-container">
-      {Object.values(board).map((item) => (
-        <BoardItem key={item.id} item={item} onClick={onClickItem} />
-      ))}
-      <div>{ isWin ? 'Yay you win!' : ''}</div>
-    </div>
+    <>
+      { (selectedItem != null)
+        ? <DidItPage/>
+        : <div className="board-container">
+          {Object.values(board).map((item) => (
+            <BoardItem key={item.id} item={item} onClick={onClickItem} />
+          ))}
+          <div>{ isWin ? 'Yay you win!' : ''}</div>
+        </div> }
+    </>
   )
 }

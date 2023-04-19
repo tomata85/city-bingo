@@ -2,6 +2,7 @@ import './styles.css'
 import React, { useState, type ReactElement } from 'react'
 import AWS from 'aws-sdk'
 import { AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY_ID } from '../SECRETS'
+import { BoardItemType } from '../types'
 
 export interface FileProps {
   name: string
@@ -20,7 +21,12 @@ const myBucket = new AWS.S3({
   region: REGION
 })
 
-export default function DidItPage (): ReactElement {
+export interface DidItPageProps {
+  item: BoardItemType
+  onClose: (done: boolean) => void
+}
+
+export default function DidItPage (props: DidItPageProps): ReactElement {
   const [progress, setProgress] = useState(0)
   const [file, setFile] = useState<FileProps>()
 
@@ -28,7 +34,7 @@ export default function DidItPage (): ReactElement {
     setFile(event.target.files[0])
   }
 
-  const onFileUpload = (): void => {
+  const uploadFile = (): void => {
     if (file != null) {
       console.log(file)
 
@@ -49,14 +55,24 @@ export default function DidItPage (): ReactElement {
     }
   }
 
+  const onSave = (): void => {
+    // uploadFile()
+    props.onClose(true)
+  }
+
+  const onCancel = (): void => {
+    props.onClose(false)
+  }
+
   return (
     <>
+      <h1 className="title">Way to go!</h1>
+      <p>You have experienced: {props.item.text}</p>
+      <p>Add a selfie or an take a photo of your experience</p>
       <div>
-      <div>Native SDK File Upload Progress is {progress}%</div>
-        <input type="file" onChange={onFileChange} />
-        <button onClick={onFileUpload}>
-          Upload!
-        </button>
+      <input type="file" onChange={onFileChange} />
+      <button onClick={onCancel}>Cancel</button>
+      <button onClick={onSave}>Save</button>
     </div>
     </>)
 }

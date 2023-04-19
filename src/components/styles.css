@@ -1,3 +1,13 @@
+
+.title {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 45px;
+}
+
+p {
+  font-family: "Ubuntu", sans-serif;
+}
+
 .board-container {
     display: grid;
     grid-template-columns: auto auto auto;

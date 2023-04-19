@@ -28,4 +28,5 @@ p {
 
 .board-item_checked {
   background: #98eb98;
+  pointer-events: none;
 }

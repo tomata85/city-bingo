@@ -30,3 +30,7 @@ p {
   background: #98eb98;
   pointer-events: none;
 }
+
+#experience-photo {
+  width: 300px;
+}

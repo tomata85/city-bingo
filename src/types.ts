@@ -34,3 +34,8 @@ export const WIN_PATTERNS = [
   [0, 4, 8],
   [2, 4, 6]
 ]
+
+export interface PhotoProps {
+  name: string
+  media: any
+}

@@ -26,13 +26,14 @@ export default function Board (props: {
     setSelectedItem(board[itemId])
   }
 
-  const onCloseDidItPage = (done: boolean): void => {
+  const onCloseDidItPage = (done: boolean, photo: any): void => {
     if (selectedItem != null && done) {
       setBoard({
         ...board,
         [selectedItem.id]: {
           ...board[selectedItem.id],
-          checked: !board[selectedItem.id].checked
+          checked: !board[selectedItem.id].checked,
+          photo
         }
       })
     }
@@ -52,7 +53,7 @@ export default function Board (props: {
           <h1 className="title">Bansko Bingo</h1>
           <div className="board-container">
             {Object.values(board).map((item) => (
-              <BoardItem key={item.id} item={item} onClick={onClickItem} />
+              <BoardItem key={item.id} item={item} onClick={onClickItem}/>
             ))}
             <div>{isWin ? 'Yay you win!' : ''}</div>
           </div>

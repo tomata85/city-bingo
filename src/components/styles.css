@@ -27,10 +27,20 @@ p {
 }
 
 .board-item_checked {
-  background: #98eb98;
   pointer-events: none;
+}
+
+.board-item_photo-overlay {
+  background-color: rgba(0, 0, 0, 0.2);
+  background-size: contain;
+  opacity: 0.6;
 }
 
 #experience-photo {
   width: 300px;
+}
+
+.board-item_photo-cover {
+  max-width: 100%;
+  max-height: 100%;
 }

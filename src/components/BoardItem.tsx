@@ -23,6 +23,8 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
     }
   }, [])
 
+  const textClassName = imageData == null ? 'item-text' : 'item-text_checked'
+
   return (
     <div
       className={`board-item-container ${
@@ -31,8 +33,7 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
       onClick={handleOnClick}
     >
       {(imageData != null) && <img className="board-item_photo-cover" src={imageData} />}
-      {/* <img className='board-item_photo-cover' src={URL} /> */}
-      <div>{item.text}</div>
+      <div className={textClassName}>{item.text}</div>
     </div>
   )
 }

@@ -26,14 +26,13 @@ export default function Board (props: {
     setSelectedItem(board[itemId])
   }
 
-  const onCloseDidItPage = (done: boolean, photo: any): void => {
+  const onCloseDidItPage = (done: boolean): void => {
     if (selectedItem != null && done) {
       setBoard({
         ...board,
         [selectedItem.id]: {
           ...board[selectedItem.id],
-          checked: !board[selectedItem.id].checked,
-          photo
+          checked: !board[selectedItem.id].checked
         }
       })
     }

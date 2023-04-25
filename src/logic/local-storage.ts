@@ -11,3 +11,11 @@ export function getBoardFromStorage (): UserBoardType | undefined {
 export function storeBoard (board: UserBoardType): void {
   localStorage.setItem('board', JSON.stringify(board))
 }
+
+export function storeItemImage (image: string, itemId: string): void {
+  localStorage.setItem(`imageData_${itemId}`, image)
+}
+
+export function getItemImageFromStorage (itemId: string): string | null {
+  return localStorage.getItem(`imageData_${itemId}`)
+}

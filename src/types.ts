@@ -5,7 +5,6 @@ export interface BoardItemType {
   id: string
   text: string
   checked: boolean
-  photo?: any
 }
 
 export const BANSKO_BOARD_ITEMS = {

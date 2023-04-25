@@ -1,3 +1,4 @@
+import { getItemImageFromStorage } from '../logic/local-storage'
 import { type BoardItemType } from '../types'
 import './styles.css'
 import React, { useEffect, type ReactElement, useState } from 'react'
@@ -9,17 +10,16 @@ export interface BoardItemProps {
 
 export default function BoardItem (props: BoardItemProps): ReactElement {
   const { item, onClick } = props
-  const [photoPreview, setPhotoPreview] = useState<string | null>(null)
+  const [imageData, setImageData] = useState<string | undefined>()
 
   const handleOnClick = (): void => {
     onClick(item.id)
   }
 
   useEffect(() => {
-    if (item.photo != null) {
-      const objectUrl = URL.createObjectURL(item.photo?.media)
-      setPhotoPreview(objectUrl)
-      return () => { URL.revokeObjectURL(objectUrl) }
+    const data = getItemImageFromStorage(item.id)
+    if (data != null) {
+      setImageData(data)
     }
   }, [])
 
@@ -30,7 +30,7 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
       }`}
       onClick={handleOnClick}
     >
-      {photoPreview !== undefined && <img id="board-item_photo-cover" src={photoPreview} />}
+      {(imageData != null) && <img className="board-item_photo-cover" src={imageData} />}
       {/* <img className='board-item_photo-cover' src={URL} /> */}
       <div>{item.text}</div>
     </div>

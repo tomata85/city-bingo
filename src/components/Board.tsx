@@ -6,11 +6,14 @@ import { getInitialUserBoard as getInitialBoardInstance, isBoardWin } from '../l
 import { BoardInstanceItemType, BoardInstanceType } from '../types'
 import DidItPage from './DidItPage'
 import { updateBoardInstance } from '../logic/api'
+import { useTranslation } from 'react-i18next'
 
 export default function Board (props: {
   userId: string
   destinationId: string
 }): ReactElement {
+  const { t, i18n } = useTranslation()
+
   const getBoardInstance = (): BoardInstanceType =>
     getBoardFromStorage() ?? getInitialBoardInstance(props)
 
@@ -51,7 +54,7 @@ export default function Board (props: {
         : (
         <>
           <header>Welcome back Yulia</header>
-          <h1 className="title">Bansko Bingo</h1>
+          <h1 className="title">{t('main_title')}</h1>
           <div className="board-container">
             {Object.values(board).map((item) => (
               <BoardItem key={item.id} item={item} onClick={onClickItem}/>

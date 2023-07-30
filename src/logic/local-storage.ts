@@ -1,6 +1,6 @@
-import { UserBoardType } from '../types'
+import { BoardInstanceType } from '../types'
 
-export function getBoardFromStorage (): UserBoardType | undefined {
+export function getBoardFromStorage (): BoardInstanceType | undefined {
   const board = localStorage.getItem('board')
 
   if (board === '{}' || board === null) {
@@ -8,7 +8,7 @@ export function getBoardFromStorage (): UserBoardType | undefined {
   } return JSON.parse(board)
 }
 
-export function storeBoard (board: UserBoardType): void {
+export function storeBoard (board: BoardInstanceType): void {
   localStorage.setItem('board', JSON.stringify(board))
 }
 

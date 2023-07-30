@@ -1,29 +1,24 @@
-export type UserBoardType = Record<string, BoardItemType>
+export type BoardInstanceType = Record<string, BoardInstanceItemType>
 
-export interface BoardItemType {
-  index: number
+export interface BoardInstanceItemType {
   id: string
-  text: string
   checked: boolean
+  title: string // duplicated data
+  order_index: number // FFU
 }
 
 export const BANSKO_BOARD_ITEMS = {
-  bansko_1: 'Hot Springs',
-  bansko_2: 'Hike Pirin mountains',
-  bansko_3: 'Watch a sunset',
-  bansko_4: 'Picnic in Pirin forest',
-  bansko_5: 'Have a Banitza',
-  bansko_6: 'Visit a co-work',
-  bansko_7: 'Hike to Bezbog hut',
-  bansko_8: 'Smoothie at Coconut',
-  bansko_9: 'Belizmata lake'
+  item_a: 'Hot Springs',
+  item_b: 'Hike Pirin mountains',
+  item_c: 'Watch a sunset',
+  item_d: 'Picnic in Pirin forest',
+  item_e: 'Have a Banitza',
+  item_f: 'Visit a co-work',
+  item_g: 'Hike to Bezbog hut',
+  item_h: 'Smoothie at Coconut',
+  item_i: 'Belizmata lake'
 }
 
-/*
-0,1,2
-3,4,5
-6,7,8
-*/
 export const WIN_PATTERNS = [
   [0, 1, 2],
   [3, 4, 5],

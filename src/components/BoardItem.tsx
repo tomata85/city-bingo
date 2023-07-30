@@ -1,10 +1,10 @@
 import { getItemImageFromStorage } from '../logic/local-storage'
-import { type BoardItemType } from '../types'
+import { type BoardInstanceItemType } from '../types'
 import './styles.css'
 import React, { useEffect, type ReactElement, useState } from 'react'
 
 export interface BoardItemProps {
-  item: BoardItemType
+  item: BoardInstanceItemType
   onClick: (id: string) => void
 }
 
@@ -33,7 +33,7 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
       onClick={handleOnClick}
     >
       {(imageData != null) && <img className="board-item_photo-cover" src={imageData} />}
-      <div className={textClassName}>{item.text}</div>
+      <div className={textClassName}>{item.title}</div>
     </div>
   )
 }

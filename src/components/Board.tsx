@@ -2,24 +2,26 @@ import React, { type ReactElement, useState, useEffect } from 'react'
 import BoardItem from '../components/BoardItem'
 import './styles.css'
 import { getBoardFromStorage, storeBoard } from '../logic/local-storage'
-import { getInitialUserBoard, isBoardWin } from '../logic/board'
-import { BoardItemType, UserBoardType } from '../types'
+import { getInitialUserBoard as getInitialBoardInstance, isBoardWin } from '../logic/board'
+import { BoardInstanceItemType, BoardInstanceType } from '../types'
 import DidItPage from './DidItPage'
+import { updateBoardInstance } from '../logic/api'
 
 export default function Board (props: {
   userId: string
   destinationId: string
 }): ReactElement {
-  const getUserBoard = (): UserBoardType =>
-    getBoardFromStorage() ?? getInitialUserBoard(props)
+  const getBoardInstance = (): BoardInstanceType =>
+    getBoardFromStorage() ?? getInitialBoardInstance(props)
 
-  const [selectedItem, setSelectedItem] = useState<BoardItemType | null>(null)
-  const [board, setBoard] = useState<UserBoardType>(getUserBoard())
+  const [selectedItem, setSelectedItem] = useState<BoardInstanceItemType | null>(null)
+  const [board, setBoard] = useState<BoardInstanceType>(getBoardInstance())
   const [isWin, setIsWin] = useState<boolean>(false)
 
   useEffect(() => {
     storeBoard(board)
     setIsWin(isBoardWin(board))
+    updateBoardInstance(board)
   }, [board])
 
   const onClickItem = (itemId: string): void => {

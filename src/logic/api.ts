@@ -1,5 +1,7 @@
+import { BoardInstanceItemType, BoardInstanceType } from '../types'
+
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-const url = 'https://b39b828gcb.execute-api.ap-northeast-1.amazonaws.com'
+const url = 'https://19iqaec2c8.execute-api.eu-west-1.amazonaws.com/default'
 
 function requestOptions (method: string, body?: any) {
   const headers = {
@@ -18,7 +20,11 @@ async function call (url: string, requestOptions: any) {
     })
 }
 
-export function toggleCheckItem (item: string) {
+export function updateBoardInstance (boardInstance: BoardInstanceType) {
+  // TODO: Rename Lambda?
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-  call(`${url}/toggleCheckItem`, requestOptions('POST', { id: item, data: 'checked' }))
+  call(`${url}/checkItem`, requestOptions('POST', {
+    id: 'talya.stern@gmail.com',
+    boardInstance_bansko: boardInstance
+  }))
 }

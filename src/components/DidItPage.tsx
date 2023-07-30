@@ -1,10 +1,10 @@
 import './styles.css'
 import React, { useState, type ReactElement, useEffect } from 'react'
-import { BoardItemType } from '../types'
+import { BoardInstanceItemType } from '../types'
 import { storeItemImage, getItemImageFromStorage } from '../logic/local-storage'
 
 export interface DidItPageProps {
-  item: BoardItemType
+  item: BoardInstanceItemType
   onClose: (done: boolean) => void
 }
 
@@ -44,7 +44,7 @@ export default function DidItPage (props: DidItPageProps): ReactElement {
   return (
     <>
       <h1 className="title">Way to go!</h1>
-      <p>You have experienced: {item.text}</p>
+      <p>You have experienced: {item.title}</p>
       <p>Add a selfie or an take a photo of your experience</p>
       <div>
       <input accept="image/*" type="file" onChange={onFileChange} />

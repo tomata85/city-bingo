@@ -2,6 +2,7 @@ import { getItemImageFromStorage } from '../logic/local-storage'
 import { type BoardInstanceItemType } from '../types'
 import './styles.css'
 import React, { useEffect, type ReactElement, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export interface BoardItemProps {
   item: BoardInstanceItemType
@@ -11,6 +12,8 @@ export interface BoardItemProps {
 export default function BoardItem (props: BoardItemProps): ReactElement {
   const { item, onClick } = props
   const [imageData, setImageData] = useState<string | undefined>()
+
+  const { t, i18n } = useTranslation()
 
   const handleOnClick = (): void => {
     onClick(item.id)
@@ -33,7 +36,7 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
       onClick={handleOnClick}
     >
       {(imageData != null) && <img className="board-item_photo-cover" src={imageData} />}
-      <div className={textClassName}>{item.title}</div>
+      <div className={textClassName}>{t(item.id)}</div>
     </div>
   )
 }

@@ -10,6 +10,7 @@ import { BoardInstanceItemType, BoardInstanceType } from '../../types'
 import DidItPage from '../ItemPages/DidItPage'
 import { updateBoardInstance } from '../../logic/api'
 import { useTranslation } from 'react-i18next'
+import ItemDialog from '../ItemPages/ItemDialog'
 
 export default function Board (props: {
   userId: string
@@ -35,7 +36,7 @@ export default function Board (props: {
     setSelectedItem(board[itemId])
   }
 
-  const onCloseDidItPage = (done: boolean): void => {
+  const onCloseItemDialog = (done: boolean): void => {
     if (selectedItem != null && done) {
       setBoard({
         ...board,
@@ -53,7 +54,7 @@ export default function Board (props: {
     <>
       {selectedItem != null
         ? (
-        <DidItPage item={selectedItem} onClose={onCloseDidItPage} />
+        <ItemDialog item={selectedItem} onClose={onCloseItemDialog} />
           )
         : (
         <>

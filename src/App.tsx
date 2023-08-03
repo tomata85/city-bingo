@@ -1,11 +1,11 @@
 import React, { type ReactElement } from 'react'
 import './App.css'
-import Board from './components/Board'
+import Main from './components/Main'
 
 function App (): ReactElement {
   return (
     <div className="App">
-      <Board userId="Oren Chazan" destinationId="Bansko" />
+      <Main />
     </div>
   )
 }

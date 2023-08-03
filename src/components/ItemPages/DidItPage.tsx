@@ -2,6 +2,7 @@ import '../styles.css'
 import React, { useState, type ReactElement, useEffect } from 'react'
 import { BoardInstanceItemType } from '../../types'
 import { storeItemImage, getItemImageFromStorage } from '../../logic/local-storage'
+import { useTranslation } from 'react-i18next'
 
 export interface DidItPageProps {
   item: BoardInstanceItemType
@@ -11,6 +12,7 @@ export interface DidItPageProps {
 export default function DidItPage (props: DidItPageProps): ReactElement {
   const [imageData, setImageData] = useState<string | undefined>()
   const { item, onClose } = props
+  const { t } = useTranslation()
 
   const onFileChange = (event: any): void => {
     const file = event.target.files?.[0]
@@ -44,7 +46,7 @@ export default function DidItPage (props: DidItPageProps): ReactElement {
   return (
     <>
       <h1 className="title">Way to go!</h1>
-      <p>You have experienced: {item.title}</p>
+      <p>You have experienced: {t(item.id)}</p>
       <p>Add a selfie or an take a photo of your experience</p>
       <div>
       <input accept="image/*" type="file" onChange={onFileChange} />

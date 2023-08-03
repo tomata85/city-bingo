@@ -3,7 +3,6 @@ export type BoardInstanceType = Record<string, BoardInstanceItemType>
 export interface BoardInstanceItemType {
   id: string
   checked: boolean
-  title: string // duplicated data
   order_index: number // FFU
 }
 

@@ -9,7 +9,6 @@ export function getInitialUserBoard (_: {
     board[item[0]] = {
       order_index: index,
       id: item[0],
-      title: item[1],
       checked: false
     }
   })

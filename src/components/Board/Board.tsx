@@ -7,7 +7,6 @@ import {
   isBoardWin
 } from '../../logic/board'
 import { BoardInstanceItemType, BoardInstanceType } from '../../types'
-import DidItPage from '../ItemPages/DidItPage'
 import { updateBoardInstance } from '../../logic/api'
 import { useTranslation } from 'react-i18next'
 import ItemDialog from '../ItemPages/ItemDialog'

@@ -2,11 +2,16 @@ import React, { type ReactElement, useState, useEffect } from 'react'
 import BoardItem from '../components/BoardItem'
 import './styles.css'
 import { getBoardFromStorage, storeBoard } from '../logic/local-storage'
-import { getInitialUserBoard as getInitialBoardInstance, isBoardWin } from '../logic/board'
+import {
+  getInitialUserBoard as getInitialBoardInstance,
+  isBoardWin
+} from '../logic/board'
 import { BoardInstanceItemType, BoardInstanceType } from '../types'
 import DidItPage from './DidItPage'
 import { updateBoardInstance } from '../logic/api'
 import { useTranslation } from 'react-i18next'
+import Button from '@mui/material/Button'
+import TranslateIcon from '@mui/icons-material/Translate'
 
 export default function Board (props: {
   userId: string
@@ -17,7 +22,8 @@ export default function Board (props: {
   const getBoardInstance = (): BoardInstanceType =>
     getBoardFromStorage() ?? getInitialBoardInstance(props)
 
-  const [selectedItem, setSelectedItem] = useState<BoardInstanceItemType | null>(null)
+  const [selectedItem, setSelectedItem] =
+    useState<BoardInstanceItemType | null>(null)
   const [board, setBoard] = useState<BoardInstanceType>(getBoardInstance())
   const [isWin, setIsWin] = useState<boolean>(false)
   const [lang, setLang] = useState<string>(i18n.language)
@@ -29,7 +35,9 @@ export default function Board (props: {
   }, [board])
 
   useEffect(() => {
-    i18n.changeLanguage(lang).catch((e) => { console.log(e) })
+    i18n.changeLanguage(lang).catch((e) => {
+      console.log(e)
+    })
   }, [lang])
 
   const onClickItem = (itemId: string): void => {
@@ -66,11 +74,17 @@ export default function Board (props: {
           <h1 className="title">{t('main_title')}</h1>
           <div className="board-container">
             {Object.values(board).map((item) => (
-              <BoardItem key={item.id} item={item} onClick={onClickItem}/>
+              <BoardItem key={item.id} item={item} onClick={onClickItem} />
             ))}
             <div>{isWin ? 'Yay you win!' : ''}</div>
           </div>
-          <button onClick={onChangeLanguage}>Change Language</button>
+          <Button
+            variant="outlined"
+            startIcon={<TranslateIcon />}
+            onClick={onChangeLanguage}
+          >
+          {lang}
+          </Button>
         </>
           )}
     </>

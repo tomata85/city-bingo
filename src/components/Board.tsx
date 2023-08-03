@@ -10,14 +10,12 @@ import { BoardInstanceItemType, BoardInstanceType } from '../types'
 import DidItPage from './DidItPage'
 import { updateBoardInstance } from '../logic/api'
 import { useTranslation } from 'react-i18next'
-import Button from '@mui/material/Button'
-import TranslateIcon from '@mui/icons-material/Translate'
 
 export default function Board (props: {
   userId: string
   destinationId: string
 }): ReactElement {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   const getBoardInstance = (): BoardInstanceType =>
     getBoardFromStorage() ?? getInitialBoardInstance(props)
@@ -26,7 +24,6 @@ export default function Board (props: {
     useState<BoardInstanceItemType | null>(null)
   const [board, setBoard] = useState<BoardInstanceType>(getBoardInstance())
   const [isWin, setIsWin] = useState<boolean>(false)
-  const [lang, setLang] = useState<string>(i18n.language)
 
   useEffect(() => {
     storeBoard(board)
@@ -34,19 +31,8 @@ export default function Board (props: {
     updateBoardInstance(board)
   }, [board])
 
-  useEffect(() => {
-    i18n.changeLanguage(lang).catch((e) => {
-      console.log(e)
-    })
-  }, [lang])
-
   const onClickItem = (itemId: string): void => {
     setSelectedItem(board[itemId])
-  }
-
-  const onChangeLanguage = (): void => {
-    const updatedLang = lang === 'en' ? 'he' : 'en'
-    setLang(updatedLang)
   }
 
   const onCloseDidItPage = (done: boolean): void => {
@@ -78,13 +64,6 @@ export default function Board (props: {
             ))}
             <div>{isWin ? 'Yay you win!' : ''}</div>
           </div>
-          <Button
-            variant="outlined"
-            startIcon={<TranslateIcon />}
-            onClick={onChangeLanguage}
-          >
-          {lang}
-          </Button>
         </>
           )}
     </>

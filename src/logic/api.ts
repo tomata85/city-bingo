@@ -1,4 +1,4 @@
-import { BoardInstanceItemType, BoardInstanceType } from '../types'
+import { BoardInstanceType } from '../types'
 
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 const url = 'https://19iqaec2c8.execute-api.eu-west-1.amazonaws.com/default'

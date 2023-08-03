@@ -13,7 +13,7 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
   const { item, onClick } = props
   const [imageData, setImageData] = useState<string | undefined>()
 
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   const handleOnClick = (): void => {
     onClick(item.id)

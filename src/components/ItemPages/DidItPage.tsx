@@ -1,7 +1,7 @@
-import './styles.css'
+import '../styles.css'
 import React, { useState, type ReactElement, useEffect } from 'react'
-import { BoardInstanceItemType } from '../types'
-import { storeItemImage, getItemImageFromStorage } from '../logic/local-storage'
+import { BoardInstanceItemType } from '../../types'
+import { storeItemImage, getItemImageFromStorage } from '../../logic/local-storage'
 
 export interface DidItPageProps {
   item: BoardInstanceItemType

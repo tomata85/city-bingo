@@ -1,5 +1,5 @@
 import React, { type ReactElement, useState, useEffect } from 'react'
-import Board from './Board'
+import Board from './Board/Board'
 import Button from '@mui/material/Button'
 import TranslateIcon from '@mui/icons-material/Translate'
 import { useTranslation } from 'react-i18next'

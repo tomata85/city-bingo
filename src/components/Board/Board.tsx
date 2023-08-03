@@ -1,14 +1,14 @@
 import React, { type ReactElement, useState, useEffect } from 'react'
-import BoardItem from '../components/BoardItem'
-import './styles.css'
-import { getBoardFromStorage, storeBoard } from '../logic/local-storage'
+import BoardItem from './BoardItem'
+import '../styles.css'
+import { getBoardFromStorage, storeBoard } from '../../logic/local-storage'
 import {
   getInitialUserBoard as getInitialBoardInstance,
   isBoardWin
-} from '../logic/board'
-import { BoardInstanceItemType, BoardInstanceType } from '../types'
-import DidItPage from './ItemPages/DidItPage'
-import { updateBoardInstance } from '../logic/api'
+} from '../../logic/board'
+import { BoardInstanceItemType, BoardInstanceType } from '../../types'
+import DidItPage from '../ItemPages/DidItPage'
+import { updateBoardInstance } from '../../logic/api'
 import { useTranslation } from 'react-i18next'
 
 export default function Board (props: {

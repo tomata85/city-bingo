@@ -1,6 +1,6 @@
-import { getItemImageFromStorage } from '../logic/local-storage'
-import { type BoardInstanceItemType } from '../types'
-import './styles.css'
+import { getItemImageFromStorage } from '../../logic/local-storage'
+import { type BoardInstanceItemType } from '../../types'
+import '../styles.css'
 import React, { useEffect, type ReactElement, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 

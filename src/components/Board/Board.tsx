@@ -9,7 +9,7 @@ import {
 import { BoardInstanceItemType, BoardInstanceType } from '../../types'
 import { updateBoardInstance } from '../../logic/api'
 import { useTranslation } from 'react-i18next'
-import ItemDialog from '../ItemPages/ItemDialog'
+import ItemExpanded from '../ItemPages/ItemExpanded'
 
 export default function Board (props: {
   userId: string
@@ -53,7 +53,7 @@ export default function Board (props: {
     <>
       {selectedItem != null
         ? (
-        <ItemDialog item={selectedItem} onClose={onCloseItemDialog} />
+        <ItemExpanded item={selectedItem} onClose={onCloseItemDialog} />
           )
         : (
         <>

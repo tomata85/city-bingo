@@ -45,7 +45,7 @@ export default function DidItPage (props: DidItPageProps): ReactElement {
 
   return (
     <>
-      <h1 className="title">Way to go!</h1>
+      <h4>Way to go!</h4>
       <p>You have experienced: {t(item.id)}</p>
       <p>Add a selfie or an take a photo of your experience</p>
       <div>

@@ -7,6 +7,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import ButtonPane from '../Infrastructure/ButtonPane'
 import { Box, Button } from '@mui/material'
+import Resizer from 'react-image-file-resizer'
 
 export interface DidItPageProps {
   item: BoardInstanceItemType
@@ -23,9 +24,7 @@ export default function DidItPage (props: DidItPageProps): ReactElement {
     if (file != null) {
       const reader = new FileReader()
       reader.onload = () => {
-        const base64Data = reader.result?.toString()
-        setImageData(base64Data)
-        storeItemImage(base64Data ?? '', item.id)
+        compressImage(file)
       }
       reader.readAsDataURL(file)
     }
@@ -47,6 +46,24 @@ export default function DidItPage (props: DidItPageProps): ReactElement {
     onClose(false)
   }
 
+  const onImageCompressed = (image: any): void => {
+    setImageData(image)
+    storeItemImage(image ?? '', item.id)
+  }
+
+  const compressImage = (data: any): void => {
+    Resizer.imageFileResizer(
+      data,
+      300,
+      300,
+      'JPEG',
+      100,
+      0,
+      onImageCompressed, // Is the callBack function of the resized new image URI.
+      'base64'
+    )
+  }
+
   return (
     <>
       <Box sx={{ margin: '30px', textAlign: 'left' }}>
@@ -57,7 +74,13 @@ export default function DidItPage (props: DidItPageProps): ReactElement {
             Upload File
             <input type="file" hidden />
           </Button>
-          {imageData != null && <img id="experience-photo" src={imageData} />}
+          {imageData != null && (
+            <Box sx={{
+              mt: '20px'
+            }}>
+              <img id="experience-photo" src={imageData} />
+            </Box>
+          )}
         </div>
       </Box>
       <ButtonPane

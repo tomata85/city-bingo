@@ -50,9 +50,8 @@ export default function DidItPage (props: DidItPageProps): ReactElement {
   return (
     <>
       <Box sx={{ margin: '30px', textAlign: 'left' }}>
-        <h4>Way to go!</h4>
-        <p>You have experienced: {t(item.id)}</p>
-        <p>Add a selfie or an take a photo of your experience</p>
+        <h3>{t('did_it_title')}</h3>
+        <p>{t('did_it_selfie')}</p>
         <div>
           <Button variant="contained" component="label" onChange={onFileChange}>
             Upload File

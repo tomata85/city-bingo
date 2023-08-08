@@ -71,7 +71,7 @@ export default function DidItPage (props: DidItPageProps): ReactElement {
         <p>{t('did_it_selfie')}</p>
         <div>
           <Button variant="contained" component="label" onChange={onFileChange}>
-            Upload File
+            {t('did_it_browse_file')}
             <input type="file" hidden />
           </Button>
           {imageData != null && (

@@ -15,6 +15,10 @@ export default function ItemExpanded (props: ItemDialogProps): ReactElement {
   const { item } = props
   const { t } = useTranslation()
 
+  const onBackArrowClick = (): void => {
+    props.onClose(false)
+  }
+
   return (
     <>
     <Box sx={{ flexGrow: 1 }}>
@@ -26,6 +30,7 @@ export default function ItemExpanded (props: ItemDialogProps): ReactElement {
           color="inherit"
           aria-label="menu"
           sx={{ mr: 2 }}
+          onClick={onBackArrowClick}
         >
           <ArrowBack/>
         </IconButton>

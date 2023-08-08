@@ -5,7 +5,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const theme = createTheme({
   typography: {
-    fontFamily: ['Inter', 'Roboto', 'sans-serif'].join(',')
+    fontFamily: ['Ubuntu', 'Roboto', 'sans-serif'].join(',')
   }
 })
 

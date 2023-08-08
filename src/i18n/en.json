@@ -8,5 +8,7 @@
   "item_f": "Visit a co-work",
   "item_g": "Hike to Bezbog hut",
   "item_h": "Smoothie at Coconut",
-  "item_i": "Belizmata lake"
+  "item_i": "Belizmata lake",
+  "did_it_button_next": "Save",
+  "did_it_button_back": "Cancel"
 }

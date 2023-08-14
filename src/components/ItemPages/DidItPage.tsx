@@ -86,7 +86,7 @@ export default function DidItPage (props: DidItPageProps): ReactElement {
       <ButtonPane
         backText={t('did_it_button_back')}
         onBack={onCancel}
-        nextText={t('did_it_button_next')}
+        nextText={(imageData != null) ? t('did_it_button_next') : t('did_it_button_next_no_image') }
         onNext={onSave}
       />
     </>

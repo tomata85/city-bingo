@@ -26,7 +26,17 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
     }
   }, [])
 
-  const textClassName = imageData == null ? 'item-text' : 'item-text_checked'
+  const textClassName = item.checked ? 'item-text_checked' : 'item-text'
+  const imageCover =
+    imageData != null
+      ? (
+      <img className="board-item_photo-cover" src={imageData} />
+        )
+      : item.checked && imageData == null
+        ? (
+      <img className="board-item_photo-cover" src={'checkmark-512.jpg'} />
+          )
+        : null
 
   return (
     <div
@@ -35,7 +45,7 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
       }`}
       onClick={handleOnClick}
     >
-      {(imageData != null) && <img className="board-item_photo-cover" src={imageData} />}
+      {imageCover}
       <div className={textClassName}>{t(item.id)}</div>
     </div>
   )

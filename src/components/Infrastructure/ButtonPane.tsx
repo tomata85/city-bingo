@@ -1,12 +1,9 @@
 import React, { type ReactElement } from 'react'
-import { Box, Button } from '@mui/material'
+import { Box } from '@mui/material'
 import '../styles.css'
 
 interface ButtonPaneProps {
-  nextText: string
-  backText: string
-  onNext: () => void
-  onBack: () => void
+  children: React.ReactNode
 }
 
 export default function ButtonPane (props: ButtonPaneProps): ReactElement {
@@ -27,12 +24,7 @@ export default function ButtonPane (props: ButtonPaneProps): ReactElement {
         }}
         component="footer"
       >
-        <Button sx={{ mx: '5px' }} variant="outlined" onClick={props.onBack}>
-          {props.backText}
-        </Button>
-        <Button sx={{ mx: '5px' }} variant="outlined" onClick={props.onNext}>
-          {props.nextText}
-        </Button>
+        {props.children}
       </Box>
     </>
   )

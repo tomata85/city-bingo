@@ -35,7 +35,7 @@ export default function Board (props: {
     setSelectedItem(board[itemId])
   }
 
-  const onCloseItemDialog = (done: boolean): void => {
+  const onCloseItemExpanded = (done: boolean): void => {
     if (selectedItem != null && done) {
       setBoard({
         ...board,
@@ -53,7 +53,7 @@ export default function Board (props: {
     <>
       {selectedItem != null
         ? (
-        <ItemExpanded item={selectedItem} onClose={onCloseItemDialog} />
+        <ItemExpanded item={selectedItem} onClose={onCloseItemExpanded} />
           )
         : (
         <>

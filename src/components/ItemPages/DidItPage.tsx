@@ -59,7 +59,7 @@ export default function DidItPage (props: DidItPageProps): ReactElement {
       'JPEG',
       100,
       0,
-      onImageCompressed, // Is the callBack function of the resized new image URI.
+      onImageCompressed,
       'base64'
     )
   }
@@ -83,12 +83,14 @@ export default function DidItPage (props: DidItPageProps): ReactElement {
           )}
         </div>
       </Box>
-      <ButtonPane
-        backText={t('did_it_button_back')}
-        onBack={onCancel}
-        nextText={(imageData != null) ? t('did_it_button_next') : t('did_it_button_next_no_image') }
-        onNext={onSave}
-      />
+      <ButtonPane>
+        <Button sx={{ mx: '5px' }} variant="outlined" onClick={onCancel}>
+          {t('did_it_button_back')}
+        </Button>
+        <Button sx={{ mx: '5px' }} variant="outlined" onClick={onSave}>
+          {(imageData != null) ? t('did_it_button_next') : t('did_it_button_next_no_image')}
+        </Button>
+      </ButtonPane>
     </>
   )
 }

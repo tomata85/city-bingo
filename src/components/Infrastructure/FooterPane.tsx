@@ -2,11 +2,11 @@ import React, { type ReactElement } from 'react'
 import { Box } from '@mui/material'
 import '../styles.css'
 
-interface ButtonPaneProps {
+interface FooterPaneProps {
   children: React.ReactNode
 }
 
-export default function ButtonPane (props: ButtonPaneProps): ReactElement {
+export default function FooterPane (props: FooterPaneProps): ReactElement {
   return (
     <>
       <Box

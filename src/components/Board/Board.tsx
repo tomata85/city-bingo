@@ -9,7 +9,7 @@ import {
 import { BoardInstanceItemType, BoardInstanceType } from '../../types'
 import { updateBoardInstance } from '../../logic/api'
 import { useTranslation } from 'react-i18next'
-import ItemExpanded from '../ItemPages/ItemExpanded'
+import ItemPagesContainer from '../ItemPages/ItemPagesContainer'
 
 export default function Board (props: {
   userId: string
@@ -35,7 +35,7 @@ export default function Board (props: {
     setSelectedItem(board[itemId])
   }
 
-  const onCloseItemExpanded = (done: boolean): void => {
+  const onItemPagesClosed = (done: boolean): void => {
     if (selectedItem != null && done) {
       setBoard({
         ...board,
@@ -53,7 +53,7 @@ export default function Board (props: {
     <>
       {selectedItem != null
         ? (
-        <ItemExpanded item={selectedItem} onClose={onCloseItemExpanded} />
+        <ItemPagesContainer item={selectedItem} onClose={onItemPagesClosed} />
           )
         : (
         <>

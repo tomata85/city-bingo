@@ -1,22 +1,16 @@
 import React, { useState, type ReactElement, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import ButtonPane from '../Infrastructure/ButtonPane'
+import FooterPane from '../Infrastructure/FooterPane'
 import { Box, Button } from '@mui/material'
-import { BoardInstanceItemType } from '../../types'
+import { ItemPagesProps, ShownPageType } from './ItemPagesContainer'
+import FooterPaneButton from '../Infrastructure/FooterPaneButton'
 
-export interface InformationPageProps {
-  item: BoardInstanceItemType
-  onClose: (done: boolean) => void
-}
-
-export default function InformationPage (
-  props: InformationPageProps
-): ReactElement {
-  const { item, onClose } = props
+export default function InformationPage (props: ItemPagesProps): ReactElement {
+  const { item, onClose, onChangePage } = props
   const { t } = useTranslation()
 
-  const onSave = (): void => {
-    onClose(true)
+  const onNext = (): void => {
+    onChangePage(ShownPageType.DidIt)
   }
 
   const onCancel = (): void => {
@@ -28,14 +22,10 @@ export default function InformationPage (
       <Box sx={{ margin: '30px', textAlign: 'left' }}>
         <p>{t('item_a_description')}</p>
       </Box>
-      <ButtonPane>
-        <Button sx={{ mx: '5px' }} variant="outlined" onClick={onCancel}>
-          {t('did_it_button_back')}
-        </Button>
-        <Button sx={{ mx: '5px' }} variant="outlined" onClick={onSave}>
-          Next
-        </Button>
-      </ButtonPane>
+      <FooterPane>
+        <FooterPaneButton text={t('did_it_button_back')} onClick={onCancel} />
+        <FooterPaneButton text={'Next'} onClick={onNext} />
+      </FooterPane>
     </>
   )
 }

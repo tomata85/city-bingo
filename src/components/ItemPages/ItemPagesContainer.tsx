@@ -7,17 +7,23 @@ import { ArrowBack } from '@mui/icons-material'
 import InformationPage from './InformationPage'
 import { BoardInstanceItemType } from '../../types'
 
+export interface ItemPagesContainerProps {
+  item: BoardInstanceItemType
+  onClose: (done: boolean) => void
+}
+
 export enum ShownPageType {
   Information,
   DidIt,
 }
 
-export interface ItemExpandedProps {
+export interface ItemPagesProps {
   item: BoardInstanceItemType
   onClose: (done: boolean) => void
+  onChangePage: (page: ShownPageType) => void
 }
 
-export default function ItemExpanded (props: ItemExpandedProps): ReactElement {
+export default function ItemPagesContainer (props: ItemPagesContainerProps): ReactElement {
   const [shownPageType, setShownPageType] = useState<ShownPageType>(
     ShownPageType.Information
   )
@@ -36,7 +42,7 @@ export default function ItemExpanded (props: ItemExpandedProps): ReactElement {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position="static" color="secondary">
           <Toolbar>
             <IconButton
               size="large"
@@ -56,10 +62,10 @@ export default function ItemExpanded (props: ItemExpandedProps): ReactElement {
       </Box>
       {shownPageType === ShownPageType.Information
         ? (
-      <InformationPage {...props} />
+      <InformationPage onChangePage={onChangePage} {...props}/>
           )
         : (
-      <DidItPage {...props} />
+      <DidItPage onChangePage={onChangePage} {...props}/>
           )}
     </>
   )

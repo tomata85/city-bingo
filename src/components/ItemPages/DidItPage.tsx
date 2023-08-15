@@ -1,22 +1,18 @@
 import React, { useState, type ReactElement, useEffect } from 'react'
-import { BoardInstanceItemType } from '../../types'
 import {
   storeItemImage,
   getItemImageFromStorage
 } from '../../logic/local-storage'
 import { useTranslation } from 'react-i18next'
-import ButtonPane from '../Infrastructure/ButtonPane'
+import FooterPane from '../Infrastructure/FooterPane'
 import { Box, Button } from '@mui/material'
 import Resizer from 'react-image-file-resizer'
+import { ItemPagesProps, ShownPageType } from './ItemPagesContainer'
+import FooterPaneButton from '../Infrastructure/FooterPaneButton'
 
-export interface DidItPageProps {
-  item: BoardInstanceItemType
-  onClose: (done: boolean) => void
-}
-
-export default function DidItPage (props: DidItPageProps): ReactElement {
+export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [imageData, setImageData] = useState<string | undefined>()
-  const { item, onClose } = props
+  const { item, onClose, onChangePage } = props
   const { t } = useTranslation()
 
   const onFileChange = (event: any): void => {
@@ -44,6 +40,10 @@ export default function DidItPage (props: DidItPageProps): ReactElement {
 
   const onCancel = (): void => {
     onClose(false)
+  }
+
+  const onBack = (): void => {
+    onChangePage(ShownPageType.Information)
   }
 
   const onImageCompressed = (image: any): void => {
@@ -75,22 +75,28 @@ export default function DidItPage (props: DidItPageProps): ReactElement {
             <input type="file" hidden />
           </Button>
           {imageData != null && (
-            <Box sx={{
-              mt: '20px'
-            }}>
+            <Box
+              sx={{
+                mt: '20px'
+              }}
+            >
               <img id="experience-photo" src={imageData} />
             </Box>
           )}
         </div>
       </Box>
-      <ButtonPane>
-        <Button sx={{ mx: '5px' }} variant="outlined" onClick={onCancel}>
-          {t('did_it_button_back')}
-        </Button>
-        <Button sx={{ mx: '5px' }} variant="outlined" onClick={onSave}>
-          {(imageData != null) ? t('did_it_button_next') : t('did_it_button_next_no_image')}
-        </Button>
-      </ButtonPane>
+      <FooterPane>
+        <FooterPaneButton text={t('did_it_button_back')} onClick={onCancel} />
+        <FooterPaneButton text="Back" onClick={onBack} />
+        <FooterPaneButton
+          text={
+            imageData != null
+              ? t('did_it_button_next')
+              : t('did_it_button_next_no_image')
+          }
+          onClick={onSave}
+        />
+      </FooterPane>
     </>
   )
 }

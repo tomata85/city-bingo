@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import AppBar from '@mui/material/AppBar'
 import { Box, IconButton, Toolbar, Typography } from '@mui/material'
 import { ArrowBack } from '@mui/icons-material'
-// import InformationPage from './InformationPage'
+import InformationPage from './InformationPage'
 import { BoardInstanceItemType } from '../../types'
 
 export enum ShownPageType {
@@ -56,8 +56,7 @@ export default function ItemExpanded (props: ItemExpandedProps): ReactElement {
       </Box>
       {shownPageType === ShownPageType.Information
         ? (
-      // <InformationPage {...props} />
-      <DidItPage {...props} />
+      <InformationPage {...props} />
           )
         : (
       <DidItPage {...props} />

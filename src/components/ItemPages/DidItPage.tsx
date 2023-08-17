@@ -35,7 +35,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   }, [])
 
   const onSave = (): void => {
-    uploadFile('fff')
+    uploadFile(imageData)
     onClose(true)
   }
 
@@ -55,13 +55,13 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   const compressImage = (data: any): void => {
     Resizer.imageFileResizer(
       data,
-      300,
-      300,
+      1000,
+      1000,
       'JPEG',
       100,
       0,
       onImageCompressed,
-      'base64'
+      'blob'
     )
   }
 

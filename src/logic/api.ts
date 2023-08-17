@@ -17,8 +17,6 @@ export function uploadFile (photo: any) {
   fetch(`${url}/getImageUploadLink`, requestOptions('GET'))
     .then(async res => await res.json())
     .then(signedUrl => {
-      console.log(signedUrl)
-
       if (signedUrl == null) {
         return
       }
@@ -28,7 +26,7 @@ export function uploadFile (photo: any) {
         headers: {
           'Content-Type': 'image/jpeg'
         },
-        body: 'Hayoosh'// photo.media
+        body: photo
       }).catch((err) => {
         console.log(err.message)
       })

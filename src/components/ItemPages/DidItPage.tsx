@@ -9,7 +9,7 @@ import { Box, Button } from '@mui/material'
 import Resizer from 'react-image-file-resizer'
 import { ItemPagesProps, ShownPageType } from './ItemPagesContainer'
 import FooterPaneButton from '../Infrastructure/FooterPaneButton'
-import { uploadFile } from '../../logic/api'
+import { uploadItemImage } from '../../logic/api'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [imageData, setImageData] = useState<string | undefined>()
@@ -35,7 +35,8 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   }, [])
 
   const onSave = (): void => {
-    uploadFile(imageData)
+    console.log('uploadItemImage')
+    uploadItemImage(item.id, imageData)
     onClose(true)
   }
 
@@ -61,7 +62,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
       100,
       0,
       onImageCompressed,
-      'blob'
+      'base64'
     )
   }
 

@@ -13,8 +13,8 @@ function requestOptions (method: string, body?: any) {
   return headers
 }
 
-export function uploadFile (photo: any) {
-  fetch(`${url}/getImageUploadLink`, requestOptions('GET'))
+export function uploadItemImage (itemId: string, photo: any) {
+  fetch(`${url}/getImageUploadLink?itemId=${itemId}`, requestOptions('GET'))
     .then(async res => await res.json())
     .then(signedUrl => {
       if (signedUrl == null) {

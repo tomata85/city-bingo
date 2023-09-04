@@ -12,8 +12,8 @@ export function storeBoard (board: BoardInstanceType): void {
   localStorage.setItem('board', JSON.stringify(board))
 }
 
-export function storeItemImage (image: string, itemId: string): void {
-  localStorage.setItem(`imageData_${itemId}`, image)
+export function storeItemImage (itemId: string, imageUrl: string): void {
+  localStorage.setItem(`imageData_${itemId}`, imageUrl)
 }
 
 export function getItemImageFromStorage (itemId: string): string | null {

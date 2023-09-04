@@ -1,4 +1,4 @@
-import { BoardInstanceType, PhotoProps } from '../types'
+import { BoardInstanceType } from '../types'
 
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 const url = 'https://19iqaec2c8.execute-api.eu-west-1.amazonaws.com/default'
@@ -13,13 +13,14 @@ function requestOptions (method: string, body?: any) {
   return headers
 }
 
-export function uploadItemImage (itemId: string, photo: any) {
+export function uploadItemImage (itemId: string, photo: Blob, onImageUploaded: any) {
   fetch(`${url}/getImageUploadLink?itemId=${itemId}`, requestOptions('GET'))
     .then(async res => await res.json())
     .then(signedUrl => {
       if (signedUrl == null) {
         return
       }
+      const photoUrl = signedUrl.split('?')[0]
 
       call(signedUrl, {
         method: 'PUT',
@@ -27,9 +28,12 @@ export function uploadItemImage (itemId: string, photo: any) {
           'Content-Type': 'image/jpeg'
         },
         body: photo
-      }).catch((err) => {
-        console.log(err.message)
+      }).then(() => {
+        onImageUploaded(photoUrl)
       })
+        .catch((err) => {
+          console.log(err.message)
+        })
     }).catch((err) => {
       console.log(err.message)
     })

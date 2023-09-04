@@ -12,7 +12,7 @@ import FooterPaneButton from '../Infrastructure/FooterPaneButton'
 import { uploadItemImage } from '../../logic/api'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
-  const [imageData, setImageData] = useState<string | undefined>()
+  const [imageBlob, setImageBlob] = useState<Blob | undefined>()
   const { item, onClose, onChangePage } = props
   const { t } = useTranslation()
 
@@ -27,16 +27,39 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     }
   }
 
-  useEffect(() => {
-    const data = getItemImageFromStorage(item.id)
-    if (data != null) {
-      setImageData(data)
+  async function loadPhotoFromUrl (photoUrl: string) {
+    const options = {
+      method: 'GET'
     }
+    const response = await fetch(photoUrl, options)
+
+    if (response.status === 200) {
+      const fetchedImageBlob = await response.blob()
+      setImageBlob(fetchedImageBlob)
+    } else {
+      console.log(response)
+    }
+  }
+
+  useEffect(() => {
+    const getPhoto = async () => {
+      const photoUrl = getItemImageFromStorage(item.id)
+      if (photoUrl != null) {
+        await loadPhotoFromUrl(photoUrl)
+      }
+    }
+
+    void getPhoto()
   }, [])
 
   const onSave = (): void => {
-    console.log('uploadItemImage')
-    uploadItemImage(item.id, imageData)
+    if (imageBlob != null) {
+      uploadItemImage(item.id, imageBlob, onImageUploaded)
+    }
+  }
+
+  const onImageUploaded = (imageUrl: string): void => {
+    storeItemImage(item.id, imageUrl)
     onClose(true)
   }
 
@@ -48,9 +71,8 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     onChangePage(ShownPageType.Information)
   }
 
-  const onImageCompressed = (image: any): void => {
-    setImageData(image)
-    storeItemImage(image ?? '', item.id)
+  const onImageCompressed = (imageBlob: any): void => {
+    setImageBlob(imageBlob)
   }
 
   const compressImage = (data: any): void => {
@@ -62,7 +84,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
       100,
       0,
       onImageCompressed,
-      'base64'
+      'blob'
     )
   }
 
@@ -76,13 +98,13 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             {t('did_it_browse_file')}
             <input type="file" hidden />
           </Button>
-          {imageData != null && (
+          {imageBlob != null && (
             <Box
               sx={{
                 mt: '20px'
               }}
             >
-              <img id="experience-photo" src={imageData} />
+              <img id="experience-photo" src={URL.createObjectURL(imageBlob)} />
             </Box>
           )}
         </div>
@@ -92,7 +114,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
         <FooterPaneButton text="Back" onClick={onBack} />
         <FooterPaneButton
           text={
-            imageData != null
+            imageBlob != null
               ? t('did_it_button_next')
               : t('did_it_button_next_no_image')
           }

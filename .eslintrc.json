@@ -20,6 +20,7 @@
     "max-len": ["error", { "code": 100 }],
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/consistent-type-imports": "off",
-    "eslint@typescript-eslint/strict-boolean-expressions": "off"
+    "eslint@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/explicit-function-return-type": "off"
   }
 }

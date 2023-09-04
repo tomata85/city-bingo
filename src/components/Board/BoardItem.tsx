@@ -1,7 +1,6 @@
-import { getItemImageFromStorage } from '../../logic/local-storage'
 import { type BoardInstanceItemType } from '../../types'
 import '../styles.css'
-import React, { useEffect, type ReactElement, useState } from 'react'
+import React, { type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 
 export interface BoardItemProps {
@@ -11,7 +10,6 @@ export interface BoardItemProps {
 
 export default function BoardItem (props: BoardItemProps): ReactElement {
   const { item, onClick } = props
-  const [imageData, setImageData] = useState<string | undefined>()
 
   const { t } = useTranslation()
 
@@ -19,20 +17,13 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
     onClick(item.id)
   }
 
-  useEffect(() => {
-    const data = getItemImageFromStorage(item.id)
-    if (data != null) {
-      setImageData(data)
-    }
-  }, [])
-
   const textClassName = item.checked ? 'item-text_checked' : 'item-text'
   const imageCover =
-    imageData != null
+    item.imageUrl != null
       ? (
-      <img className="board-item_photo-cover" src={imageData} />
+      <img className="board-item_photo-cover" src={item.imageUrl} />
         )
-      : item.checked && imageData == null
+      : item.checked && item.imageUrl == null
         ? (
       <img className="board-item_photo-cover" src={'checkmark-512.jpg'} />
           )

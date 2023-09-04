@@ -1,8 +1,4 @@
-import React, { useState, type ReactElement, useEffect } from 'react'
-import {
-  storeItemImage,
-  getItemImageFromStorage
-} from '../../logic/local-storage'
+import React, { useState, type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import FooterPane from '../Infrastructure/FooterPane'
 import { Box, Button } from '@mui/material'
@@ -12,7 +8,7 @@ import FooterPaneButton from '../Infrastructure/FooterPaneButton'
 import { uploadItemImage } from '../../logic/api'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
-  const [imageBlob, setImageBlob] = useState<Blob | undefined>()
+  const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
   const { item, onClose, onChangePage } = props
   const { t } = useTranslation()
 
@@ -27,40 +23,14 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     }
   }
 
-  async function loadPhotoFromUrl (photoUrl: string) {
-    const options = {
-      method: 'GET'
-    }
-    const response = await fetch(photoUrl, options)
-
-    if (response.status === 200) {
-      const fetchedImageBlob = await response.blob()
-      setImageBlob(fetchedImageBlob)
-    } else {
-      console.log(response)
-    }
-  }
-
-  useEffect(() => {
-    const getPhoto = async () => {
-      const photoUrl = getItemImageFromStorage(item.id)
-      if (photoUrl != null) {
-        await loadPhotoFromUrl(photoUrl)
-      }
-    }
-
-    void getPhoto()
-  }, [])
-
   const onSave = (): void => {
-    if (imageBlob != null) {
-      uploadItemImage(item.id, imageBlob, onImageUploaded)
+    if (imagePreviewBlob != null) {
+      uploadItemImage(item.id, imagePreviewBlob, onImageUploaded)
     }
   }
 
   const onImageUploaded = (imageUrl: string): void => {
-    storeItemImage(item.id, imageUrl)
-    onClose(true)
+    onClose(true, imageUrl)
   }
 
   const onCancel = (): void => {
@@ -72,7 +42,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   }
 
   const onImageCompressed = (imageBlob: any): void => {
-    setImageBlob(imageBlob)
+    setImagePreviewBlob(imageBlob)
   }
 
   const compressImage = (data: any): void => {
@@ -98,13 +68,13 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             {t('did_it_browse_file')}
             <input type="file" hidden />
           </Button>
-          {imageBlob != null && (
+          {imagePreviewBlob != null && (
             <Box
               sx={{
                 mt: '20px'
               }}
             >
-              <img id="experience-photo" src={URL.createObjectURL(imageBlob)} />
+              <img id="experience-photo" src={URL.createObjectURL(imagePreviewBlob)} />
             </Box>
           )}
         </div>
@@ -114,7 +84,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
         <FooterPaneButton text="Back" onClick={onBack} />
         <FooterPaneButton
           text={
-            imageBlob != null
+            imagePreviewBlob != null
               ? t('did_it_button_next')
               : t('did_it_button_next_no_image')
           }

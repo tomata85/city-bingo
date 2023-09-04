@@ -7,7 +7,7 @@ export function getInitialUserBoard (_: {
   const board: BoardInstanceType = {}
   Object.entries(BANSKO_BOARD_ITEMS).forEach((item, index) => {
     board[item[0]] = {
-      order_index: index,
+      orderIndex: index,
       id: item[0],
       checked: false
     }
@@ -19,7 +19,7 @@ export function getInitialUserBoard (_: {
 export function isBoardWin (board: BoardInstanceType): boolean {
   const checkedItemIndexs = Object.values(board)
     .filter((item) => item.checked)
-    .map((item) => item.order_index)
+    .map((item) => item.orderIndex)
 
   const isPatternMarkedInBoard = (pattern: number[]): boolean =>
     pattern.every(index => checkedItemIndexs.includes(index))

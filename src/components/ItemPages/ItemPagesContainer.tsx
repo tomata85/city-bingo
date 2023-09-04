@@ -9,7 +9,7 @@ import { BoardInstanceItemType } from '../../types'
 
 export interface ItemPagesContainerProps {
   item: BoardInstanceItemType
-  onClose: (done: boolean) => void
+  onClose: (done: boolean, imageUrl?: string) => void
 }
 
 export enum ShownPageType {
@@ -19,7 +19,7 @@ export enum ShownPageType {
 
 export interface ItemPagesProps {
   item: BoardInstanceItemType
-  onClose: (done: boolean) => void
+  onClose: (done: boolean, imageUrl?: string) => void
   onChangePage: (page: ShownPageType) => void
 }
 

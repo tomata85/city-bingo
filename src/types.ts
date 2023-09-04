@@ -3,7 +3,8 @@ export type BoardInstanceType = Record<string, BoardInstanceItemType>
 export interface BoardInstanceItemType {
   id: string
   checked: boolean
-  order_index: number // FFU
+  imageUrl?: string
+  orderIndex: number // FFU
 }
 
 export const BANSKO_BOARD_ITEMS = {

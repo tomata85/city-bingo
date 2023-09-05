@@ -13,19 +13,18 @@ export default function Board (props: {
   destinationId: string
 }): ReactElement {
   const { t } = useTranslation()
-
-  const getBoardInstance = async (): Promise<BoardInstanceType> =>
-    await getBoardFromDB() ?? generateBoardInstance(props)
-
   const [selectedItem, setSelectedItem] =
     useState<BoardInstanceItemType | null>(null)
+  // TODO: is this initilazation a gross hack?
   const [board, setBoard] = useState<BoardInstanceType>({})
   const [isWin, setIsWin] = useState<boolean>(false)
 
   useEffect(() => {
     const initializeBoard = async () => {
-      const board = await getBoardFromDB()
-      console.log(board)
+      const board =
+        getBoardFromStorage() ??
+        (await getBoardFromDB()) ??
+        generateBoardInstance(props)
       setBoard(board)
     }
 
@@ -36,7 +35,6 @@ export default function Board (props: {
     if (Object.keys(board).length > 0) {
       storeBoard(board)
       setIsWin(isBoardWin(board))
-      updateBoardInstance(board)
     }
   }, [board])
 
@@ -46,14 +44,17 @@ export default function Board (props: {
 
   const onItemPagesClosed = (done: boolean, imageUrl?: string): void => {
     if (selectedItem != null && done) {
-      setBoard({
+      const updatedBoard = {
         ...board,
         [selectedItem.id]: {
           ...board[selectedItem.id],
           checked: true,
           imageUrl
         }
-      })
+      }
+
+      setBoard(updatedBoard)
+      updateBoardInstance(updatedBoard)
     }
 
     setSelectedItem(null)

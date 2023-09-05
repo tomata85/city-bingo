@@ -19,11 +19,12 @@ export async function getBoardFromDB (
   const response = await call(
     `${url}/getUser?userId=${userId}&destination=${destination}`,
     requestOptions('GET'))
+
   const jsonResponse = await response.json()
-  console.log(jsonResponse)
   return jsonResponse
 }
 
+// TODO: change to async/await
 export function uploadItemImage (itemId: string, photo: Blob, onImageUploaded: any) {
   fetch(`${url}/getImageUploadLink?itemId=${itemId}`, requestOptions('GET'))
     .then(async res => await res.json())

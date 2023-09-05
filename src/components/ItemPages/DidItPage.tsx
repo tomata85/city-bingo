@@ -24,13 +24,14 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   }
 
   const onSave = (): void => {
-    if (imagePreviewBlob != null) {
-      uploadItemImage(item.id, imagePreviewBlob, onImageUploaded)
+    const uploadImageUrl = async () => {
+      if (imagePreviewBlob != null) {
+        const imageUrl = await uploadItemImage(item.id, imagePreviewBlob)
+        onClose(true, imageUrl)
+      }
     }
-  }
 
-  const onImageUploaded = (imageUrl: string): void => {
-    onClose(true, imageUrl)
+    void uploadImageUrl()
   }
 
   const onCancel = (): void => {

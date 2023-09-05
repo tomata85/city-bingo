@@ -24,31 +24,26 @@ export async function getBoardFromDB (
   return jsonResponse
 }
 
-// TODO: change to async/await
-export function uploadItemImage (itemId: string, photo: Blob, onImageUploaded: any) {
-  fetch(`${url}/getImageUploadLink?itemId=${itemId}`, requestOptions('GET'))
-    .then(async res => await res.json())
-    .then(signedUrl => {
-      if (signedUrl == null) {
-        return
-      }
-      const photoUrl = signedUrl.split('?')[0]
+export async function uploadItemImage (itemId: string, photo: Blob) {
+  // TODO use call?
+  const res = await fetch(
+      `${url}/getImageUploadLink?itemId=${itemId}`,
+      requestOptions('GET'))
 
-      call(signedUrl, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'image/jpeg'
-        },
-        body: photo
-      }).then(() => {
-        onImageUploaded(photoUrl)
-      })
-        .catch((err) => {
-          console.log(err.message)
-        })
-    }).catch((err) => {
-      console.log(err.message)
-    })
+  // Upload Image
+  const signedUrl = await res.json()
+  const options = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'image/jpeg'
+    },
+    body: photo
+  }
+  await call(signedUrl, options)
+
+  // Return URL
+  const photoUrl = signedUrl.split('?')[0]
+  return photoUrl
 }
 
 async function call (url: string, requestOptions: any): Promise<any> {

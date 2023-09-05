@@ -13,6 +13,17 @@ function requestOptions (method: string, body?: any) {
   return headers
 }
 
+export async function getBoardFromDB (
+  userId = 'talya.stern@gmail.com',
+  destination = 'bansko'): Promise<BoardInstanceType> {
+  const response = await call(
+    `${url}/getUser?userId=${userId}&destination=${destination}`,
+    requestOptions('GET'))
+  const jsonResponse = await response.json()
+  console.log(jsonResponse)
+  return jsonResponse
+}
+
 export function uploadItemImage (itemId: string, photo: Blob, onImageUploaded: any) {
   fetch(`${url}/getImageUploadLink?itemId=${itemId}`, requestOptions('GET'))
     .then(async res => await res.json())

@@ -1,6 +1,6 @@
 import { BANSKO_BOARD_ITEMS, BoardInstanceType, WIN_PATTERNS } from '../types'
 
-export function getInitialUserBoard (_: {
+export function generateBoardInstance (_: {
   userId: string
   destinationId: string
 }): BoardInstanceType {

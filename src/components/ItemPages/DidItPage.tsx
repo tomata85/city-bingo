@@ -1,7 +1,7 @@
 import React, { useState, type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import FooterPane from '../Infrastructure/FooterPane'
-import { Box, Button, TextField } from '@mui/material'
+import { Box, Button, Rating, TextField } from '@mui/material'
 import Resizer from 'react-image-file-resizer'
 import { ItemPagesProps, ShownPageType } from './ItemPagesContainer'
 import FooterPaneButton from '../Infrastructure/FooterPaneButton'
@@ -9,6 +9,7 @@ import { uploadItemImage } from '../../logic/api'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
+  const [rating, setRating] = useState<number | null>()
   const { item, onClose, onChangePage } = props
   const { t } = useTranslation()
 
@@ -63,6 +64,23 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     <>
       <Box sx={{ margin: '30px', textAlign: 'left' }}>
         <h3>{t('did_it_title')}</h3>
+        <TextField
+          sx={{
+            width: '100%'
+          }}
+          id="outlined-basic"
+          label={t('did_it_review_placeholder')}
+          variant="outlined"
+          multiline
+          rows={4}
+        />
+        <Rating
+          name="simple-controlled"
+          value={rating}
+          onChange={(event, newValue) => {
+            setRating(newValue)
+          }}
+        />
         <p>{t('did_it_selfie')}</p>
         <div>
           <Button variant="contained" component="label" onChange={onFileChange}>
@@ -82,17 +100,6 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             </Box>
           )}
         </div>
-        <h3>{'Write a Review'}</h3>
-        <TextField
-          sx={{
-            width: '100%'
-          }}
-          id="outlined-basic"
-          label="What did you think?"
-          variant="outlined"
-          multiline
-          rows={4}
-        />
       </Box>
       <FooterPane>
         <FooterPaneButton text={t('did_it_close')} onClick={onCancel} />

@@ -9,7 +9,7 @@ import { uploadItemImage } from '../../logic/api'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
-  const [rating, setRating] = useState<number | null>()
+  const [rating, setRating] = useState<number>(0)
   const { item, onClose } = props
   const { t } = useTranslation()
 
@@ -73,9 +73,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
         <Rating
           name="simple-controlled"
           value={rating}
-          onChange={(event, newValue) => {
-            setRating(newValue)
-          }}
+          onChange={(event, newValue) => { setRating(newValue ?? 0) }}
         />
         <p>{t('did_it_selfie')}</p>
         <div>

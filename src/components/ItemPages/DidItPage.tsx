@@ -1,7 +1,15 @@
 import React, { useState, type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import FooterPane from '../Infrastructure/FooterPane'
-import { Box, Button, Rating, TextField } from '@mui/material'
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Rating,
+  TextField
+} from '@mui/material'
 import Resizer from 'react-image-file-resizer'
 import { ItemPagesProps } from './ItemPagesContainer'
 import FooterPaneButton from '../Infrastructure/FooterPaneButton'
@@ -10,6 +18,7 @@ import { uploadItemImage } from '../../logic/api'
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
   const [rating, setRating] = useState<number>(0)
+  const [canSave, setCanSave] = useState<boolean>(false)
   const { item, onClose } = props
   const { t } = useTranslation()
 
@@ -41,6 +50,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
 
   const onImageCompressed = (imageBlob: any): void => {
     setImagePreviewBlob(imageBlob)
+    setCanSave(true)
   }
 
   const compressImage = (data: any): void => {
@@ -54,6 +64,14 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
       onImageCompressed,
       'blob'
     )
+  }
+
+  const onSkipChanged = (event: any, value: boolean) => {
+    if (!value && imagePreviewBlob === undefined) {
+      setCanSave(false)
+    } else {
+      setCanSave(true)
+    }
   }
 
   return (
@@ -73,7 +91,9 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
         <Rating
           name="simple-controlled"
           value={rating}
-          onChange={(event, newValue) => { setRating(newValue ?? 0) }}
+          onChange={(event, newValue) => {
+            setRating(newValue ?? 0)
+          }}
         />
         <p>{t('did_it_selfie')}</p>
         <div>
@@ -81,6 +101,12 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             {t('did_it_browse_file')}
             <input type="file" hidden />
           </Button>
+          <FormGroup>
+            <FormControlLabel
+              control={<Checkbox onChange={onSkipChanged}/>}
+              label={t('did_it_next_skip_selfie')}
+            />
+          </FormGroup>
           {imagePreviewBlob != null && (
             <Box
               sx={{
@@ -97,14 +123,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
       </Box>
       <FooterPane>
         <FooterPaneButton text={t('did_it_close')} onClick={onCancel} />
-        <FooterPaneButton
-          text={
-            imagePreviewBlob != null
-              ? t('did_it_next')
-              : t('did_it_next_no_image')
-          }
-          onClick={onSave}
-        />
+        <FooterPaneButton text={t('did_it_save')} onClick={onSave} disabled={!canSave}/>
       </FooterPane>
     </>
   )

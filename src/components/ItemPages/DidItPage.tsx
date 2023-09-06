@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next'
 import FooterPane from '../Infrastructure/FooterPane'
 import { Box, Button, Rating, TextField } from '@mui/material'
 import Resizer from 'react-image-file-resizer'
-import { ItemPagesProps, ShownPageType } from './ItemPagesContainer'
+import { ItemPagesProps } from './ItemPagesContainer'
 import FooterPaneButton from '../Infrastructure/FooterPaneButton'
 import { uploadItemImage } from '../../logic/api'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
   const [rating, setRating] = useState<number | null>()
-  const { item, onClose, onChangePage } = props
+  const { item, onClose } = props
   const { t } = useTranslation()
 
   const onFileChange = (event: any): void => {
@@ -37,10 +37,6 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
 
   const onCancel = (): void => {
     onClose(false)
-  }
-
-  const onBack = (): void => {
-    onChangePage(ShownPageType.Information)
   }
 
   const onImageCompressed = (imageBlob: any): void => {
@@ -103,7 +99,6 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
       </Box>
       <FooterPane>
         <FooterPaneButton text={t('did_it_close')} onClick={onCancel} />
-        <FooterPaneButton text={t('did_it_back')} onClick={onBack} />
         <FooterPaneButton
           text={
             imagePreviewBlob != null

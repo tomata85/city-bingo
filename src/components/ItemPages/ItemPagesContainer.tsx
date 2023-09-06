@@ -6,27 +6,25 @@ import { Box, IconButton, Toolbar, Typography } from '@mui/material'
 import { ArrowBack } from '@mui/icons-material'
 import InformationPage from './InformationPage'
 import { BoardInstanceItemType } from '../../types'
+import Tab from '@mui/material/Tab'
+import TabContext from '@mui/lab/TabContext'
+import TabList from '@mui/lab/TabList'
+import TabPanel from '@mui/lab/TabPanel'
 
 export interface ItemPagesContainerProps {
   item: BoardInstanceItemType
   onClose: (done: boolean, imageUrl?: string) => void
 }
 
-export enum ShownPageType {
-  Information,
-  DidIt,
-}
-
 export interface ItemPagesProps {
   item: BoardInstanceItemType
   onClose: (done: boolean, imageUrl?: string) => void
-  onChangePage: (page: ShownPageType) => void
 }
 
-export default function ItemPagesContainer (props: ItemPagesContainerProps): ReactElement {
-  const [shownPageType, setShownPageType] = useState<ShownPageType>(
-    ShownPageType.Information
-  )
+export default function ItemPagesContainer (
+  props: ItemPagesContainerProps
+): ReactElement {
+  const [tabIndex, setTabIndex] = useState('tabs_info')
 
   const { item } = props
   const { t } = useTranslation()
@@ -35,8 +33,11 @@ export default function ItemPagesContainer (props: ItemPagesContainerProps): Rea
     props.onClose(false)
   }
 
-  const onChangePage = (page: ShownPageType): void => {
-    setShownPageType(page)
+  const onTabChanged = (
+    event: React.SyntheticEvent,
+    newTabIndex: string
+  ): void => {
+    setTabIndex(newTabIndex)
   }
 
   return (
@@ -59,14 +60,23 @@ export default function ItemPagesContainer (props: ItemPagesContainerProps): Rea
             </Typography>
           </Toolbar>
         </AppBar>
+        <TabContext value={tabIndex}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <TabList onChange={onTabChanged} aria-label="Item Tabs" centered>
+              <Tab label={t('tabs_info')} value="tabs_info" />
+              <Tab label={t('tabs_reviews')} value="tabs_reviews" />
+              <Tab label={t('tabs_did_it')} value="tabs_did_it" />
+            </TabList>
+          </Box>
+          <TabPanel value="tabs_info">
+            <InformationPage {...props} />
+          </TabPanel>
+          <TabPanel value="tabs_reviews">Soon....</TabPanel>
+          <TabPanel value="tabs_did_it">
+            <DidItPage {...props} />
+          </TabPanel>
+        </TabContext>
       </Box>
-      {shownPageType === ShownPageType.Information
-        ? (
-      <InformationPage onChangePage={onChangePage} {...props}/>
-          )
-        : (
-      <DidItPage onChangePage={onChangePage} {...props}/>
-          )}
     </>
   )
 }

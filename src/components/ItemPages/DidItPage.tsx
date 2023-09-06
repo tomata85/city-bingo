@@ -1,7 +1,7 @@
 import React, { useState, type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import FooterPane from '../Infrastructure/FooterPane'
-import { Box, Button } from '@mui/material'
+import { Box, Button, TextField } from '@mui/material'
 import Resizer from 'react-image-file-resizer'
 import { ItemPagesProps, ShownPageType } from './ItemPagesContainer'
 import FooterPaneButton from '../Infrastructure/FooterPaneButton'
@@ -75,10 +75,24 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
                 mt: '20px'
               }}
             >
-              <img id="experience-photo" src={URL.createObjectURL(imagePreviewBlob)} />
+              <img
+                id="experience-photo"
+                src={URL.createObjectURL(imagePreviewBlob)}
+              />
             </Box>
           )}
         </div>
+        <h3>{'Write a Review'}</h3>
+        <TextField
+          sx={{
+            width: '100%'
+          }}
+          id="outlined-basic"
+          label="What did you think?"
+          variant="outlined"
+          multiline
+          rows={4}
+        />
       </Box>
       <FooterPane>
         <FooterPaneButton text={t('did_it_close')} onClick={onCancel} />

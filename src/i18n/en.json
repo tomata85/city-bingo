@@ -9,10 +9,13 @@
   "item_g": "Cafe",
   "item_h": "A water reservoir",
   "item_i": "Nature outside Bansko",
-  "did_it_browse_file": "Browse...",
-  "did_it_button_next": "Save",
-  "did_it_button_next_no_image": "Skip Selfie",
-  "did_it_button_back": "Cancel",
+  "info_close": "Close",
+  "info_next": "I Did it!",
+  "did_it_browse_file": "Upload Photo",
+  "did_it_next": "Mark Done",
+  "did_it_next_no_image": "Skip Selfie",
+  "did_it_close": "Close",
+  "did_it_back": "Back to info",
   "did_it_title": "You did it!",
   "did_it_selfie": "Add a selfie or an take a photo of your experience:"
 }

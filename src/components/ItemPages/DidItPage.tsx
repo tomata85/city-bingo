@@ -81,13 +81,13 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
         </div>
       </Box>
       <FooterPane>
-        <FooterPaneButton text={t('did_it_button_back')} onClick={onCancel} />
-        <FooterPaneButton text="Back" onClick={onBack} />
+        <FooterPaneButton text={t('did_it_close')} onClick={onCancel} />
+        <FooterPaneButton text={t('did_it_back')} onClick={onBack} />
         <FooterPaneButton
           text={
             imagePreviewBlob != null
-              ? t('did_it_button_next')
-              : t('did_it_button_next_no_image')
+              ? t('did_it_next')
+              : t('did_it_next_no_image')
           }
           onClick={onSave}
         />

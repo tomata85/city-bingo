@@ -36,8 +36,8 @@ export default function InformationPage (props: ItemPagesProps): ReactElement {
         <ReactMarkdown>{description}</ReactMarkdown>
       </Box>
       <FooterPane>
-        <FooterPaneButton text={t('did_it_button_back')} onClick={onCancel} />
-        <FooterPaneButton text={'Next'} onClick={onNext} />
+        <FooterPaneButton text={t('info_close')} onClick={onCancel} />
+        <FooterPaneButton text={t('info_next')} onClick={onNext} />
       </FooterPane>
     </>
   )

@@ -1,13 +1,11 @@
 import React, { useState, type ReactElement, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import FooterPane from '../Infrastructure/FooterPane'
 import { Box } from '@mui/material'
 import { ItemPagesProps } from './ItemPagesContainer'
-import FooterPaneButton from '../Infrastructure/FooterPaneButton'
 import ReactMarkdown from 'react-markdown'
 
 export default function InformationPage (props: ItemPagesProps): ReactElement {
-  const { item, onClose } = props
+  const { item } = props
   const [description, SetDescription] = useState('')
   const { t, i18n } = useTranslation()
 
@@ -22,18 +20,11 @@ export default function InformationPage (props: ItemPagesProps): ReactElement {
     void initalize()
   }, [])
 
-  const onCancel = (): void => {
-    onClose(false)
-  }
-
   return (
     <>
       <Box sx={{ margin: '30px', textAlign: 'left' }}>
         <ReactMarkdown>{description}</ReactMarkdown>
       </Box>
-      <FooterPane>
-        <FooterPaneButton text={t('info_close')} onClick={onCancel} />
-      </FooterPane>
     </>
   )
 }

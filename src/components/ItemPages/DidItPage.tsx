@@ -1,6 +1,5 @@
 import React, { useState, type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
-import FooterPane from '../Infrastructure/FooterPane'
 import {
   Box,
   Button,
@@ -12,7 +11,6 @@ import {
 } from '@mui/material'
 import Resizer from 'react-image-file-resizer'
 import { ItemPagesProps } from './ItemPagesContainer'
-import FooterPaneButton from '../Infrastructure/FooterPaneButton'
 import { uploadItemImage } from '../../logic/api'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
@@ -121,10 +119,6 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
           )}
         </div>
       </Box>
-      <FooterPane>
-        <FooterPaneButton text={t('did_it_close')} onClick={onCancel} />
-        <FooterPaneButton text={t('did_it_save')} onClick={onSave} disabled={!canSave}/>
-      </FooterPane>
     </>
   )
 }

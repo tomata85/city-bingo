@@ -3,13 +3,15 @@ import DidItPage from './DidItPage'
 import { useTranslation } from 'react-i18next'
 import AppBar from '@mui/material/AppBar'
 import { Box, IconButton, Toolbar, Typography } from '@mui/material'
-import { ArrowBack } from '@mui/icons-material'
+import CloseIcon from '@mui/icons-material/Close'
 import InformationPage from './InformationPage'
 import { BoardInstanceItemType } from '../../types'
 import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
+import FooterPane from '../Infrastructure/FooterPane'
+import FooterPaneButton from '../Infrastructure/FooterPaneButton'
 
 export interface ItemPagesContainerProps {
   item: BoardInstanceItemType
@@ -29,7 +31,7 @@ export default function ItemPagesContainer (
   const { item } = props
   const { t } = useTranslation()
 
-  const onBackArrowClick = (): void => {
+  const onCloseButtonClick = (): void => {
     props.onClose(false)
   }
 
@@ -51,9 +53,9 @@ export default function ItemPagesContainer (
               color="inherit"
               aria-label="menu"
               sx={{ mr: 2 }}
-              onClick={onBackArrowClick}
+              onClick={onCloseButtonClick}
             >
-              <ArrowBack />
+              <CloseIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               {t(item.id)}
@@ -76,6 +78,9 @@ export default function ItemPagesContainer (
             <DidItPage {...props} />
           </TabPanel>
         </TabContext>
+        <FooterPane>
+          <FooterPaneButton text={t('info_next')} onClick={() => { setTabIndex('tabs_did_it') }} />
+      </FooterPane>
       </Box>
     </>
   )

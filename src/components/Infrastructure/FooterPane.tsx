@@ -15,12 +15,7 @@ export default function FooterPane (props: FooterPaneProps): ReactElement {
           bottom: 0,
           left: 0,
           width: '100%',
-          display: 'flex',
-          justifyContent: 'flex-end',
-          backgroundColor: '#cfd8dc',
-          px: '15px',
-          py: '15px',
-          boxSizing: 'border-box'
+          height: '50px'
         }}
         component="footer"
       >

@@ -13,7 +13,12 @@ export default function FooterPaneButton (
   const { text, onClick, disabled = false } = props
 
   return (
-    <Button sx={{ mx: '5px' }} variant="contained" onClick={onClick} disabled={disabled}>
+    <Button
+      sx={{ height: '100%', width: '100%' }}
+      variant="contained"
+      onClick={onClick}
+      disabled={disabled}
+    >
       {text}
     </Button>
   )

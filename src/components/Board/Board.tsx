@@ -20,7 +20,7 @@ export default function Board (props: {
   const [isWin, setIsWin] = useState<boolean>(false)
 
   useEffect(() => {
-    const initializeBoard = async () => {
+    const initialize = async () => {
       const board =
         getBoardFromStorage() ??
         (await getBoardFromDB()) ??
@@ -28,7 +28,7 @@ export default function Board (props: {
       setBoard(board)
     }
 
-    void initializeBoard()
+    void initialize()
   }, [])
 
   useEffect(() => {

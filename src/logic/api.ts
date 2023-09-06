@@ -48,9 +48,6 @@ export async function uploadItemImage (itemId: string, photo: Blob) {
 
 async function call (url: string, requestOptions: any): Promise<any> {
   return await fetch(url, requestOptions)
-    .catch((err) => {
-      console.log(err.message)
-    })
 }
 
 export function updateBoardInstance (boardInstance: BoardInstanceType) {

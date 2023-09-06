@@ -12,14 +12,14 @@ export default function InformationPage (props: ItemPagesProps): ReactElement {
   const { t, i18n } = useTranslation()
 
   useEffect(() => {
-    import(`../../i18n/descriptions/${i18n.language}/bansko/${item.id}.md`)
-      .then(res => {
-        fetch(res.default)
-          .then(async res => await res.text())
-          .then(res => { SetDescription(res) })
-          .catch(err => { console.log(err) })
-      })
-      .catch(err => { console.log(err) })
+    const initalize = async () => {
+      const res = await import(`../../i18n/descriptions/${i18n.language}/bansko/${item.id}.md`)
+      const res2 = await fetch(res.default)
+      const res3 = await res2.text()
+      SetDescription(res3)
+    }
+
+    void initalize()
   }, [])
 
   const onNext = (): void => {

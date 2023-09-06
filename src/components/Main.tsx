@@ -8,13 +8,11 @@ import { LocationCity } from '@mui/icons-material'
 import { Box, IconButton, Toolbar, Typography } from '@mui/material'
 
 export default function Main (): ReactElement {
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
   const [lang, setLang] = useState<string>(i18n.language)
 
   useEffect(() => {
-    i18n.changeLanguage(lang).catch((e) => {
-      console.log(e)
-    })
+    void i18n.changeLanguage(lang)
   }, [lang])
 
   const onChangeLanguage = (): void => {

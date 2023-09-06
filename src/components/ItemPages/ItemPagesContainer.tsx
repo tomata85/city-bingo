@@ -27,6 +27,7 @@ export default function ItemPagesContainer (
   props: ItemPagesContainerProps
 ): ReactElement {
   const [tabIndex, setTabIndex] = useState('tabs_info')
+  const [showDidIt, setShowDidIt] = useState(false)
 
   const { item } = props
   const { t } = useTranslation()
@@ -62,25 +63,38 @@ export default function ItemPagesContainer (
             </Typography>
           </Toolbar>
         </AppBar>
-        <TabContext value={tabIndex}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <TabList onChange={onTabChanged} aria-label="Item Tabs" centered>
-              <Tab label={t('tabs_info')} value="tabs_info" />
-              <Tab label={t('tabs_reviews')} value="tabs_reviews" />
-              <Tab label={t('tabs_did_it')} value="tabs_did_it" />
-            </TabList>
-          </Box>
-          <TabPanel value="tabs_info">
-            <InformationPage {...props} />
-          </TabPanel>
-          <TabPanel value="tabs_reviews">Soon....</TabPanel>
-          <TabPanel value="tabs_did_it">
-            <DidItPage {...props} />
-          </TabPanel>
-        </TabContext>
-        <FooterPane>
-          <FooterPaneButton text={t('info_next')} onClick={() => { setTabIndex('tabs_did_it') }} />
-      </FooterPane>
+        {showDidIt
+          ? (
+          <DidItPage {...props} />
+            )
+          : (
+          <>
+            <TabContext value={tabIndex}>
+              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <TabList
+                  onChange={onTabChanged}
+                  aria-label="Item Tabs"
+                  centered
+                >
+                  <Tab label={t('tabs_info')} value="tabs_info" />
+                  <Tab label={t('tabs_reviews')} value="tabs_reviews" />
+                </TabList>
+              </Box>
+              <TabPanel value="tabs_info">
+                <InformationPage {...props} />
+              </TabPanel>
+              <TabPanel value="tabs_reviews">Soon....</TabPanel>
+            </TabContext>
+            <FooterPane>
+              <FooterPaneButton
+                text={t('info_next')}
+                onClick={() => {
+                  setShowDidIt(true)
+                }}
+              />
+            </FooterPane>
+          </>
+            )}
       </Box>
     </>
   )

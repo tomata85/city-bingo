@@ -15,13 +15,16 @@ function requestOptions (method: string, body?: any) {
 
 export async function getBoardFromDB (
   userId = 'talya.stern@gmail.com',
-  destination = 'bansko'): Promise<BoardInstanceType> {
+  destination = 'bansko'): Promise<BoardInstanceType | undefined> {
   const response = await call(
     `${url}/getUser?userId=${userId}&destination=${destination}`,
     requestOptions('GET'))
 
   const jsonResponse = await response.json()
-  return jsonResponse
+
+  if (Object.keys(jsonResponse).length > 0) {
+    return jsonResponse
+  } return undefined
 }
 
 export async function uploadItemImage (itemId: string, photo: Blob) {

@@ -12,6 +12,8 @@ import {
 import Resizer from 'react-image-file-resizer'
 import { ItemPagesProps } from './ItemPagesContainer'
 import { uploadItemImage } from '../../logic/api'
+import FooterPane from '../Infrastructure/FooterPane'
+import FooterPaneButton from '../Infrastructure/FooterPaneButton'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
@@ -36,14 +38,12 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
       if (imagePreviewBlob != null) {
         const imageUrl = await uploadItemImage(item.id, imagePreviewBlob)
         onClose(true, imageUrl)
+      } else {
+        onClose(true)
       }
     }
 
     void uploadImageUrl()
-  }
-
-  const onCancel = (): void => {
-    onClose(false)
   }
 
   const onImageCompressed = (imageBlob: any): void => {
@@ -101,7 +101,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
           </Button>
           <FormGroup>
             <FormControlLabel
-              control={<Checkbox onChange={onSkipChanged}/>}
+              control={<Checkbox onChange={onSkipChanged} />}
               label={t('did_it_next_skip_selfie')}
             />
           </FormGroup>
@@ -117,6 +117,9 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
               />
             </Box>
           )}
+          <FooterPane>
+            <FooterPaneButton text={t('did_it_save')} onClick={onSave} />
+          </FooterPane>
         </div>
       </Box>
     </>

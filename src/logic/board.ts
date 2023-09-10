@@ -1,9 +1,6 @@
 import { BANSKO_BOARD_ITEMS, BoardInstanceType, WIN_PATTERNS } from '../types'
 
-export function generateBoardInstance (_: {
-  userId: string
-  destinationId: string
-}): BoardInstanceType {
+export function generateBoardInstance (userId: string, destinationId: string): BoardInstanceType {
   const board: BoardInstanceType = {}
   Object.entries(BANSKO_BOARD_ITEMS).forEach((item, index) => {
     board[item[0]] = {

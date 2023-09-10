@@ -34,3 +34,8 @@ export interface PhotoProps {
   name: string
   media: any
 }
+
+export interface User {
+  name: string
+  id: string
+}

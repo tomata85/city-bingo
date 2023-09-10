@@ -89,8 +89,8 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
         <Rating
           name="simple-controlled"
           value={rating}
-          onChange={(event, newValue) => {
-            setRating(newValue ?? 0)
+          onChange={(event, val) => {
+            setRating(val ?? 0)
           }}
         />
         <p>{t('did_it_selfie')}</p>

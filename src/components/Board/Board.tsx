@@ -3,13 +3,13 @@ import BoardItem from './BoardItem'
 import '../styles.css'
 import { getBoardFromStorage, storeBoard } from '../../logic/local-storage'
 import { generateBoardInstance, isBoardWin } from '../../logic/board'
-import { BoardInstanceItemType, BoardInstanceType } from '../../types'
+import { BoardInstanceItemType, BoardInstanceType, User } from '../../types'
 import { getBoardFromDB, updateBoardInstance } from '../../logic/api'
 import { useTranslation } from 'react-i18next'
 import ItemPagesContainer from '../ItemPages/ItemPagesContainer'
 
 export default function Board (props: {
-  userId: string
+  user: User
   destinationId: string
 }): ReactElement {
   const { t } = useTranslation()
@@ -18,13 +18,14 @@ export default function Board (props: {
   // TODO: is this initilazation a gross hack?
   const [board, setBoard] = useState<BoardInstanceType>({})
   const [isWin, setIsWin] = useState<boolean>(false)
+  const { user, destinationId } = props
 
   useEffect(() => {
     const initialize = async () => {
       const board =
         getBoardFromStorage() ??
         (await getBoardFromDB()) ??
-        generateBoardInstance(props)
+        generateBoardInstance(user.id, destinationId)
       setBoard(board)
     }
 
@@ -33,7 +34,7 @@ export default function Board (props: {
 
   useEffect(() => {
     if (Object.keys(board).length > 0) {
-      storeBoard(board)
+      storeBoard(user.id, board)
       setIsWin(isBoardWin(board))
     }
   }, [board])

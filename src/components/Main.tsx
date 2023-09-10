@@ -6,10 +6,13 @@ import { useTranslation } from 'react-i18next'
 import AppBar from '@mui/material/AppBar'
 import { LocationCity } from '@mui/icons-material'
 import { Box, IconButton, Toolbar, Typography } from '@mui/material'
+import { User } from '../types'
+import LoginPage from './LoginPage'
 
 export default function Main (): ReactElement {
   const { i18n } = useTranslation()
   const [lang, setLang] = useState<string>(i18n.language)
+  const [user, setUser] = useState<User>()
 
   useEffect(() => {
     void i18n.changeLanguage(lang)
@@ -18,6 +21,10 @@ export default function Main (): ReactElement {
   const onChangeLanguage = (): void => {
     const updatedLang = lang === 'en' ? 'he' : 'en'
     setLang(updatedLang)
+  }
+
+  const onLogin = (user: User) => {
+    setUser(user)
   }
 
   return (
@@ -32,7 +39,7 @@ export default function Main (): ReactElement {
               aria-label="menu"
               sx={{ mr: 2 }}
             >
-              <LocationCity/>
+              <LocationCity />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               City Bingo
@@ -47,7 +54,9 @@ export default function Main (): ReactElement {
           </Toolbar>
         </AppBar>
       </Box>
-      <Board userId="Oren Chazan" destinationId="Bansko" />
+      {user === undefined
+        ? <LoginPage onLogin={onLogin}/>
+        : <Board user={user} destinationId="Bansko" />}
     </>
   )
 }

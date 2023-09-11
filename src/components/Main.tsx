@@ -4,8 +4,7 @@ import Button from '@mui/material/Button'
 import TranslateIcon from '@mui/icons-material/Translate'
 import { useTranslation } from 'react-i18next'
 import AppBar from '@mui/material/AppBar'
-import { LocationCity } from '@mui/icons-material'
-import { Box, IconButton, Toolbar, Typography } from '@mui/material'
+import { Box, Link, Toolbar, Typography } from '@mui/material'
 import { User } from '../types'
 import LoginPage from './LoginPage'
 
@@ -32,15 +31,16 @@ export default function Main (): ReactElement {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <LocationCity />
-            </IconButton>
+              <Link
+                href="#"
+                underline="none"
+              >
+                <img
+                  src="city-bingo-logo.png"
+                  width="35"
+                  height="35"
+                />
+              </Link>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               City Bingo
             </Typography>
@@ -55,8 +55,12 @@ export default function Main (): ReactElement {
         </AppBar>
       </Box>
       {user === undefined
-        ? <LoginPage onLogin={onLogin}/>
-        : <Board user={user} destinationId="Bansko" />}
+        ? (
+        <LoginPage onLogin={onLogin} />
+          )
+        : (
+        <Board user={user} destinationId="Bansko" />
+          )}
     </>
   )
 }

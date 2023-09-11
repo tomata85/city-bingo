@@ -31,7 +31,6 @@ p {
 }
 
 .board-item_checked {
-  pointer-events: none;
   overflow: hidden;
   position: relative;
 }

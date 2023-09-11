@@ -43,6 +43,19 @@ export default function ItemPagesContainer (
     setTabIndex(newTabIndex)
   }
 
+  const footerButton = item.checked
+    ? (
+    <FooterPaneButton text={t('item_close')} onClick={onCloseButtonClick} />
+      )
+    : (
+    <FooterPaneButton
+      text={t('item_did_it')}
+      onClick={() => {
+        setShowDidIt(true)
+      }}
+    />
+      )
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -86,12 +99,7 @@ export default function ItemPagesContainer (
               <TabPanel value="tabs_reviews">Soon....</TabPanel>
             </TabContext>
             <FooterPane>
-              <FooterPaneButton
-                text={t('info_next')}
-                onClick={() => {
-                  setShowDidIt(true)
-                }}
-              />
+              {footerButton}
             </FooterPane>
           </>
             )}

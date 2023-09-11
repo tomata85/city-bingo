@@ -118,7 +118,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             </Box>
           )}
           <FooterPane>
-            <FooterPaneButton text={t('did_it_save')} onClick={onSave} />
+            <FooterPaneButton text={t('did_it_save')} onClick={onSave} disabled={!canSave} />
           </FooterPane>
         </div>
       </Box>

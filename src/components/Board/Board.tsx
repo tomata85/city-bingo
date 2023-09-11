@@ -25,7 +25,7 @@ export default function Board (props: {
   // TODO: is this initilazation a gross hack?
   const [board, setBoard] = useState<BoardInstanceType>({})
   const [isWin, setIsWin] = useState<boolean>(false)
-  const [showInstructions, setShowInstructions] = useState<boolean>(true)
+  const [showInstructions, setShowInstructions] = useState<boolean>(false)
 
   useEffect(() => {
     const initialize = async () => {
@@ -87,7 +87,6 @@ export default function Board (props: {
           )
         : (
         <>
-          <p>{t(`Hi, ${user.name}`)}</p>
           <h1 className="title">{t('main_title')}</h1>
           <div className="board-container">
             {Object.values(board).map((item) => (

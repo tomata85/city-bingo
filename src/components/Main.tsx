@@ -7,6 +7,7 @@ import AppBar from '@mui/material/AppBar'
 import { Box, Link, Toolbar, Typography } from '@mui/material'
 import { User } from '../types'
 import LoginPage from './LoginPage'
+import AccountCircle from '@mui/icons-material/AccountCircle'
 
 export default function Main (): ReactElement {
   const { i18n } = useTranslation()
@@ -29,27 +30,29 @@ export default function Main (): ReactElement {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar component="nav" position="static">
           <Toolbar>
-              <Link
-                href="#"
-                underline="none"
-              >
-                <img
-                  src="city-bingo-logo.png"
-                  width="35"
-                  height="35"
-                />
-              </Link>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Link href="#" underline="none">
+              <img src="city-bingo-logo.png" width="35" height="35" />
+            </Link>
+            <Typography
+              variant="h6"
+              component="div"
+              textAlign="left"
+              color="black"
+              sx={{ pl: '10px', flexGrow: 1 }}
+            >
               City Bingo
             </Typography>
             <Button
               color="inherit"
-              startIcon={<TranslateIcon />}
               onClick={onChangeLanguage}
+              startIcon={<TranslateIcon />}
             >
               {lang}
+            </Button>
+            <Button color="inherit" startIcon={<AccountCircle />}>
+              {user?.name}
             </Button>
           </Toolbar>
         </AppBar>

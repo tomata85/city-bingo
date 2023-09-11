@@ -69,6 +69,7 @@ export default function Board (props: {
           )
         : (
         <>
+          <p>{t(`Hi, ${user.name}`)}</p>
           <h1 className="title">{t('main_title')}</h1>
           <div className="board-container">
             {Object.values(board).map((item) => (

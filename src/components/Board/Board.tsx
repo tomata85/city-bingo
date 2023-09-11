@@ -23,8 +23,8 @@ export default function Board (props: {
   useEffect(() => {
     const initialize = async () => {
       const board =
-        getBoardFromStorage() ??
-        (await getBoardFromDB()) ??
+        getBoardFromStorage(user.id) ??
+        (await getBoardFromDB(user.id)) ??
         generateBoardInstance(user.id, destinationId)
       setBoard(board)
     }
@@ -55,7 +55,7 @@ export default function Board (props: {
       }
 
       setBoard(updatedBoard)
-      updateBoardInstance(updatedBoard)
+      updateBoardInstance(user.id, updatedBoard)
     }
 
     setSelectedItem(null)

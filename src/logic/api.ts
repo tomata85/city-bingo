@@ -14,7 +14,7 @@ function requestOptions (method: string, body?: any) {
 }
 
 export async function getBoardFromDB (
-  userId = 'talya.stern@gmail.com',
+  userId: string,
   destination = 'bansko'): Promise<BoardInstanceType | undefined> {
   const response = await call(
     `${url}/getUser?userId=${userId}&destination=${destination}`,
@@ -53,11 +53,11 @@ async function call (url: string, requestOptions: any): Promise<any> {
   return await fetch(url, requestOptions)
 }
 
-export function updateBoardInstance (boardInstance: BoardInstanceType) {
+export function updateBoardInstance (userId: string, boardInstance: BoardInstanceType) {
   // TODO: Rename Lambda?
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
   call(`${url}/checkItem`, requestOptions('POST', {
-    id: 'talya.stern@gmail.com',
+    id: userId,
     boardInstance_bansko: boardInstance
   }))
 }

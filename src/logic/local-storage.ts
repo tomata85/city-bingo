@@ -1,7 +1,7 @@
 import { BoardInstanceType, User } from '../types'
 
-export function getBoardFromStorage (): BoardInstanceType | undefined {
-  const board = localStorage.getItem('board')
+export function getBoardFromStorage (userId: string): BoardInstanceType | undefined {
+  const board = localStorage.getItem(`city_bingo_${userId}`)
 
   if (board === '{}' || board === null) {
     return undefined

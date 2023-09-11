@@ -1,1 +1,1 @@
-Welcome to lovely Bansko. Click on any item to find links and information, and to declare that you've done it. You win by doing all the items in a row, column or diagonal. Enjoy!
+Click on any item to find links and information, and to declare that you've done it. You win by doing all the items in a row, column or diagonal. Enjoy your time in lovely Bansko!

@@ -9,7 +9,7 @@ export function getBoardFromStorage (userId: string): BoardInstanceType | undefi
 }
 
 export function storeBoard (userId: string, board: BoardInstanceType): void {
-  localStorage.setItem(`city_bingo_${userId}`, JSON.stringify(board))
+  localStorage.setItem(`city_bingo_${userId}_board`, JSON.stringify(board))
 }
 
 export function storeLoggedInUser (user: User): void {
@@ -23,5 +23,20 @@ export function getLoggedInUserFromStorage (): User | undefined {
     return undefined
   } else {
     return JSON.parse(user)
+  }
+}
+
+export function storeShowInstructions (userId: string, showInstructions: boolean): void {
+  localStorage.setItem(`city_bingo_${userId}_showInstructions`, JSON.stringify(showInstructions))
+}
+
+export function getShowInstructionsStorage (userId: string): boolean {
+  const showInstructions = localStorage.getItem(`city_bingo_${userId}_showInstructions`)
+  console.log(showInstructions)
+
+  if (showInstructions === null) {
+    return true
+  } else {
+    return JSON.parse(showInstructions)
   }
 }

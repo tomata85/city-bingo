@@ -1,13 +1,18 @@
 import React, { type ReactElement, useState, useEffect } from 'react'
 import BoardItem from './BoardItem'
 import '../styles.css'
-import { getBoardFromStorage, storeBoard } from '../../logic/local-storage'
+import {
+  getBoardFromStorage,
+  getShowInstructionsStorage,
+  storeBoard,
+  storeShowInstructions
+} from '../../logic/local-storage'
 import { generateBoardInstance, isBoardWin } from '../../logic/board'
 import { BoardInstanceItemType, BoardInstanceType, User } from '../../types'
 import { getBoardFromDB, updateBoardInstance } from '../../logic/api'
 import { useTranslation } from 'react-i18next'
 import ItemPagesContainer from '../ItemPages/ItemPagesContainer'
-import { Alert, AlertTitle, Box, Button } from '@mui/material'
+import InstructionsBox from './InstructionsBox'
 
 export default function Board (props: {
   user: User
@@ -16,22 +21,11 @@ export default function Board (props: {
   const { t } = useTranslation()
   const [selectedItem, setSelectedItem] =
     useState<BoardInstanceItemType | null>(null)
+  const { user, destinationId } = props
   // TODO: is this initilazation a gross hack?
   const [board, setBoard] = useState<BoardInstanceType>({})
   const [isWin, setIsWin] = useState<boolean>(false)
-  const [howToPlay, setHowToPlay] = useState<string>('')
-  const { user, destinationId } = props
-
-  useEffect(() => {
-    const initalize = async () => {
-      const res = await import('../../i18n/descriptions/en/how_to_play.md')
-      const res2 = await fetch(res.default)
-      const howToPlay = await res2.text()
-      setHowToPlay(howToPlay)
-    }
-
-    void initalize()
-  }, [])
+  const [showInstructions, setShowInstructions] = useState<boolean>(true)
 
   useEffect(() => {
     const initialize = async () => {
@@ -40,6 +34,9 @@ export default function Board (props: {
         (await getBoardFromDB(user.id)) ??
         generateBoardInstance(user.id, destinationId)
       setBoard(board)
+
+      const showInstructions = getShowInstructionsStorage(user.id)
+      setShowInstructions(showInstructions)
     }
 
     void initialize()
@@ -51,6 +48,10 @@ export default function Board (props: {
       setIsWin(isBoardWin(board))
     }
   }, [board])
+
+  useEffect(() => {
+    storeShowInstructions(user.id, showInstructions)
+  }, [showInstructions])
 
   const onClickItem = (itemId: string): void => {
     setSelectedItem(board[itemId])
@@ -72,6 +73,10 @@ export default function Board (props: {
     }
 
     setSelectedItem(null)
+
+    if (showInstructions) {
+      setShowInstructions(false)
+    }
   }
 
   return (
@@ -90,17 +95,13 @@ export default function Board (props: {
             ))}
             <div>{isWin ? 'Yay you win!' : ''}</div>
           </div>
-          <Box sx={{ margin: '30px', textAlign: 'left' }}>
-            <Alert severity="info">
-              <AlertTitle>How to play?</AlertTitle>
-              {howToPlay}
-              <Box display="flex" justifyContent="flex-end">
-              <Button color="inherit" size="small">
-                  Got It
-              </Button>
-              </Box>
-            </Alert>
-          </Box>
+          {showInstructions && (
+            <InstructionsBox
+              onClose={() => {
+                setShowInstructions(false)
+              }}
+            />
+          )}
         </>
           )}
     </>

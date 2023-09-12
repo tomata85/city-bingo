@@ -56,20 +56,23 @@ export default function BoardPage (props: {
 
   return (
     <>
-    { (Object.keys(board).length > 0) &&
-    <Box sx={{ margin: '30px', flexGrow: 1 }}>
-      <Grid container spacing={1}>
-        <Grid container item spacing={1}>
-          <FormRow item={board.item_a}/>
-        </Grid>
-        <Grid container item spacing={1}>
-          <FormRow item={board.item_a}/>
-        </Grid>
-        <Grid container item spacing={1}>
-          <FormRow item={board.item_a}/>
-        </Grid>
-      </Grid>
-    </Box>}
+      {Object.keys(board).length > 0 && (
+        <Box sx={{ margin: '30px', flexGrow: 1 }}>
+          <Grid container spacing={1}>
+            {Object.values(board).map((item, index) => (
+              <Grid item xs={4} key={index}>
+                <BoardItem
+                  key={2}
+                  item={item}
+                  onClick={(itemId: string) => {
+                    onClickItem(item)
+                  }}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      )}
     </>
   )
 }

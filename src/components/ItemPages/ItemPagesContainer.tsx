@@ -53,52 +53,41 @@ export default function ItemPagesContainer (
 
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" color="secondary">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-              onClick={onCloseButtonClick}
-            >
-              <CloseIcon />
-            </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              {t(item.id)}
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        {showDidIt
-          ? (
-          <DidItPage {...props} />
-            )
-          : (
-          <>
-            <TabContext value={tabIndex}>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <TabList
-                  onChange={onTabChanged}
-                  aria-label="Item Tabs"
-                  centered
-                >
-                  <Tab label={t('tabs_info')} value="tabs_info" />
-                  <Tab label={t('tabs_reviews')} value="tabs_reviews" />
-                </TabList>
-              </Box>
-              <TabPanel value="tabs_info">
-                <InformationPage {...props} />
-              </TabPanel>
-              <TabPanel value="tabs_reviews">Soon....</TabPanel>
-            </TabContext>
-            <FooterPane>
-              {footerButton}
-            </FooterPane>
-          </>
-            )}
-      </Box>
+      <Toolbar sx={{ p: 0, pt: '15px', justifyContent: 'left' }}>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={onCloseButtonClick}
+        >
+          <CloseIcon />
+        </IconButton>
+        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+          {t(item.id)}
+        </Typography>
+      </Toolbar>
+      {showDidIt
+        ? (
+        <DidItPage {...props} />
+          )
+        : (
+        <>
+          <TabContext value={tabIndex}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <TabList sx={{ p: 0 }} onChange={onTabChanged} aria-label="Item Tabs">
+                <Tab label={t('tabs_info')} value="tabs_info" />
+                <Tab label={t('tabs_reviews')} value="tabs_reviews" />
+              </TabList>
+            </Box>
+            <TabPanel sx={{ p: 0 }} value="tabs_info">
+              <InformationPage {...props} />
+            </TabPanel>
+            <TabPanel sx={{ p: 0 }} value="tabs_reviews">Soon....</TabPanel>
+          </TabContext>
+          <FooterPane>{footerButton}</FooterPane>
+        </>
+          )}
     </>
   )
 }

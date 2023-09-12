@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect } from 'react'
 import BoardItem from './BoardItem'
 import { BoardInstanceItemType, BoardInstanceType, User } from '../../types'
 import { storeBoard } from '../../logic/local-storage'
+import { Box, Grid } from '@mui/material'
 
 export default function BoardPage (props: {
   user: User
@@ -18,17 +19,57 @@ export default function BoardPage (props: {
     }
   }, [board])
 
+  const FormRow = (props: { item: BoardInstanceItemType }) => {
+    const { item } = props
+    return (
+      <React.Fragment>
+        <Grid item xs={4}>
+          <BoardItem
+            key={0}
+            item={item}
+            onClick={(itemId: string) => {
+              onClickItem(item)
+            }}
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <BoardItem
+            key={1}
+            item={item}
+            onClick={(itemId: string) => {
+              onClickItem(item)
+            }}
+          />
+        </Grid>
+        <Grid item xs={4}>
+          <BoardItem
+            key={2}
+            item={item}
+            onClick={(itemId: string) => {
+              onClickItem(item)
+            }}
+          />
+        </Grid>
+      </React.Fragment>
+    )
+  }
+
   return (
-    <div className="board-container">
-      {Object.values(board).map((item) => (
-        <BoardItem
-          key={item.id}
-          item={item}
-          onClick={(itemId: string) => {
-            onClickItem(board[itemId])
-          }}
-        />
-      ))}
-    </div>
+    <>
+    { (Object.keys(board).length > 0) &&
+    <Box sx={{ margin: '30px', flexGrow: 1 }}>
+      <Grid container spacing={1}>
+        <Grid container item spacing={1}>
+          <FormRow item={board.item_a}/>
+        </Grid>
+        <Grid container item spacing={1}>
+          <FormRow item={board.item_a}/>
+        </Grid>
+        <Grid container item spacing={1}>
+          <FormRow item={board.item_a}/>
+        </Grid>
+      </Grid>
+    </Box>}
+    </>
   )
 }

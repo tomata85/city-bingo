@@ -2,6 +2,7 @@ import { type BoardInstanceItemType } from '../../types'
 import '../styles.css'
 import React, { type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
+import { styled, Paper } from '@mui/material'
 
 export interface BoardItemProps {
   item: BoardInstanceItemType
@@ -29,15 +30,14 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
           )
         : null
 
-  return (
-    <div
-      className={`board-item-container ${
-        item.checked ? 'board-item_checked' : ''
-      }`}
-      onClick={handleOnClick}
-    >
-      {imageCover}
-      <div className={textClassName}>{t(item.id)}</div>
-    </div>
-  )
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'left',
+    color: theme.palette.text.secondary,
+    height: '80px'
+  }))
+
+  return <Item>{item.id}</Item>
 }

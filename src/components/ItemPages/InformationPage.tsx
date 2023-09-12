@@ -22,7 +22,7 @@ export default function InformationPage (props: ItemPagesProps): ReactElement {
 
   return (
     <>
-      <Box sx={{ margin: '30px', textAlign: 'left' }}>
+      <Box>
         <ReactMarkdown>{description}</ReactMarkdown>
       </Box>
     </>

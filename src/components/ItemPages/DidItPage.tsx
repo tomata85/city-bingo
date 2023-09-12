@@ -78,7 +78,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
 
   return (
     <>
-      <Box sx={{ margin: '30px', textAlign: 'left' }}>
+      <Box>
         <h3>{t('did_it_title')}</h3>
         <TextField
           sx={{

@@ -1,7 +1,5 @@
-
-.title {
-  font-family: "Ubuntu", sans-serif;
-  font-size: 45px;
+.main_container {
+  margin: auto 30px;
 }
 
 p {

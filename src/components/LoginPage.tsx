@@ -33,7 +33,7 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
 
   return (
     <>
-      <Box sx={{ margin: '30px', textAlign: 'left' }}>
+      <Box sx={{ textAlign: 'left' }}>
         <h3>{t('login_name')}</h3>
         <TextField
           sx={{
@@ -41,7 +41,6 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
           }}
           id="outlined-basic"
           label={t('login_name')}
-          variant="outlined"
           onChange={(event: any) => {
             setName(event.target.value)
           }}
@@ -53,7 +52,6 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
           }}
           id="outlined-basic"
           label={t('login_email')}
-          variant="outlined"
           onChange={(event: any) => {
             setEmail(event.target.value)
           }}

@@ -8,6 +8,7 @@ import { Box, Link, Toolbar, Typography } from '@mui/material'
 import { User } from '../types'
 import LoginPage from './LoginPage'
 import AccountCircle from '@mui/icons-material/AccountCircle'
+import './styles.css'
 
 export default function Main (): ReactElement {
   const { i18n } = useTranslation()
@@ -57,13 +58,15 @@ export default function Main (): ReactElement {
           </Toolbar>
         </AppBar>
       </Box>
-      {user === undefined
-        ? (
-        <LoginPage onLogin={onLogin} />
-          )
-        : (
-        <BoardPage user={user} destinationId="Bansko" />
-          )}
+      <div className="main_container">
+        {user === undefined
+          ? (
+          <LoginPage onLogin={onLogin} />
+            )
+          : (
+          <BoardPage user={user} destinationId="Bansko" />
+            )}
+      </div>
     </>
   )
 }

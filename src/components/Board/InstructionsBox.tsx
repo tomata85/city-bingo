@@ -18,7 +18,7 @@ export default function InstructionsBox (props: { onClose: () => void }): ReactE
   }, [])
 
   return (
-    <Box sx={{ margin: '30px', textAlign: 'left' }}>
+    <Box sx={{ mt: '20px' }}>
     <Alert severity="info">
       <AlertTitle>{t('how_to_play_title')}</AlertTitle>
       {howToPlay}

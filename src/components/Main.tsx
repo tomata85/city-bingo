@@ -1,5 +1,5 @@
 import React, { type ReactElement, useState, useEffect } from 'react'
-import Board from './Board/Board'
+import BoardPage from './Board/BoardPage'
 import Button from '@mui/material/Button'
 import TranslateIcon from '@mui/icons-material/Translate'
 import { useTranslation } from 'react-i18next'
@@ -62,7 +62,7 @@ export default function Main (): ReactElement {
         <LoginPage onLogin={onLogin} />
           )
         : (
-        <Board user={user} destinationId="Bansko" />
+        <BoardPage user={user} destinationId="Bansko" />
           )}
     </>
   )

@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next'
 import ItemPagesContainer from '../ItemPages/ItemPagesContainer'
 import InstructionsBox from './InstructionsBox'
 
-export default function Board (props: {
+export default function BoardPage (props: {
   user: User
   destinationId: string
 }): ReactElement {
@@ -91,7 +91,6 @@ export default function Board (props: {
             {Object.values(board).map((item) => (
               <BoardItem key={item.id} item={item} onClick={onClickItem} />
             ))}
-            <div>{isWin ? 'Yay you win!' : ''}</div>
           </div>
           {showInstructions && (
             <InstructionsBox

@@ -13,18 +13,13 @@ import TabPanel from '@mui/lab/TabPanel'
 import FooterPane from '../Infrastructure/FooterPane'
 import FooterPaneButton from '../Infrastructure/FooterPaneButton'
 
-export interface ItemPagesContainerProps {
-  item: BoardInstanceItemType
-  onClose: (done: boolean, imageUrl?: string) => void
-}
-
 export interface ItemPagesProps {
   item: BoardInstanceItemType
-  onClose: (done: boolean, imageUrl?: string) => void
+  onClose: (updatedItem: BoardInstanceItemType) => void
 }
 
 export default function ItemPagesContainer (
-  props: ItemPagesContainerProps
+  props: ItemPagesProps
 ): ReactElement {
   const [tabIndex, setTabIndex] = useState('tabs_info')
   const [showDidIt, setShowDidIt] = useState(false)
@@ -33,7 +28,7 @@ export default function ItemPagesContainer (
   const { t } = useTranslation()
 
   const onCloseButtonClick = (): void => {
-    props.onClose(false)
+    props.onClose(item)
   }
 
   const onTabChanged = (

@@ -17,8 +17,6 @@ const myBucket = new AWS.S3({
 
 export const uploadFile = (photo: PhotoProps): void => {
   if (photo != null) {
-    console.log(photo)
-
     const params = {
       ACL: 'public-read',
       Body: photo.media,

@@ -53,10 +53,10 @@ async function call (url: string, requestOptions: any): Promise<any> {
   return await fetch(url, requestOptions)
 }
 
-export function updateBoardInstance (userId: string, boardInstance: BoardInstanceType) {
+export async function updateBoardInstanceInDB (userId: string, boardInstance: BoardInstanceType) {
   // TODO: Rename Lambda?
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-  call(`${url}/checkItem`, requestOptions('POST', {
+  await call(`${url}/checkItem`, requestOptions('POST', {
     id: userId,
     boardInstance_bansko: boardInstance
   }))

@@ -14,6 +14,7 @@ import { ItemPagesProps } from './ItemPagesContainer'
 import { uploadItemImage } from '../../logic/api'
 import FooterPane from '../Infrastructure/FooterPane'
 import FooterPaneButton from '../Infrastructure/FooterPaneButton'
+import { updateBoardItem } from '../../logic/board'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
@@ -35,12 +36,15 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
 
   const onSave = (): void => {
     const uploadImageUrl = async () => {
+      let updatedItem = item
       if (imagePreviewBlob != null) {
         const imageUrl = await uploadItemImage(item.id, imagePreviewBlob)
-        onClose(true, imageUrl)
+        updatedItem = updateBoardItem(item, { checked: true, imageUrl })
       } else {
-        onClose(true)
+        updatedItem = updateBoardItem(item, { checked: true })
       }
+
+      onClose(updatedItem)
     }
 
     void uploadImageUrl()

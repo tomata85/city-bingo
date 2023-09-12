@@ -32,7 +32,6 @@ export function storeShowInstructions (userId: string, showInstructions: boolean
 
 export function getShowInstructionsStorage (userId: string): boolean {
   const showInstructions = localStorage.getItem(`city_bingo_${userId}_showInstructions`)
-  console.log(showInstructions)
 
   if (showInstructions === null) {
     return true

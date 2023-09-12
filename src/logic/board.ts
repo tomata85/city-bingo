@@ -1,6 +1,17 @@
-import { BANSKO_BOARD_ITEMS, BoardInstanceType, WIN_PATTERNS } from '../types'
+import {
+  BANSKO_BOARD_ITEMS, BoardInstanceItemType, BoardInstanceType, WIN_PATTERNS
+} from '../types'
+import { getBoardFromDB } from './api'
+import { getBoardFromStorage } from './local-storage'
 
-export function generateBoardInstance (userId: string, destinationId: string): BoardInstanceType {
+export async function initializeBoard (
+  userId: string, destinationId: string): Promise<BoardInstanceType> {
+  return getBoardFromStorage(userId) ??
+    (await getBoardFromDB(userId)) ??
+    generateNewBoardInstance(userId, destinationId)
+}
+
+function generateNewBoardInstance (userId: string, destinationId: string): BoardInstanceType {
   const board: BoardInstanceType = {}
   Object.entries(BANSKO_BOARD_ITEMS).forEach((item, index) => {
     board[item[0]] = {
@@ -23,4 +34,21 @@ export function isBoardWin (board: BoardInstanceType): boolean {
 
   const win = WIN_PATTERNS.some(pattern => isPatternMarkedInBoard(pattern))
   return win
+}
+
+export function updateBoard (
+  board: BoardInstanceType, item: BoardInstanceItemType): BoardInstanceType {
+  return {
+    ...board,
+    [item.id]: item
+  }
+}
+
+export function updateBoardItem (
+  item: BoardInstanceItemType,
+  updatedProps: { checked: boolean, imageUrl?: string }): BoardInstanceItemType {
+  return {
+    ...item,
+    ...updatedProps
+  }
 }

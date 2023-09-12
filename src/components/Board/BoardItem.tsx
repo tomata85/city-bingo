@@ -18,6 +18,7 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
     onClick(item.id)
   }
 
+  // TODO: bring back image?
   const textClassName = item.checked ? 'item-text_checked' : 'item-text'
   const imageCover =
     item.imageUrl != null
@@ -31,7 +32,7 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
         : null
 
   const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    backgroundColor: item.checked ? '#ffe300' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: 'left',
@@ -39,5 +40,11 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
     height: '80px'
   }))
 
-  return <Item>{item.id}</Item>
+  return (
+    <Item>
+      <div onClick={handleOnClick}>
+        <div>{t(item.id)}</div>
+      </div>
+    </Item>
+  )
 }

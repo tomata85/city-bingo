@@ -19,41 +19,6 @@ export default function BoardPage (props: {
     }
   }, [board])
 
-  const FormRow = (props: { item: BoardInstanceItemType }) => {
-    const { item } = props
-    return (
-      <React.Fragment>
-        <Grid item xs={4}>
-          <BoardItem
-            key={0}
-            item={item}
-            onClick={(itemId: string) => {
-              onClickItem(item)
-            }}
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <BoardItem
-            key={1}
-            item={item}
-            onClick={(itemId: string) => {
-              onClickItem(item)
-            }}
-          />
-        </Grid>
-        <Grid item xs={4}>
-          <BoardItem
-            key={2}
-            item={item}
-            onClick={(itemId: string) => {
-              onClickItem(item)
-            }}
-          />
-        </Grid>
-      </React.Fragment>
-    )
-  }
-
   return (
     <>
       {Object.keys(board).length > 0 && (

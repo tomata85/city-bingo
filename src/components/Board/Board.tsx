@@ -25,7 +25,9 @@ export default function Board (props: {
   // TODO: is this initilazation a gross hack?
   const [board, setBoard] = useState<BoardInstanceType>({})
   const [isWin, setIsWin] = useState<boolean>(false)
-  const [showInstructions, setShowInstructions] = useState<boolean>(false)
+  const [showInstructions, setShowInstructions] = useState<boolean>(
+    getShowInstructionsStorage(user.id)
+  )
 
   useEffect(() => {
     const initialize = async () => {
@@ -34,9 +36,6 @@ export default function Board (props: {
         (await getBoardFromDB(user.id)) ??
         generateBoardInstance(user.id, destinationId)
       setBoard(board)
-
-      const showInstructions = getShowInstructionsStorage(user.id)
-      setShowInstructions(showInstructions)
     }
 
     void initialize()

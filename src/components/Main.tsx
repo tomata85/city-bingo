@@ -40,7 +40,6 @@ export default function Main (): ReactElement {
               variant="h6"
               component="div"
               textAlign="left"
-              color="black"
               sx={{ pl: '10px', flexGrow: 1 }}
             >
               City Bingo
@@ -58,7 +57,7 @@ export default function Main (): ReactElement {
           </Toolbar>
         </AppBar>
       </Box>
-      <div className="main_container">
+      <Box sx={{ margin: 'auto 30px' }}>
         {user === undefined
           ? (
           <LoginPage onLogin={onLogin} />
@@ -66,7 +65,7 @@ export default function Main (): ReactElement {
           : (
           <BoardPage user={user} destinationId="Bansko" />
             )}
-      </div>
+      </Box>
     </>
   )
 }

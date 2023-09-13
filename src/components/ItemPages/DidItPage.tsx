@@ -7,7 +7,8 @@ import {
   FormControlLabel,
   FormGroup,
   Rating,
-  TextField
+  TextField,
+  Typography
 } from '@mui/material'
 import Resizer from 'react-image-file-resizer'
 import { ItemPagesProps } from './ItemPagesContainer'
@@ -15,6 +16,8 @@ import { uploadItemImage } from '../../logic/api'
 import FooterPane from '../Infrastructure/FooterPane'
 import FooterPaneButton from '../Infrastructure/FooterPaneButton'
 import { updateBoardItem } from '../../logic/board'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
@@ -79,7 +82,9 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   return (
     <>
       <Box>
-        <h3>{t('did_it_title')}</h3>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, mt: '5px' }}>
+          {t('did_it_title')}
+        </Typography>
         <TextField
           sx={{
             width: '100%'
@@ -91,11 +96,15 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
           rows={4}
         />
         <Rating
+          sx={{ mt: '5px' }}
           name="simple-controlled"
           value={rating}
           onChange={(event, val) => {
             setRating(val ?? 0)
           }}
+          color="primary"
+          icon={<FavoriteIcon fontSize="inherit" />}
+          emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
         />
         <p>{t('did_it_selfie')}</p>
         <div>
@@ -122,7 +131,11 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             </Box>
           )}
           <FooterPane>
-            <FooterPaneButton text={t('did_it_save')} onClick={onSave} disabled={!canSave} />
+            <FooterPaneButton
+              text={t('did_it_save')}
+              onClick={onSave}
+              disabled={!canSave}
+            />
           </FooterPane>
         </div>
       </Box>

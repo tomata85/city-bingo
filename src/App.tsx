@@ -4,7 +4,8 @@ import Main from './components/Main'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 const headerFont = {
-  fontFamily: 'Josefin Sans'
+  fontFamily: 'Josefin Sans',
+  color: '#524856' // Black-ish
 }
 const theme = createTheme({
   typography: {
@@ -13,7 +14,11 @@ const theme = createTheme({
     h2: headerFont,
     h3: headerFont,
     h4: headerFont,
-    h5: headerFont
+    h5: headerFont,
+    h6: headerFont
+  },
+  palette: {
+    primary: { main: '#FFE300' }
   }
 })
 

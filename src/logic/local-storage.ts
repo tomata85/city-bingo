@@ -1,4 +1,13 @@
 import { BoardInstanceType, User } from '../types'
+import { CURRENT_VERSION, isBreakingChange } from './semantic-versioning'
+
+export function resetLocalStorageOnBreakingChange () {
+  const localStorageVersion = localStorage.getItem('city_bingo_version')
+  if (localStorageVersion === null || isBreakingChange(JSON.parse(localStorageVersion))) {
+    localStorage.clear()
+    localStorage.setItem('city_bingo_version', JSON.stringify(CURRENT_VERSION))
+  }
+}
 
 export function getBoardFromStorage (userId: string): BoardInstanceType | undefined {
   const board = localStorage.getItem(`city_bingo_${userId}`)

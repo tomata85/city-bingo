@@ -14,7 +14,6 @@ export async function initializeBoard (
 function generateNewBoardInstance (userId: string, destinationId: string): BoardInstanceType {
   const board: BoardInstanceType = {}
   BANSKO_BOARD_ITEMS.forEach((item, index) => {
-    console.log(item, index)
     board[item] = {
       orderIndex: index,
       id: item,

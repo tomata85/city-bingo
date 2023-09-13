@@ -7,7 +7,7 @@ export interface BoardInstanceItemType {
   orderIndex: number // FFU
 }
 
-export const BANSKO_BOARD_ITEMS = [...'abcdefghi'].map((index: string) => `item_${index}`)
+export const BANSKO_BOARD_ITEMS = [...'abcdefghijklmnop'].map((index: string) => `item_${index}`)
 
 export const WIN_PATTERNS = [
   [0, 1, 2],

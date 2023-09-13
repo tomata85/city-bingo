@@ -37,7 +37,7 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
     padding: theme.spacing(1),
     textAlign: 'left',
     color: theme.palette.text.secondary,
-    height: '80px'
+    height: '60px'
   }))
 
   return (

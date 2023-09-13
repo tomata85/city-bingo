@@ -25,7 +25,7 @@ export default function BoardPage (props: {
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={1}>
             {Object.values(board).map((item, index) => (
-              <Grid item xs={4} key={index}>
+              <Grid item xs={3} key={index}>
                 <BoardItem
                   key={2}
                   item={item}

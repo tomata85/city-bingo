@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown'
 export default function InformationPage (props: ItemPagesProps): ReactElement {
   const { item } = props
   const [description, SetDescription] = useState('')
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
 
   useEffect(() => {
     const initalize = async () => {

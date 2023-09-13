@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next'
 import ItemPagesContainer from '../ItemPages/ItemPagesContainer'
 import InstructionsBox from './InstructionsBox'
 import Board from './Board'
+import { Typography } from '@mui/material'
 
 export default function BoardPage (props: {
   user: User
@@ -66,7 +67,7 @@ export default function BoardPage (props: {
           )
         : (
         <>
-          <h1 className="title">{t('main_title')}</h1>
+        <Typography sx={{ mt: '15px', mb: '5px' }} variant="h3">{t('main_title')}</Typography>
           <Board user={user} board={board} onClickItem={onClickItem} />
           {showInstructions && (
             <InstructionsBox

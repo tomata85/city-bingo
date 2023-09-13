@@ -1,5 +1,6 @@
 .App {
-  font-family: "Ubuntu", sans-serif;
+  /* Necessary because ReactMarkdown is not supported in MUI typography theme */
+  font-family: 'Urbanist', sans-serif;
 }
 
 .App-logo {

@@ -1,9 +1,8 @@
 import React, { useState, type ReactElement } from 'react'
 import DidItPage from './DidItPage'
 import { useTranslation } from 'react-i18next'
-import AppBar from '@mui/material/AppBar'
 import { Box, IconButton, Toolbar, Typography } from '@mui/material'
-import CloseIcon from '@mui/icons-material/Close'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import InformationPage from './InformationPage'
 import { BoardInstanceItemType } from '../../types'
 import Tab from '@mui/material/Tab'
@@ -61,9 +60,13 @@ export default function ItemPagesContainer (
           aria-label="menu"
           onClick={onCloseButtonClick}
         >
-          <CloseIcon />
+          <ArrowBackIosIcon />
         </IconButton>
-        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{ flexGrow: 1 }}
+        >
           {t(item.id)}
         </Typography>
       </Toolbar>
@@ -75,7 +78,11 @@ export default function ItemPagesContainer (
         <>
           <TabContext value={tabIndex}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <TabList sx={{ p: 0 }} onChange={onTabChanged} aria-label="Item Tabs">
+              <TabList
+                sx={{ p: 0 }}
+                onChange={onTabChanged}
+                aria-label="Item Tabs"
+              >
                 <Tab label={t('tabs_info')} value="tabs_info" />
                 <Tab label={t('tabs_reviews')} value="tabs_reviews" />
               </TabList>
@@ -83,7 +90,9 @@ export default function ItemPagesContainer (
             <TabPanel sx={{ p: 0 }} value="tabs_info">
               <InformationPage {...props} />
             </TabPanel>
-            <TabPanel sx={{ p: 0 }} value="tabs_reviews">Soon....</TabPanel>
+            <TabPanel sx={{ p: 0, mt: '10px' }} value="tabs_reviews">
+              Soon....
+            </TabPanel>
           </TabContext>
           <FooterPane>{footerButton}</FooterPane>
         </>

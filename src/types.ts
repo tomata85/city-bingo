@@ -7,17 +7,7 @@ export interface BoardInstanceItemType {
   orderIndex: number // FFU
 }
 
-export const BANSKO_BOARD_ITEMS = {
-  item_a: 'Hot Springs',
-  item_b: 'Hike Pirin mountains',
-  item_c: 'Watch a sunset',
-  item_d: 'Picnic in Pirin forest',
-  item_e: 'Have a Banitza',
-  item_f: 'Visit a co-work',
-  item_g: 'Hike to Bezbog hut',
-  item_h: 'Smoothie at Coconut',
-  item_i: 'Belizmata lake'
-}
+export const BANSKO_BOARD_ITEMS = [...'abcdefghi'].map((index: string) => `item_${index}`)
 
 export const WIN_PATTERNS = [
   [0, 1, 2],

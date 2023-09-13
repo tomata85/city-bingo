@@ -13,10 +13,11 @@ export async function initializeBoard (
 
 function generateNewBoardInstance (userId: string, destinationId: string): BoardInstanceType {
   const board: BoardInstanceType = {}
-  Object.entries(BANSKO_BOARD_ITEMS).forEach((item, index) => {
-    board[item[0]] = {
+  BANSKO_BOARD_ITEMS.forEach((item, index) => {
+    console.log(item, index)
+    board[item] = {
       orderIndex: index,
-      id: item[0],
+      id: item,
       checked: false
     }
   })

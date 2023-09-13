@@ -1,5 +1,5 @@
 import { BoardInstanceType, User } from '../types'
-import { CURRENT_VERSION, isBreakingChange } from './semantic-versioning'
+import { CURRENT_VERSION, isBreakingChange } from '../logic/semantic-versioning'
 
 export function resetLocalStorageOnBreakingChange () {
   const localStorageVersion = localStorage.getItem('city_bingo_version')

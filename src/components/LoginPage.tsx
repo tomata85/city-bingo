@@ -7,7 +7,7 @@ import { User } from '../types'
 import {
   getLoggedInUserFromStorage,
   storeLoggedInUser
-} from '../logic/local-storage'
+} from '../io/local-storage'
 
 export interface LoginPageProps {
   onLogin: (user: User) => void

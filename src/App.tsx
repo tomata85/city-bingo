@@ -2,7 +2,7 @@ import React, { useEffect, type ReactElement } from 'react'
 import './App.css'
 import Main from './components/Main'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { resetLocalStorageOnBreakingChange } from './logic/local-storage'
+import { resetLocalStorageOnBreakingChange } from './io/local-storage'
 
 const headerFont = {
   fontFamily: 'Josefin Sans',

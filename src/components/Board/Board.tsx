@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react'
 import BoardItem from './BoardItem'
 import { BoardInstanceItemType, BoardInstanceType, User } from '../../types'
-import { storeBoard } from '../../logic/local-storage'
+import { storeBoard } from '../../io/local-storage'
 import { Box, Grid } from '@mui/material'
 
 export default function BoardPage (props: {

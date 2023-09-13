@@ -3,13 +3,13 @@ import '../styles.css'
 import {
   getShowInstructionsStorage,
   storeShowInstructions
-} from '../../logic/local-storage'
+} from '../../io/local-storage'
 import {
   initializeBoard,
   updateBoard
 } from '../../logic/board'
 import { BoardInstanceItemType, BoardInstanceType, User } from '../../types'
-import { updateBoardInstanceInDB } from '../../logic/api'
+import { updateBoardInstanceInDB } from '../../io/aws-lambdas'
 import { useTranslation } from 'react-i18next'
 import ItemPagesContainer from '../ItemPages/ItemPagesContainer'
 import InstructionsBox from './InstructionsBox'

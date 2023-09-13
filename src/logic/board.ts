@@ -1,8 +1,8 @@
 import {
   BANSKO_BOARD_ITEMS, BoardInstanceItemType, BoardInstanceType, WIN_PATTERNS
 } from '../types'
-import { getBoardFromDB } from './api'
-import { getBoardFromStorage } from './local-storage'
+import { getBoardFromDB } from '../io/aws-lambdas'
+import { getBoardFromStorage } from '../io/local-storage'
 
 export async function initializeBoard (
   userId: string, destinationId: string): Promise<BoardInstanceType> {

@@ -12,7 +12,7 @@ import {
 } from '@mui/material'
 import Resizer from 'react-image-file-resizer'
 import { ItemPagesProps } from './ItemPagesContainer'
-import { uploadItemImage } from '../../logic/api'
+import { uploadItemImage } from '../../io/aws-lambdas'
 import FooterPane from '../Infrastructure/FooterPane'
 import FooterPaneButton from '../Infrastructure/FooterPaneButton'
 import { updateBoardItem } from '../../logic/board'

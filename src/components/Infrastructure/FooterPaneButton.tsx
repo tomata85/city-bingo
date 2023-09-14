@@ -1,16 +1,17 @@
-import { Button } from '@mui/material'
+import { Button, CircularProgress } from '@mui/material'
 import React, { ReactElement } from 'react'
 
 export interface FooterPaneButtonProps {
   text: string
   onClick: () => void
   disabled?: boolean
+  progress?: boolean
 }
 
 export default function FooterPaneButton (
   props: FooterPaneButtonProps
 ): ReactElement {
-  const { text, onClick, disabled = false } = props
+  const { text, onClick, disabled = false, progress = false } = props
 
   return (
     <Button
@@ -19,7 +20,7 @@ export default function FooterPaneButton (
       onClick={onClick}
       disabled={disabled}
     >
-      {text}
+      {progress ? <CircularProgress sx={{ my: '5px' }} color="secondary"/> : text}
     </Button>
   )
 }

@@ -23,6 +23,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
   const [rating, setRating] = useState<number>(0)
   const [canSave, setCanSave] = useState<boolean>(false)
+  const [saving, setSaving] = useState<boolean>(false)
   const { item, onClose } = props
   const { t } = useTranslation()
 
@@ -38,6 +39,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   }
 
   const onSave = (): void => {
+    setSaving(true)
     const uploadImageUrl = async () => {
       let updatedItem = item
       if (imagePreviewBlob != null) {
@@ -135,6 +137,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
               text={t('did_it_save')}
               onClick={onSave}
               disabled={!canSave}
+              progress={saving}
             />
           </FooterPane>
         </div>

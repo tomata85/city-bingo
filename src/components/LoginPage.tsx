@@ -8,6 +8,7 @@ import {
   getLoggedInUserFromStorage,
   storeLoggedInUser
 } from '../io/local-storage'
+import Loading from './Infrastructure/Loading'
 
 export interface LoginPageProps {
   onLogin: (user: User) => void
@@ -16,12 +17,15 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
   const { t } = useTranslation()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const storedUser = getLoggedInUserFromStorage()
 
     if (storedUser !== undefined) {
       props.onLogin(storedUser)
+    } else {
+      setLoading(false)
     }
   }, [])
 
@@ -33,6 +37,9 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
 
   return (
     <>
+    { loading
+      ? <Loading />
+      : <>
       <Box sx={{ textAlign: 'left' }}>
         <h3>{t('login_name')}</h3>
         <TextField
@@ -60,6 +67,6 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
       <FooterPane>
         <FooterPaneButton text={t('login_save')} onClick={onLoginClick} />
       </FooterPane>
-    </>
+    </>} </>
   )
 }

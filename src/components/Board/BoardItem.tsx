@@ -3,6 +3,7 @@ import '../styles.css'
 import React, { type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled, Paper } from '@mui/material'
+import Box from '@mui/system/Box'
 
 export interface BoardItemProps {
   item: BoardInstanceItemType
@@ -36,15 +37,13 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
     ...theme.typography.body2,
     padding: theme.spacing(1),
     textAlign: 'left',
-    color: theme.palette.text.secondary,
+    color: '#524856', // Black-ish
     height: '60px'
   }))
 
   return (
-    <Item>
-      <div onClick={handleOnClick}>
-        <div>{t(item.id)}</div>
-      </div>
-    </Item>
+    <Box onClick={handleOnClick}>
+      <Item>{t(item.id)}</Item>
+    </Box>
   )
 }

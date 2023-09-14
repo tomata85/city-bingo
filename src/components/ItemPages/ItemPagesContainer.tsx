@@ -1,9 +1,9 @@
 import React, { useState, type ReactElement } from 'react'
-import DidItPage from './DidItPage'
+import DidItPage from './ItemDidItPage'
 import { useTranslation } from 'react-i18next'
 import { Box, IconButton, Toolbar, Typography } from '@mui/material'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
-import InformationPage from './InformationPage'
+import InformationPage from './ItemInformationPage'
 import { BoardInstanceItemType } from '../../types'
 import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext'
@@ -11,6 +11,7 @@ import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
 import FooterPane from '../Infrastructure/FooterPane'
 import FooterPaneButton from '../Infrastructure/FooterPaneButton'
+import ItemReviewsPage from './ItemReviewsPage'
 
 export interface ItemPagesProps {
   item: BoardInstanceItemType
@@ -94,7 +95,7 @@ export default function ItemPagesContainer (
               <InformationPage {...props} />
             </TabPanel>
             <TabPanel sx={{ p: 0, mt: '10px' }} value="tabs_reviews">
-              Soon....
+              <ItemReviewsPage {...props}/>
             </TabPanel>
           </TabContext>
           <FooterPane>{footerButton}</FooterPane>

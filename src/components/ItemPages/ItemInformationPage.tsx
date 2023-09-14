@@ -3,7 +3,7 @@ import { Box } from '@mui/material'
 import { ItemPagesProps } from './ItemPagesContainer'
 import ReactMarkdown from 'react-markdown'
 
-export default function InformationPage (props: ItemPagesProps): ReactElement {
+export default function ItemInformationPage (props: ItemPagesProps): ReactElement {
   const { description } = props
 
   return (

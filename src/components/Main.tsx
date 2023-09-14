@@ -44,13 +44,13 @@ export default function Main (): ReactElement {
             >
               City Bingo
             </Typography>
-            <Button
+            {/* <Button
               color="inherit"
               onClick={onChangeLanguage}
               startIcon={<TranslateIcon />}
             >
               {lang}
-            </Button>
+            </Button> */}
             <Button color="inherit" startIcon={<AccountCircle />}>
               {user?.name}
             </Button>

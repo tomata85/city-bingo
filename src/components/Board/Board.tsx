@@ -10,6 +10,7 @@ export default function BoardPage (props: {
   onClickItem: (item: BoardInstanceItemType) => void
 }): ReactElement {
   const { user, board, onClickItem } = props
+
   // TODO WIN
   // const [isWin, setIsWin] = useState<boolean>(false)
 
@@ -27,7 +28,7 @@ export default function BoardPage (props: {
             {Object.values(board).map((item, index) => (
               <Grid item xs={3} key={index}>
                 <BoardItem
-                  key={2}
+                  key={item.id}
                   item={item}
                   onClick={(itemId: string) => {
                     onClickItem(item)

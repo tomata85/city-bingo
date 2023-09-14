@@ -14,6 +14,7 @@ import FooterPaneButton from '../Infrastructure/FooterPaneButton'
 
 export interface ItemPagesProps {
   item: BoardInstanceItemType
+  description: string
   onClose: (updatedItem: BoardInstanceItemType) => void
 }
 
@@ -23,11 +24,11 @@ export default function ItemPagesContainer (
   const [tabIndex, setTabIndex] = useState('tabs_info')
   const [showDidIt, setShowDidIt] = useState(false)
 
-  const { item } = props
+  const { item, onClose } = props
   const { t } = useTranslation()
 
   const onCloseButtonClick = (): void => {
-    props.onClose(item)
+    onClose(item)
   }
 
   const onTabChanged = (

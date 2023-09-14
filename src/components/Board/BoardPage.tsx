@@ -4,10 +4,7 @@ import {
   getShowInstructionsStorage,
   storeShowInstructions
 } from '../../io/local-storage'
-import {
-  initializeBoard,
-  updateBoard
-} from '../../logic/board'
+import { initializeBoard, updateBoard } from '../../logic/board'
 import { BoardInstanceItemType, BoardInstanceType, User } from '../../types'
 import { updateBoardInstanceInDB } from '../../io/aws-lambdas'
 import { useTranslation } from 'react-i18next'
@@ -15,6 +12,7 @@ import ItemPagesContainer from '../ItemPages/ItemPagesContainer'
 import InstructionsBox from './InstructionsBox'
 import Board from './Board'
 import { Typography } from '@mui/material'
+import { getItemDescriptions } from '../../io/description-files'
 
 export default function BoardPage (props: {
   user: User
@@ -27,13 +25,18 @@ export default function BoardPage (props: {
   const [showInstructions, setShowInstructions] = useState<boolean>(
     getShowInstructionsStorage(user.id)
   )
+  const { i18n } = useTranslation()
   // TODO: is this initilazation a gross hack?
   const [board, setBoard] = useState<BoardInstanceType>({})
+  const [boardItemDescriptions, setBoardItemDescriptions] = useState<Record<string, string>>({})
 
   useEffect(() => {
     const initialize = async () => {
       const board = await initializeBoard(user.id, destinationId)
       setBoard(board)
+
+      // Eagerly load all descriptions for better performance
+      setBoardItemDescriptions(getItemDescriptions(i18n.language))
     }
 
     void initialize()
@@ -63,11 +66,17 @@ export default function BoardPage (props: {
     <>
       {selectedItem != null
         ? (
-        <ItemPagesContainer item={selectedItem} onClose={onItemPagesClosed} />
+        <ItemPagesContainer
+          item={selectedItem}
+          description={boardItemDescriptions[selectedItem.id]}
+          onClose={onItemPagesClosed}
+        />
           )
         : (
         <>
-        <Typography sx={{ mt: '15px', mb: '5px' }} variant="h3">{t('main_title')}</Typography>
+          <Typography sx={{ mt: '15px', mb: '5px' }} variant="h3">
+            {t('main_title')}
+          </Typography>
           <Board user={user} board={board} onClickItem={onClickItem} />
           {showInstructions && (
             <InstructionsBox

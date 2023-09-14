@@ -1,4 +1,4 @@
-import React, { type ReactElement, useState, useEffect } from 'react'
+import React, { type ReactElement, useState, useEffect, useMemo } from 'react'
 import '../styles.css'
 import {
   getShowInstructionsStorage,
@@ -18,25 +18,23 @@ export default function BoardPage (props: {
   user: User
   destinationId: string
 }): ReactElement {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { user, destinationId } = props
-  const [selectedItem, setSelectedItem] =
-    useState<BoardInstanceItemType | null>(null)
+  const boardItemDescriptions = useMemo(() => {
+    return getItemDescriptions(i18n.language)
+  }, [])
   const [showInstructions, setShowInstructions] = useState<boolean>(
     getShowInstructionsStorage(user.id)
   )
-  const { i18n } = useTranslation()
+  const [selectedItem, setSelectedItem] =
+    useState<BoardInstanceItemType | null>(null)
   // TODO: is this initilazation a gross hack?
   const [board, setBoard] = useState<BoardInstanceType>({})
-  const [boardItemDescriptions, setBoardItemDescriptions] = useState<Record<string, string>>({})
 
   useEffect(() => {
     const initialize = async () => {
       const board = await initializeBoard(user.id, destinationId)
       setBoard(board)
-
-      // Eagerly load all descriptions for better performance
-      setBoardItemDescriptions(getItemDescriptions(i18n.language))
     }
 
     void initialize()

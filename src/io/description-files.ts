@@ -1,6 +1,6 @@
 import { BANSKO_BOARD_ITEMS } from '../types'
 
-export function getItemDescriptions (lang: string): any {
+export function getItemDescriptions (lang: string): Record<string, string> {
   const descriptions: any = {}
   BANSKO_BOARD_ITEMS.map(async (itemId: string) => {
     const res = await import(`../i18n/descriptions/${lang}/bansko/${itemId}.md`)

@@ -11,3 +11,10 @@ export function getItemDescriptions (lang: string): Record<string, string> {
 
   return descriptions
 }
+
+export async function getHowToPlayInstructions (lang: string): Promise<string> {
+  const res = await import(`../i18n/descriptions/${lang}/how_to_play.md`)
+  const res2 = await fetch(res.default)
+  const howToPlay = await res2.text()
+  return howToPlay
+}

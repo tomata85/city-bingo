@@ -12,7 +12,7 @@ import ItemPagesContainer from '../ItemPages/ItemPagesContainer'
 import InformationBox from '../Infrastructure/InformationBox'
 import Board from './Board'
 import { Typography } from '@mui/material'
-import { getItemDescriptions } from '../../io/description-files'
+import { getHowToPlayInstructions, getItemDescriptions } from '../../io/description-files'
 import Loading from '../Infrastructure/Loading'
 
 export default function BoardPage (props: {
@@ -30,11 +30,16 @@ export default function BoardPage (props: {
     useState<BoardInstanceItemType | null>(null)
   // TODO: is this initilazation a gross hack?
   const [board, setBoard] = useState<BoardInstanceType>({})
+  const [howToPlay, setHowToPlay] = useState<string>('')
 
   useEffect(() => {
     const initialize = async () => {
       const board = await initializeBoard(user.id, destinationId)
       const showInstructions = getShowInstructionsStorage(user.id)
+      if (showInstructions) {
+        const howToPlay = await getHowToPlayInstructions(i18n.language)
+        setHowToPlay(howToPlay)
+      }
       setBoard(board)
       setShowInstructions(showInstructions)
       setLoading(false)
@@ -85,6 +90,8 @@ export default function BoardPage (props: {
               <Board user={user} board={board} onClickItem={onClickItem} />
               {showInstructions && (
                 <InformationBox
+                title={t('how_to_play_title')}
+                  text={howToPlay}
                   onClose={() => {
                     hideShowInstructions()
                   }}

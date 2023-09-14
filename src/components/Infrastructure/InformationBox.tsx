@@ -2,7 +2,7 @@ import { Alert, AlertTitle, Box, Button } from '@mui/material'
 import React, { type ReactElement, useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
-export default function InstructionsBox (props: { onClose: () => void }): ReactElement {
+export default function InformationBox (props: { onClose: () => void }): ReactElement {
   const { t } = useTranslation()
   const [howToPlay, setHowToPlay] = useState<string>('')
 

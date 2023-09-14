@@ -9,7 +9,7 @@ import { BoardInstanceItemType, BoardInstanceType, User } from '../../types'
 import { updateBoardInstanceInDB } from '../../io/aws-lambdas'
 import { useTranslation } from 'react-i18next'
 import ItemPagesContainer from '../ItemPages/ItemPagesContainer'
-import InstructionsBox from './InstructionsBox'
+import InformationBox from '../Infrastructure/InformationBox'
 import Board from './Board'
 import { Typography } from '@mui/material'
 import { getItemDescriptions } from '../../io/description-files'
@@ -84,7 +84,7 @@ export default function BoardPage (props: {
             : <>
               <Board user={user} board={board} onClickItem={onClickItem} />
               {showInstructions && (
-                <InstructionsBox
+                <InformationBox
                   onClose={() => {
                     hideShowInstructions()
                   }}

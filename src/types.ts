@@ -4,8 +4,8 @@ export interface BoardInstanceItemType {
   id: string
   checked: boolean
   imageUrl?: string
-  reviewText?: string
-  reviewRating?: number
+  review?: string
+  rating?: number
   orderIndex: number // FFU
 }
 

@@ -19,27 +19,23 @@ export default function ItemReviewsPage (props: ItemPagesProps): ReactElement {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, mt: '5px' }}
+            sx={{ flexGrow: 1, mt: '10px' }}
           >
             {t('reviews_your_experience')}
           </Typography>
           <TextField
-            sx={{
-              width: '100%'
-            }}
+            fullWidth
             id="outlined-basic"
-            label={t('did_it_review_placeholder')}
             variant="outlined"
-            multiline
-            rows={4}
             InputProps={{
               readOnly: true
             }}
+            value={item.review}
           />
           <Rating
             sx={{ mt: '5px' }}
             name="simple-controlled"
-            value={4}
+            value={item.rating}
             readOnly={true}
             color="primary"
             icon={<FavoriteIcon fontSize="inherit" />}

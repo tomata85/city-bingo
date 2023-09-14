@@ -46,7 +46,7 @@ export function updateBoard (
 
 export function updateBoardItem (
   item: BoardInstanceItemType,
-  updatedProps: { checked: boolean, imageUrl?: string }): BoardInstanceItemType {
+  updatedProps: Partial<BoardInstanceItemType>): BoardInstanceItemType {
   return {
     ...item,
     ...updatedProps

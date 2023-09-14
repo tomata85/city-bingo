@@ -21,6 +21,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
+  const [review, setReview] = useState<string>('')
   const [rating, setRating] = useState<number>(0)
   const [canSave, setCanSave] = useState<boolean>(false)
   const [saving, setSaving] = useState<boolean>(false)
@@ -42,13 +43,16 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     setSaving(true)
     const uploadImageUrl = async () => {
       let updatedItem = item
+      let imageUrl
       if (imagePreviewBlob != null) {
-        const imageUrl = await uploadItemImage(item.id, imagePreviewBlob)
-        updatedItem = updateBoardItem(item, { checked: true, imageUrl })
-      } else {
-        updatedItem = updateBoardItem(item, { checked: true })
+        imageUrl = await uploadItemImage(item.id, imagePreviewBlob)
       }
-
+      updatedItem = updateBoardItem(item, {
+        checked: true,
+        rating,
+        review,
+        imageUrl
+      })
       onClose(updatedItem)
     }
 
@@ -84,18 +88,24 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   return (
     <>
       <Box>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1, mt: '5px' }}>
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ flexGrow: 1, mt: '5px' }}
+        >
           {t('did_it_title')}
         </Typography>
         <TextField
-          sx={{
-            width: '100%'
-          }}
+          fullWidth
           id="outlined-basic"
           label={t('did_it_review_placeholder')}
           variant="outlined"
           multiline
           rows={4}
+          value={review}
+          onChange={(event) => {
+            setReview(event.target.value)
+          }}
         />
         <Rating
           sx={{ mt: '5px' }}

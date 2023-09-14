@@ -25,7 +25,7 @@ export default function BoardPage (props: {
       {Object.keys(board).length > 0 && (
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={1}>
-            {Object.values(board).map((item, index) => (
+            {Object.values(board).toSorted().map((item, index) => (
               <Grid item xs={3} key={index}>
                 <BoardItem
                   key={item.id}

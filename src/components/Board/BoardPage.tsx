@@ -13,6 +13,7 @@ import InstructionsBox from './InstructionsBox'
 import Board from './Board'
 import { Typography } from '@mui/material'
 import { getItemDescriptions } from '../../io/description-files'
+import Loading from '../Infrastructure/Loading'
 
 export default function BoardPage (props: {
   user: User
@@ -20,12 +21,11 @@ export default function BoardPage (props: {
 }): ReactElement {
   const { t, i18n } = useTranslation()
   const { user, destinationId } = props
+  const [loading, setLoading] = useState(true)
   const boardItemDescriptions = useMemo(() => {
     return getItemDescriptions(i18n.language)
   }, [])
-  const [showInstructions, setShowInstructions] = useState<boolean>(
-    getShowInstructionsStorage(user.id)
-  )
+  const [showInstructions, setShowInstructions] = useState<boolean>(true)
   const [selectedItem, setSelectedItem] =
     useState<BoardInstanceItemType | null>(null)
   // TODO: is this initilazation a gross hack?
@@ -34,15 +34,19 @@ export default function BoardPage (props: {
   useEffect(() => {
     const initialize = async () => {
       const board = await initializeBoard(user.id, destinationId)
+      const showInstructions = getShowInstructionsStorage(user.id)
       setBoard(board)
+      setShowInstructions(showInstructions)
+      setLoading(false)
     }
 
     void initialize()
   }, [])
 
-  useEffect(() => {
-    storeShowInstructions(user.id, showInstructions)
-  }, [showInstructions])
+  const hideShowInstructions = () => {
+    setShowInstructions(false)
+    storeShowInstructions(user.id, false)
+  }
 
   const onClickItem = (item: BoardInstanceItemType): void => {
     setSelectedItem(item)
@@ -56,7 +60,7 @@ export default function BoardPage (props: {
     setSelectedItem(null)
 
     if (showInstructions) {
-      setShowInstructions(false)
+      hideShowInstructions()
     }
   }
 
@@ -75,14 +79,19 @@ export default function BoardPage (props: {
           <Typography sx={{ mt: '15px', mb: '5px' }} variant="h3">
             {t('main_title')}
           </Typography>
-          <Board user={user} board={board} onClickItem={onClickItem} />
-          {showInstructions && (
-            <InstructionsBox
-              onClose={() => {
-                setShowInstructions(false)
-              }}
-            />
-          )}
+          {loading
+            ? <Loading />
+            : <>
+              <Board user={user} board={board} onClickItem={onClickItem} />
+              {showInstructions && (
+                <InstructionsBox
+                  onClose={() => {
+                    hideShowInstructions()
+                  }}
+                />
+              )}
+            </>
+              }
         </>
           )}
     </>

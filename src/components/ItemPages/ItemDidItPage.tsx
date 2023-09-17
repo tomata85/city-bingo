@@ -119,7 +119,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
           emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
         />
         <p>{t('did_it_selfie')}</p>
-        <div>
+        <Box>
           <Button variant="contained" component="label" onChange={onFileChange}>
             {t('did_it_browse_file')}
             <input type="file" hidden />
@@ -150,7 +150,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
               progress={saving}
             />
           </FooterPane>
-        </div>
+        </Box>
       </Box>
     </>
   )

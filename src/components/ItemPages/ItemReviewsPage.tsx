@@ -41,6 +41,18 @@ export default function ItemReviewsPage (props: ItemPagesProps): ReactElement {
             icon={<FavoriteIcon fontSize="inherit" />}
             emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
           />
+          {item.imageUrl != null && (
+            <Box
+              sx={{
+                mt: '20px'
+              }}
+            >
+              <img
+                id="experience-photo"
+                src={item.imageUrl}
+              />
+            </Box>
+          )}
         </Box>
       )}
     </>

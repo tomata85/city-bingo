@@ -19,11 +19,11 @@
   transform: translateX(-50%);
 }
 
+/* TODO: make less hacky */
 .cover-image {
   position: absolute;
   top: 8%;
   left: 0;
   width: 100%;
   height: 150px;
-  /* z-index: -1; */
 }

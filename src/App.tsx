@@ -4,22 +4,29 @@ import Main from './components/Main'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { resetLocalStorageOnBreakingChange } from './io/local-storage'
 
+const HAPPY_YELLOW = '#FFE300'
+const BLACKISH = '#524856'
 const headerFont = {
   fontFamily: 'Josefin Sans',
-  color: '#524856' // Black-ish
+  color: BLACKISH
+}
+const mainHeaderFont = {
+  ...headerFont,
+  fontWeight: '800'
 }
 const theme = createTheme({
   typography: {
     fontFamily: ['Urbanist', 'sans-serif'].join(','),
-    h1: headerFont,
-    h2: headerFont,
+    h1: mainHeaderFont,
+    h2: mainHeaderFont,
     h3: headerFont,
     h4: headerFont,
     h5: headerFont,
     h6: headerFont
   },
   palette: {
-    primary: { main: '#FFE300' }
+    primary: { main: HAPPY_YELLOW },
+    secondary: { main: BLACKISH }
   }
 })
 

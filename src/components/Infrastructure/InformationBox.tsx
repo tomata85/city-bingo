@@ -1,5 +1,5 @@
 import { Alert, AlertTitle, Box, Button } from '@mui/material'
-import React, { type ReactElement, useState, useEffect } from 'react'
+import React, { type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 
 export interface InformationBoxProps {
@@ -17,7 +17,7 @@ export default function InformationBox (
 
   return (
     <Box sx={{ mt: '20px' }}>
-      <Alert severity="info">
+      <Alert severity="info" icon={false}>
         {title != null && <AlertTitle>{title}</AlertTitle>}
         {text}
         {showCloseButton && (

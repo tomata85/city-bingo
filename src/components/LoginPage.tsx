@@ -1,8 +1,6 @@
-import { Box, TextField } from '@mui/material'
+import { Box, Button, TextField, Typography } from '@mui/material'
 import React, { useState, type ReactElement, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import FooterPane from './Infrastructure/FooterPane'
-import FooterPaneButton from './Infrastructure/FooterPaneButton'
 import { User } from '../types'
 import {
   getLoggedInUserFromStorage,
@@ -29,7 +27,7 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
     }
   }, [])
 
-  const onLoginClick = () => {
+  const onLogin = () => {
     const user = { name, id: email }
     storeLoggedInUser(user)
     props.onLogin(user)
@@ -37,36 +35,72 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
 
   return (
     <>
-    { loading
-      ? <Loading />
-      : <>
-      <Box sx={{ textAlign: 'left' }}>
-        <h3>{t('login_name')}</h3>
-        <TextField
-          sx={{
-            width: '100%'
-          }}
-          id="outlined-basic"
-          label={t('login_name')}
-          onChange={(event: any) => {
-            setName(event.target.value)
-          }}
-        />
-        <h3>{t('login_email')}</h3>
-        <TextField
-          sx={{
-            width: '100%'
-          }}
-          id="outlined-basic"
-          label={t('login_email')}
-          onChange={(event: any) => {
-            setEmail(event.target.value)
-          }}
-        />
-      </Box>
-      <FooterPane>
-        <FooterPaneButton text={t('login_save')} onClick={onLoginClick} />
-      </FooterPane>
-    </>} </>
+      {loading
+        ? (
+        <Loading />
+          )
+        : (
+        <>
+          <Typography
+            variant="h2"
+            component="div"
+            textAlign="center"
+            sx={{ mt: '45px' }}
+          >
+            {t('logo')}
+          </Typography>
+          <Typography variant="h6" component="div" textAlign="center">
+            {t('slogan')}
+          </Typography>
+          <Box sx={{ textAlign: 'left' }}>
+            <TextField
+              sx={{
+                width: '100%',
+                mt: '45px'
+              }}
+              id="outlined-basic"
+              label={t('login_name')}
+              color="secondary"
+              onChange={(event: any) => {
+                setName(event.target.value)
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  onLogin()
+                }
+              }}
+            />
+            <TextField
+              sx={{
+                width: '100%',
+                mt: '15px'
+              }}
+              id="outlined-basic"
+              label={t('login_email')}
+              color="secondary"
+              onChange={(event: any) => {
+                setEmail(event.target.value)
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  onLogin()
+                }
+              }}
+            />
+          </Box>
+          <Box display="flex" justifyContent="center" sx={{ mt: '45px' }}>
+            <Button
+              variant="contained"
+              onClick={onLogin}
+              size="large"
+              sx={{ width: '100%' }}
+              type="submit"
+            >
+              {t('login_save')}
+            </Button>
+          </Box>
+        </>
+          )}
+    </>
   )
 }

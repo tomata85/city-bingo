@@ -1,7 +1,8 @@
 import React, { type ReactElement, useState, useEffect } from 'react'
 import BoardPage from './Board/BoardPage'
 import Button from '@mui/material/Button'
-import TranslateIcon from '@mui/icons-material/Translate'
+// TODO: bring back translation
+// import TranslateIcon from '@mui/icons-material/Translate'
 import { useTranslation } from 'react-i18next'
 import AppBar from '@mui/material/AppBar'
 import { Box, Link, Toolbar, Typography } from '@mui/material'
@@ -51,9 +52,11 @@ export default function Main (): ReactElement {
             >
               {lang}
             </Button> */}
-            <Button color="inherit" startIcon={<AccountCircle />}>
-              {user?.name}
-            </Button>
+            {user != null && (
+              <Button color="inherit" startIcon={<AccountCircle />} size='large'>
+                {user.name}
+              </Button>
+            )}
           </Toolbar>
         </AppBar>
       </Box>

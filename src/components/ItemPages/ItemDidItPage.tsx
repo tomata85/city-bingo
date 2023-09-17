@@ -8,7 +8,8 @@ import {
   FormGroup,
   Rating,
   TextField,
-  Typography
+  Typography,
+  styled
 } from '@mui/material'
 import Resizer from 'react-image-file-resizer'
 import { ItemPagesProps } from './ItemPagesContainer'
@@ -85,6 +86,15 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     }
   }
 
+  const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: '#ff6d75' // RED-ish
+    },
+    '& .MuiRating-iconHover': {
+      color: '#ff3d47'
+    }
+  })
+
   return (
     <>
       <Box>
@@ -107,11 +117,11 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             setReview(event.target.value)
           }}
         />
-        <Rating
+        <StyledRating
           sx={{ mt: '5px' }}
           name="simple-controlled"
           value={rating}
-          onChange={(event, val) => {
+          onChange={(_, val) => {
             setRating(val ?? 0)
           }}
           color="primary"

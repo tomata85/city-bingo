@@ -85,7 +85,7 @@ export default function ItemPagesContainer (
                 onChange={onTabChanged}
                 aria-label="Item Tabs"
                 textColor='secondary'
-                indicatorColor='secondary'
+                indicatorColor='primary'
               >
                 <Tab label={t('tabs_info')} value="tabs_info" />
                 <Tab label={t('tabs_reviews')} value="tabs_reviews" />

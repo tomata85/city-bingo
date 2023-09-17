@@ -81,7 +81,7 @@ export default function BoardPage (props: {
           )
         : (
         <>
-          <Typography sx={{ mt: '15px', mb: '5px' }} variant="h3">
+          <Typography sx={{ mt: '30px', mb: '15px' }} variant="h3">
             {t('main_title')}
           </Typography>
           {loading

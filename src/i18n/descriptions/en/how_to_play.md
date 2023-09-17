@@ -1,1 +1,1 @@
-Click on any item to find links and information, and to declare that you've done it. You win by doing all the items in a row, column or diagonal. Enjoy your time in lovely Bansko!
+Click items to find more information, and to mark them done. You win by experiencing a full row, column or diagonal. Enjoy!

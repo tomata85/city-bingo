@@ -18,3 +18,12 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+.cover-image {
+  position: absolute;
+  top: 8%;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  /* z-index: -1; */
+}

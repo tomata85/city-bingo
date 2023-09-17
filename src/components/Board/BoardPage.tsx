@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next'
 import ItemPagesContainer from '../ItemPages/ItemPagesContainer'
 import InformationBox from '../Infrastructure/InformationBox'
 import Board from './Board'
+import { Box, Typography } from '@mui/material'
 import { getHowToPlayInstructions, getItemDescriptions } from '../../io/description-files'
 import Loading from '../Infrastructure/Loading'
 
@@ -80,7 +81,10 @@ export default function BoardPage (props: {
           )
         : (
         <>
-          <img className="cover-image" src="bansko-title3.jpg"/>
+          <Typography sx={{ mt: '30px', mb: '15px' }} variant="h3">
+            {t('main_title')}
+          </Typography>
+          {/* <img className="cover-image" src="bansko-title.jpg"/> */}
           {loading
             ? <Loading />
             : <>

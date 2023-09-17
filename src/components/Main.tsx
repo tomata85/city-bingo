@@ -10,6 +10,7 @@ import { User } from '../types'
 import LoginPage from './LoginPage'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import './styles.css'
+import SwipeableEdgeDrawer from './Infrastructure/SwipeableDrawer'
 
 export default function Main (): ReactElement {
   const { i18n } = useTranslation()
@@ -68,6 +69,7 @@ export default function Main (): ReactElement {
           : (
           <BoardPage user={user} destinationId="Bansko" />
             )}
+          <SwipeableEdgeDrawer title="Learn More">{'hioosh'}</SwipeableEdgeDrawer>
       </Box>
     </>
   )

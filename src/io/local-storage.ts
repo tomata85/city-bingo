@@ -3,7 +3,10 @@ import { CURRENT_VERSION, isBreakingChange } from '../logic/semantic-versioning'
 
 export function resetLocalStorageOnBreakingChange () {
   const localStorageVersion = localStorage.getItem('city_bingo_version')
-  if (localStorageVersion === null || isBreakingChange(JSON.parse(localStorageVersion))) {
+  const shouldReset =
+    localStorageVersion === null || isBreakingChange(JSON.parse(localStorageVersion))
+
+  if (shouldReset) {
     localStorage.clear()
     localStorage.setItem('city_bingo_version', JSON.stringify(CURRENT_VERSION))
   }

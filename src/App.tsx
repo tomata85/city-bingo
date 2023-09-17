@@ -15,6 +15,10 @@ const mainHeaderFont = {
   ...headerFont,
   fontWeight: '800'
 }
+const boardItemFont = {
+  fontSize: 11,
+  fontWeight: '800'
+}
 const theme = createTheme({
   typography: {
     fontFamily: ['Urbanist', 'sans-serif'].join(','),
@@ -23,7 +27,8 @@ const theme = createTheme({
     h3: headerFont,
     h4: headerFont,
     h5: headerFont,
-    h6: headerFont
+    h6: headerFont,
+    body2: boardItemFont
   },
   palette: {
     primary: { main: COLOR_HAPPY_YELLOW },

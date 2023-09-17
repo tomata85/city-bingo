@@ -9,8 +9,9 @@ export interface BoardInstanceItemType {
   orderIndex: number // FFU
 }
 
-// export const BANSKO_BOARD_ITEMS = [...'abcdefghijklmnopabcdefghijklmnopqrstuvwxy']
-export const BANSKO_BOARD_ITEMS = [...'abcdefghijklmnop']
+// TODO: make 5*5
+export const BANSKO_BOARD_ITEMS = [...'abcdefghijklmnopabcdefghijklmnopqrstuvwxy']
+// export const BANSKO_BOARD_ITEMS = [...'abcdefghijklmnop']
   .map((index: string) => `item_${index}`)
 
 export const WIN_PATTERNS = [

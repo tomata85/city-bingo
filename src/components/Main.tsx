@@ -60,7 +60,7 @@ export default function Main (): ReactElement {
           </Toolbar>
         </AppBar>
       </Box>
-      <Box sx={{ margin: 'auto 30px' }}>
+      <Box sx={{ margin: 'auto 15px' }}>
         {user === undefined
           ? (
           <LoginPage onLogin={onLogin} />

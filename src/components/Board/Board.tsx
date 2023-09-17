@@ -23,12 +23,12 @@ export default function BoardPage (props: {
   return (
     <>
       {Object.keys(board).length > 0 && (
-        <Box sx={{ flexGrow: 1, pt: '180px' }}>
-          <Grid container spacing={1}>
+        <Box sx={{ flexGrow: 1, pt: '170px' }}>
+          <Grid container spacing={0.5}>
             {Object.values(board)
               .sort((x, y) => x.orderIndex - y.orderIndex)
               .map((item: BoardInstanceItemType) => (
-                <Grid item xs={3} key={item.id}>
+                <Grid item xs={12 / 5} key={item.id}>
                   <BoardItem
                     key={item.id}
                     item={item}

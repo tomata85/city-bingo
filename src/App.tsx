@@ -4,11 +4,12 @@ import Main from './components/Main'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { resetLocalStorageOnBreakingChange } from './io/local-storage'
 
-const HAPPY_YELLOW = '#FFE300'
-const BLACKISH = '#524856'
+export const COLOR_HAPPY_YELLOW = '#FFE300'
+export const COLOR_BLACKISH = '#524856'
+
 const headerFont = {
   fontFamily: 'Josefin Sans',
-  color: BLACKISH
+  color: COLOR_BLACKISH
 }
 const mainHeaderFont = {
   ...headerFont,
@@ -25,8 +26,8 @@ const theme = createTheme({
     h6: headerFont
   },
   palette: {
-    primary: { main: HAPPY_YELLOW },
-    secondary: { main: BLACKISH }
+    primary: { main: COLOR_HAPPY_YELLOW },
+    secondary: { main: COLOR_BLACKISH }
   }
 })
 

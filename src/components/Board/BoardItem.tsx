@@ -4,6 +4,7 @@ import React, { type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled, Paper } from '@mui/material'
 import Box from '@mui/system/Box'
+import { COLOR_BLACKISH } from '../../App'
 
 export interface BoardItemProps {
   item: BoardInstanceItemType
@@ -28,7 +29,7 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
         )
       : item.checked && item.imageUrl == null
         ? (
-      <img className="board-item_photo-cover" src={'checkmark-512.jpg'} />
+      <img className="board-item_photo-cover" src={'thumb-up.jpg'} />
           )
         : null
 
@@ -36,8 +37,9 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
     backgroundColor: item.checked ? '#ffe300' : '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(1),
+    // backgroundImage: 'thumb-up.png',
     textAlign: 'left',
-    color: '#524856', // Black-ish
+    color: COLOR_BLACKISH,
     height: '60px'
   }))
 

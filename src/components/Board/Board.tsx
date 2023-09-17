@@ -25,17 +25,19 @@ export default function BoardPage (props: {
       {Object.keys(board).length > 0 && (
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={1}>
-            {Object.values(board).toSorted().map((item, index) => (
-              <Grid item xs={3} key={index}>
-                <BoardItem
-                  key={item.id}
-                  item={item}
-                  onClick={(itemId: string) => {
-                    onClickItem(item)
-                  }}
-                />
-              </Grid>
-            ))}
+            {Object.values(board)
+              .sort((x, y) => x.orderIndex - y.orderIndex)
+              .map((item: BoardInstanceItemType) => (
+                <Grid item xs={3} key={item.id}>
+                  <BoardItem
+                    key={item.id}
+                    item={item}
+                    onClick={(itemId: string) => {
+                      onClickItem(item)
+                    }}
+                  />
+                </Grid>
+              ))}
           </Grid>
         </Box>
       )}

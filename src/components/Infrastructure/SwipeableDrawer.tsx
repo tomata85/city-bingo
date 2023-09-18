@@ -4,7 +4,6 @@ import { styled } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
 import { grey } from '@mui/material/colors'
 import Box from '@mui/material/Box'
-import Skeleton from '@mui/material/Skeleton'
 import Typography from '@mui/material/Typography'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
 import { ReactElement } from 'react-markdown/lib/react-markdown'
@@ -33,14 +32,20 @@ const Puller = styled(Box)(({ theme }) => ({
 
 export interface SwipeableEdgeDrawerProps {
   title: string
+  open: boolean
   children: React.ReactNode
+  onClose: () => void
 }
 
 export default function SwipeableEdgeDrawer (props: SwipeableEdgeDrawerProps): ReactElement {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(props.open)
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen)
+
+    if (!newOpen) {
+      props.onClose()
+    }
   }
 
   return (

@@ -19,6 +19,7 @@ export default function Main (): ReactElement {
   const { i18n } = useTranslation()
   const [lang, setLang] = useState<string>(i18n.language)
   const [user, setUser] = useState<User>()
+  const [showHelp, setShowHelp] = useState<boolean>(false)
 
   useEffect(() => {
     void i18n.changeLanguage(lang)
@@ -31,6 +32,10 @@ export default function Main (): ReactElement {
 
   const onLogin = (user: User) => {
     setUser(user)
+  }
+
+  const onShowHelp = () => {
+    setShowHelp(true)
   }
 
   return (
@@ -57,7 +62,11 @@ export default function Main (): ReactElement {
               {lang}
             </Button> */}
             {user != null && (
-              <Button color="inherit" startIcon={<AccountCircle />} size='large'>
+              <Button
+                color="inherit"
+                startIcon={<AccountCircle />}
+                size="large"
+              >
                 {user.name}
               </Button>
             )}
@@ -70,11 +79,21 @@ export default function Main (): ReactElement {
           <LoginPage onLogin={onLogin} />
             )
           : (
-          <BoardPage user={user} destinationId="Bansko" />
+          <BoardPage
+            user={user}
+            destinationId="Bansko"
+            onShowHelp={onShowHelp}
+          />
             )}
-          <SwipeableEdgeDrawer title={t('drawer_title')}>
-            <SupportUsContainer/>
-          </SwipeableEdgeDrawer>
+        <SwipeableEdgeDrawer
+          title={t('drawer_title')}
+          open={showHelp}
+          onClose={() => {
+            setShowHelp(false)
+          }}
+        >
+          <SupportUsContainer />
+        </SwipeableEdgeDrawer>
       </Box>
     </>
   )

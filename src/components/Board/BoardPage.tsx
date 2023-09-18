@@ -11,16 +11,21 @@ import { useTranslation } from 'react-i18next'
 import ItemPagesContainer from '../item-pages/ItemPagesContainer'
 import InformationBox from '../infrastructure/InformationBox'
 import Board from './Board'
-import { Box, Typography } from '@mui/material'
-import { getHowToPlayInstructions, getItemDescriptions } from '../../io/description-files'
+import { Box, Button, Typography } from '@mui/material'
+import {
+  getHowToPlayInstructions,
+  getItemDescriptions
+} from '../../io/description-files'
 import Loading from '../infrastructure/Loading'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 export default function BoardPage (props: {
   user: User
   destinationId: string
+  onShowHelp: () => void
 }): ReactElement {
   const { t, i18n } = useTranslation()
-  const { user, destinationId } = props
+  const { user, destinationId, onShowHelp } = props
   const [loading, setLoading] = useState(true)
   const boardItemDescriptions = useMemo(() => {
     return getItemDescriptions(i18n.language)
@@ -81,17 +86,25 @@ export default function BoardPage (props: {
           )
         : (
         <>
-          <Typography sx={{ mt: '30px', mb: '15px' }} variant="h3">
-            {t('main_title')}
-          </Typography>
+          <Box display="flex" sx={{ mt: '30px', mb: '15px', justifyContent: 'space-between' }}>
+            <Typography display="inline" variant="h3">
+              {t('main_title')}
+            </Typography>
+            <Button color="secondary" onClick={onShowHelp}>
+              <HelpOutlineIcon />
+            </Button>
+          </Box>
           {/* <img className="cover-image" src="bansko-title.jpg"/> */}
           {loading
-            ? <Loading />
-            : <>
-              <Board user={user} board={board} onClickItem={onClickItem}/>
+            ? (
+            <Loading />
+              )
+            : (
+            <>
+              <Board user={user} board={board} onClickItem={onClickItem} />
               {showInstructions && (
                 <InformationBox
-                title={t('how_to_play_title')}
+                  title={t('how_to_play_title')}
                   text={howToPlay}
                   onClose={() => {
                     hideShowInstructions()
@@ -99,7 +112,7 @@ export default function BoardPage (props: {
                 />
               )}
             </>
-              }
+              )}
         </>
           )}
     </>

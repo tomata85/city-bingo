@@ -103,9 +103,6 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {
       color: '#ff6d75' // RED-ish
-    },
-    '& .MuiRating-iconHover': {
-      color: '#ff3d47'
     }
   })
 
@@ -123,17 +120,17 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             setRating(val ?? 0)
           }}
           color="primary"
-          icon={<FavoriteIcon fontSize="inherit" />}
-          emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+          icon={<FavoriteIcon fontSize="large" />}
+          emptyIcon={<FavoriteBorderIcon fontSize="large" />}
         />
         <TextField
+          sx={{ mt: '15px' }}
           fullWidth
           color="secondary"
           id="outlined-basic"
           label={t('did_it_review_placeholder')}
           variant="outlined"
           multiline
-          rows={2}
           value={review}
           onChange={(event) => {
             setReview(event.target.value)

@@ -12,7 +12,7 @@ export interface BoardItemProps {
 }
 
 export default function BoardItem (props: BoardItemProps): ReactElement {
-  const ITEM_HEIGHT = BINGO_SIZE < 5 ? '65px' : '57px'
+  const ITEM_HEIGHT = BINGO_SIZE < 5 ? '67px' : '57px'
   const { item, onClick } = props
   const { t } = useTranslation()
 

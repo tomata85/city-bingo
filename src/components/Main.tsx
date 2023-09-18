@@ -2,16 +2,28 @@ import React, { type ReactElement, useState, useEffect } from 'react'
 import BoardPage from './board/BoardPage'
 import Button from '@mui/material/Button'
 // TODO: bring back translation
-// import TranslateIcon from '@mui/icons-material/Translate'
+import TranslateIcon from '@mui/icons-material/Translate'
 import { useTranslation } from 'react-i18next'
 import AppBar from '@mui/material/AppBar'
-import { Box, Link, Toolbar, Typography } from '@mui/material'
+import {
+  BottomNavigation,
+  BottomNavigationAction,
+  Box,
+  Drawer,
+  Link,
+  Paper,
+  Stack,
+  Toolbar,
+  Typography
+} from '@mui/material'
 import { BINGO_SIZE, User } from '../types'
 import LoginPage from './LoginPage'
-import AccountCircle from '@mui/icons-material/AccountCircle'
+import FaceIcon from '@mui/icons-material/Face'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
+import LocalCafeOutlinedIcon from '@mui/icons-material/LocalCafeOutlined'
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import './styles.css'
-import SwipeableEdgeDrawer from './infrastructure/SwipeableDrawer'
-import { SupportUsContainer } from './bottom-drawer/SupportUsContainer'
 import { t } from 'i18next'
 
 export default function Main (): ReactElement {
@@ -62,39 +74,32 @@ export default function Main (): ReactElement {
               {lang}
             </Button> */}
             {user != null && (
-              <Button
-                color="inherit"
-                startIcon={<AccountCircle />}
-                size="large"
-              >
+              <Button color="inherit" startIcon={<FaceIcon />} size="large">
                 {user.name}
               </Button>
             )}
           </Toolbar>
         </AppBar>
       </Box>
-      <Box sx={{ margin: APP_MARGIN, mb: '60px' }}>
+      <Box sx={{ margin: APP_MARGIN }}>
         {user === undefined
           ? (
           <LoginPage onLogin={onLogin} />
             )
           : (
-          <BoardPage
-            user={user}
-            destinationId="Bansko"
-            onShowHelp={onShowHelp}
-          />
+          <BoardPage user={user} destinationId="Bansko" />
             )}
-        <SwipeableEdgeDrawer
-          title={t('drawer_title')}
-          open={showHelp}
-          onClose={() => {
-            setShowHelp(false)
-          }}
-        >
-          <SupportUsContainer />
-        </SwipeableEdgeDrawer>
       </Box>
+      <Paper
+        sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
+        elevation={3}
+      >
+          <BottomNavigation>
+            <BottomNavigationAction icon={<HomeOutlinedIcon />} />
+            <BottomNavigationAction icon={<LocalCafeOutlinedIcon />} />
+            <BottomNavigationAction icon={<ChatBubbleOutlineIcon />} />
+          </BottomNavigation>
+      </Paper>
     </>
   )
 }

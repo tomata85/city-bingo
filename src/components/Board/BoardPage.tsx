@@ -1,58 +1,60 @@
 import React, { type ReactElement, useState, useEffect, useMemo } from 'react'
 import '../styles.css'
-import {
-  getShowInstructionsStorage,
-  storeShowInstructions
-} from '../../io/local-storage'
 import { initializeBoard, updateBoard } from '../../logic/board'
 import { BoardInstanceItemType, BoardInstanceType, User } from '../../types'
 import { updateBoardInstanceInDB } from '../../io/aws-lambdas'
 import { useTranslation } from 'react-i18next'
 import ItemPagesContainer from '../item-pages/ItemPagesContainer'
-import InformationBox from '../infrastructure/InformationBox'
 import Board from './Board'
-import { Box, Button, Typography } from '@mui/material'
-import { getHowToPlayInstructions, getItemDescriptions } from '../../io/description-files'
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Typography
+} from '@mui/material'
+import {
+  getHowToPlayInstructions,
+  getItemDescriptions
+} from '../../io/description-files'
 import Loading from '../infrastructure/Loading'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 export default function BoardPage (props: {
   user: User
   destinationId: string
-  onShowHelp: () => void
 }): ReactElement {
   const { t, i18n } = useTranslation()
-  const { user, destinationId, onShowHelp } = props
+  const { user, destinationId } = props
   const [loading, setLoading] = useState(true)
   const boardItemDescriptions = useMemo(() => {
     return getItemDescriptions(i18n.language)
   }, [])
-  const [showInstructions, setShowInstructions] = useState<boolean>(true)
+  const [showHelp, setShowHelp] = useState<boolean>(false)
   const [selectedItem, setSelectedItem] =
     useState<BoardInstanceItemType | null>(null)
   // TODO: is this initilazation a gross hack?
   const [board, setBoard] = useState<BoardInstanceType>({})
-  const [howToPlay, setHowToPlay] = useState<string>('')
+  const [help, setHelp] = useState<string>('')
 
   useEffect(() => {
     const initialize = async () => {
       const board = await initializeBoard(user.id, destinationId)
-      const showInstructions = getShowInstructionsStorage(user.id)
-      if (showInstructions) {
-        const howToPlay = await getHowToPlayInstructions(i18n.language)
-        setHowToPlay(howToPlay)
-      }
+      const howToPlay = await getHowToPlayInstructions(i18n.language)
+      setHelp(howToPlay)
       setBoard(board)
-      setShowInstructions(showInstructions)
+
       setLoading(false)
     }
 
     void initialize()
   }, [])
 
-  const hideShowInstructions = () => {
-    setShowInstructions(false)
-    storeShowInstructions(user.id, false)
+  const hideHelp = () => {
+    setShowHelp(false)
   }
 
   const onClickItem = (item: BoardInstanceItemType): void => {
@@ -65,10 +67,6 @@ export default function BoardPage (props: {
     void updateBoardInstanceInDB(user.id, updatedBoard)
 
     setSelectedItem(null)
-
-    if (showInstructions) {
-      hideShowInstructions()
-    }
   }
 
   return (
@@ -83,11 +81,19 @@ export default function BoardPage (props: {
           )
         : (
         <>
-          <Box display="flex" sx={{ mt: '30px', mb: '15px', justifyContent: 'space-between' }}>
+          <Box
+            display="flex"
+            sx={{ mt: '30px', mb: '15px', justifyContent: 'space-between' }}
+          >
             <Typography display="inline" variant="h3">
               {t('main_title')}
             </Typography>
-            <Button color="secondary" onClick={onShowHelp}>
+            <Button
+              color="secondary"
+              onClick={() => {
+                setShowHelp(true)
+              }}
+            >
               <HelpOutlineIcon />
             </Button>
           </Box>
@@ -99,15 +105,28 @@ export default function BoardPage (props: {
             : (
             <>
               <Board user={user} board={board} onClickItem={onClickItem} />
-              {showInstructions && (
-                <InformationBox
-                  title={t('how_to_play_title')}
-                  text={howToPlay}
-                  onClose={() => {
-                    hideShowInstructions()
-                  }}
-                />
-              )}
+              <Dialog
+                open={showHelp}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <DialogTitle>{t('how_to_play_title')}</DialogTitle>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    {help}
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={hideHelp}
+                    autoFocus
+                  >
+                    {t('how_to_play_button')}
+                  </Button>
+                </DialogActions>
+              </Dialog>
             </>
               )}
         </>

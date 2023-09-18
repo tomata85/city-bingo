@@ -18,41 +18,39 @@ export default function ItemDidItPhotoAlert (props: ItemDidItPhotoAlertProps) {
   }
 
   return (
-    <div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Are you sure you want to skip uploading a photo of your experience?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            variant="outlined"
-            color="secondary"
-            size="small"
-            onClick={() => {
-              handleClose(true)
-            }}
-          >
-            Skip photo
-          </Button>
-          <Button
-            variant="contained"
-            size="small"
-            onClick={() => {
-              handleClose(false)
-            }}
-            autoFocus
-          >
-            Back to page
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          Are you sure you want to skip uploading a photo of your experience?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button
+          variant="outlined"
+          color="secondary"
+          size="small"
+          onClick={() => {
+            handleClose(true)
+          }}
+        >
+          Skip photo
+        </Button>
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => {
+            handleClose(false)
+          }}
+          autoFocus
+        >
+          Back to page
+        </Button>
+      </DialogActions>
+    </Dialog>
   )
 }

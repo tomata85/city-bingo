@@ -7,6 +7,7 @@ import {
   storeLoggedInUser
 } from '../io/local-storage'
 import Loading from './Infrastructure/Loading'
+import { isEmailValid } from '../logic/email'
 
 export interface LoginPageProps {
   onLogin: (user: User) => void
@@ -15,6 +16,8 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
   const { t } = useTranslation()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [nameValid, setNameValid] = useState(true)
+  const [emailValid, setEmailValid] = useState(true)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -28,9 +31,16 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
   }, [])
 
   const onLogin = () => {
-    const user = { name, id: email }
-    storeLoggedInUser(user)
-    props.onLogin(user)
+    const nameValid = name.length > 0
+    const emailValid = isEmailValid(email)
+    setNameValid(nameValid)
+    setEmailValid(emailValid)
+
+    if (nameValid && emailValid) {
+      const user = { name, id: email }
+      storeLoggedInUser(user)
+      props.onLogin(user)
+    }
   }
 
   return (
@@ -60,6 +70,8 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
               }}
               id="outlined-basic"
               label={t('login_name')}
+              required
+              error={!nameValid}
               color="secondary"
               onChange={(event: any) => {
                 setName(event.target.value)
@@ -77,7 +89,10 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
               }}
               id="outlined-basic"
               label={t('login_email')}
+              error={!emailValid}
               color="secondary"
+              required
+              type="email"
               onChange={(event: any) => {
                 setEmail(event.target.value)
               }}

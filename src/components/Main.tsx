@@ -1,5 +1,5 @@
 import React, { type ReactElement, useState, useEffect } from 'react'
-import BoardPage from './Board/BoardPage'
+import BoardPage from './board/BoardPage'
 import Button from '@mui/material/Button'
 // TODO: bring back translation
 // import TranslateIcon from '@mui/icons-material/Translate'
@@ -10,7 +10,7 @@ import { BINGO_SIZE, User } from '../types'
 import LoginPage from './LoginPage'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import './styles.css'
-import SwipeableEdgeDrawer from './Infrastructure/SwipeableDrawer'
+import SwipeableEdgeDrawer from './infrastructure/SwipeableDrawer'
 
 export default function Main (): ReactElement {
   const APP_MARGIN = BINGO_SIZE < 5 ? 'auto 30px' : 'auto 15px'

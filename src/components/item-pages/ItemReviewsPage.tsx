@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { ItemPagesProps } from './ItemPagesContainer'
 import { useTranslation } from 'react-i18next'
-import InformationBox from '../Infrastructure/InformationBox'
+import InformationBox from '../infrastructure/InformationBox'
 import { Box } from '@mui/system'
 import { Rating, TextField, Typography } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'

@@ -9,8 +9,8 @@ import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
-import FooterPane from '../Infrastructure/FooterPane'
-import FooterPaneButton from '../Infrastructure/FooterPaneButton'
+import FooterPane from '../infrastructure/FooterPane'
+import FooterPaneButton from '../infrastructure/FooterPaneButton'
 import ItemReviewsPage from './ItemReviewsPage'
 
 export interface ItemPagesProps {

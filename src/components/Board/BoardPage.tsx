@@ -8,12 +8,12 @@ import { initializeBoard, updateBoard } from '../../logic/board'
 import { BoardInstanceItemType, BoardInstanceType, User } from '../../types'
 import { updateBoardInstanceInDB } from '../../io/aws-lambdas'
 import { useTranslation } from 'react-i18next'
-import ItemPagesContainer from '../ItemPages/ItemPagesContainer'
-import InformationBox from '../Infrastructure/InformationBox'
+import ItemPagesContainer from '../item-pages/ItemPagesContainer'
+import InformationBox from '../infrastructure/InformationBox'
 import Board from './Board'
 import { Box, Typography } from '@mui/material'
 import { getHowToPlayInstructions, getItemDescriptions } from '../../io/description-files'
-import Loading from '../Infrastructure/Loading'
+import Loading from '../infrastructure/Loading'
 
 export default function BoardPage (props: {
   user: User

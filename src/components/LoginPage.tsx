@@ -6,7 +6,7 @@ import {
   getLoggedInUserFromStorage,
   storeLoggedInUser
 } from '../io/local-storage'
-import Loading from './Infrastructure/Loading'
+import Loading from './infrastructure/Loading'
 import { isEmailValid } from '../logic/email'
 
 export interface LoginPageProps {

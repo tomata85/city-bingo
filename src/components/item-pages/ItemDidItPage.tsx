@@ -98,26 +98,13 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     <>
       <Box>
         <Typography
-          variant="h6"
           component="div"
-          sx={{ flexGrow: 1, mt: '5px' }}
+          sx={{ flexGrow: 1, mt: '10px' }}
         >
           {t('did_it_title')}
         </Typography>
-        <TextField
-          fullWidth
-          id="outlined-basic"
-          label={t('did_it_review_placeholder')}
-          variant="outlined"
-          multiline
-          rows={4}
-          value={review}
-          onChange={(event) => {
-            setReview(event.target.value)
-          }}
-        />
         <StyledRating
-          sx={{ mt: '5px' }}
+          sx={{ mt: '10px' }}
           name="simple-controlled"
           value={rating}
           onChange={(_, val) => {
@@ -126,6 +113,18 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
           color="primary"
           icon={<FavoriteIcon fontSize="inherit" />}
           emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+        />
+        <TextField
+          fullWidth
+          id="outlined-basic"
+          label={t('did_it_review_placeholder')}
+          variant="outlined"
+          multiline
+          rows={2}
+          value={review}
+          onChange={(event) => {
+            setReview(event.target.value)
+          }}
         />
         <p>{t('did_it_selfie')}</p>
         <Box>

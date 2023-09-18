@@ -33,8 +33,8 @@
   "did_it_browse_file": "Upload Photo",
   "did_it_save": "Save",
   "did_it_close": "Close",
-  "did_it_title": "You did it!",
-  "did_it_selfie": "Add a selfie or an take a photo of your experience:",
-  "did_it_review_placeholder": "What did you think?",
-  "did_it_next_skip_selfie": "I prefer to skip selfie"
+  "did_it_title": "What did you think?",
+  "did_it_selfie": "Snap a photo of your experience:",
+  "did_it_review_placeholder": "Anything you'd like to add?",
+  "did_it_next_skip_selfie": "I prefer to skip photo"
 }

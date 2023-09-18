@@ -24,7 +24,7 @@ export default function BoardPage (props: {
   return (
     <>
       {Object.keys(board).length > 0 && (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ mt: '50px', flexGrow: 1 }}>
           <Grid container spacing={0.5}>
             {Object.values(board)
               .sort((x, y) => x.orderIndex - y.orderIndex)

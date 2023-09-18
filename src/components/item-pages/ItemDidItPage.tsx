@@ -1,11 +1,9 @@
-import React, { useState, type ReactElement } from 'react'
+import React, { useState, type ReactElement, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Box,
   Button,
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
+  CircularProgress,
   Rating,
   TextField,
   Typography,
@@ -14,20 +12,64 @@ import {
 import Resizer from 'react-image-file-resizer'
 import { ItemPagesProps } from './ItemPagesContainer'
 import { uploadItemImage } from '../../io/aws-lambdas'
-import FooterPane from '../infrastructure/FooterPane'
-import FooterPaneButton from '../infrastructure/FooterPaneButton'
 import { updateBoardItem } from '../../logic/board'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import ItemDidItPhotoAlert from './ItemDidItPhotoAlert'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
+  const { item, onClose } = props
+
   const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
   const [review, setReview] = useState<string>('')
   const [rating, setRating] = useState<number>(0)
-  const [canSave, setCanSave] = useState<boolean>(false)
+
+  const [skipPhoto, setSkipPhoto] = useState<boolean>(false)
   const [saving, setSaving] = useState<boolean>(false)
-  const { item, onClose } = props
+  const [showDialog, setShowDialog] = useState<boolean>(false)
   const { t } = useTranslation()
+
+  const onSave = (): void => {
+    setSaving(true)
+
+    const canSave = (imagePreviewBlob != null) || skipPhoto
+    if (canSave) {
+      const save = async () => {
+        let updatedItem = item
+        let imageUrl
+        if (imagePreviewBlob != null) {
+          imageUrl = await uploadItemImage(item.id, imagePreviewBlob)
+        }
+        updatedItem = updateBoardItem(item, {
+          checked: true,
+          rating,
+          review,
+          imageUrl
+        })
+        onClose(updatedItem)
+      }
+
+      void save()
+    } else {
+      setShowDialog(true)
+    }
+  }
+
+  useEffect(() => {
+    if (saving) {
+      onSave()
+    }
+  }, [skipPhoto])
+
+  const onCloseSkipPhotoDialog = (skipPhoto: boolean) => {
+    setShowDialog(false)
+
+    if (skipPhoto) {
+      setSkipPhoto(true)
+    } else {
+      setSaving(false)
+    }
+  }
 
   const onFileChange = (event: any): void => {
     const file = event.target.files?.[0]
@@ -40,29 +82,9 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     }
   }
 
-  const onSave = (): void => {
-    setSaving(true)
-    const uploadImageUrl = async () => {
-      let updatedItem = item
-      let imageUrl
-      if (imagePreviewBlob != null) {
-        imageUrl = await uploadItemImage(item.id, imagePreviewBlob)
-      }
-      updatedItem = updateBoardItem(item, {
-        checked: true,
-        rating,
-        review,
-        imageUrl
-      })
-      onClose(updatedItem)
-    }
-
-    void uploadImageUrl()
-  }
-
   const onImageCompressed = (imageBlob: any): void => {
     setImagePreviewBlob(imageBlob)
-    setCanSave(true)
+    setSkipPhoto(true)
   }
 
   const compressImage = (data: any): void => {
@@ -78,55 +100,41 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     )
   }
 
-  const onSkipChanged = (event: any, value: boolean) => {
-    if (!value && imagePreviewBlob === undefined) {
-      setCanSave(false)
-    } else {
-      setCanSave(true)
-    }
-  }
-
   const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {
       color: '#ff6d75' // RED-ish
-    },
-    '& .MuiRating-iconHover': {
-      color: '#ff3d47'
     }
   })
 
   return (
     <>
       <Box>
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1, mt: '5px' }}
-        >
+        <Typography component="div" sx={{ flexGrow: 1, mt: '10px' }}>
           {t('did_it_title')}
         </Typography>
-        <TextField
-          fullWidth
-          id="outlined-basic"
-          label={t('did_it_review_placeholder')}
-          variant="outlined"
-          multiline
-          rows={4}
-          value={review}
-          onChange={(event) => {
-            setReview(event.target.value)
-          }}
-        />
         <StyledRating
-          sx={{ mt: '5px' }}
+          sx={{ mt: '10px' }}
           name="simple-controlled"
           value={rating}
           onChange={(_, val) => {
             setRating(val ?? 0)
           }}
           color="primary"
-          icon={<FavoriteIcon fontSize="inherit" />}
-          emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+          icon={<FavoriteIcon fontSize="large" />}
+          emptyIcon={<FavoriteBorderIcon fontSize="large" />}
+        />
+        <TextField
+          sx={{ mt: '15px' }}
+          fullWidth
+          color="secondary"
+          id="outlined-basic"
+          label={t('did_it_review_placeholder')}
+          variant="outlined"
+          multiline
+          value={review}
+          onChange={(event) => {
+            setReview(event.target.value)
+          }}
         />
         <p>{t('did_it_selfie')}</p>
         <Box>
@@ -134,12 +142,6 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             {t('did_it_browse_file')}
             <input type="file" hidden />
           </Button>
-          <FormGroup>
-            <FormControlLabel
-              control={<Checkbox onChange={onSkipChanged} />}
-              label={t('did_it_next_skip_selfie')}
-            />
-          </FormGroup>
           {imagePreviewBlob != null && (
             <Box
               sx={{
@@ -152,16 +154,20 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
               />
             </Box>
           )}
-          <FooterPane>
-            <FooterPaneButton
-              text={t('did_it_save')}
-              onClick={onSave}
-              disabled={!canSave}
-              progress={saving}
-            />
-          </FooterPane>
         </Box>
       </Box>
+      <Box display="flex" justifyContent="center" sx={{ mt: '45px' }}>
+        <Button
+          variant="contained"
+          onClick={onSave}
+          size="large"
+          sx={{ width: '100%' }}
+          type="submit"
+        >
+          {saving ? <CircularProgress color="secondary" /> : t('did_it_close')}
+        </Button>
+      </Box>
+      {showDialog && <ItemDidItPhotoAlert onClose={onCloseSkipPhotoDialog}/>}
     </>
   )
 }

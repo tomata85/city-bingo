@@ -12,10 +12,7 @@ import ItemPagesContainer from '../item-pages/ItemPagesContainer'
 import InformationBox from '../infrastructure/InformationBox'
 import Board from './Board'
 import { Box, Button, Typography } from '@mui/material'
-import {
-  getHowToPlayInstructions,
-  getItemDescriptions
-} from '../../io/description-files'
+import { getHowToPlayInstructions, getItemDescriptions } from '../../io/description-files'
 import Loading from '../infrastructure/Loading'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 

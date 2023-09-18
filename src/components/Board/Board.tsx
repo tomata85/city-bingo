@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from 'react'
 import BoardItem from './BoardItem'
-import { BoardInstanceItemType, BoardInstanceType, User } from '../../types'
+import { BINGO_SIZE, BoardInstanceItemType, BoardInstanceType, User } from '../../types'
 import { storeBoard } from '../../io/local-storage'
 import { Box, Grid } from '@mui/material'
 
@@ -9,6 +9,7 @@ export default function BoardPage (props: {
   board: BoardInstanceType
   onClickItem: (item: BoardInstanceItemType) => void
 }): ReactElement {
+  const BOARD_SIZE = 12 / BINGO_SIZE
   const { user, board, onClickItem } = props
 
   // TODO WIN
@@ -28,7 +29,7 @@ export default function BoardPage (props: {
             {Object.values(board)
               .sort((x, y) => x.orderIndex - y.orderIndex)
               .map((item: BoardInstanceItemType) => (
-                <Grid item xs={12 / 5} key={item.id}>
+                <Grid item xs={BOARD_SIZE} key={item.id}>
                   <BoardItem
                     key={item.id}
                     item={item}

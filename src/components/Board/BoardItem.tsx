@@ -1,10 +1,10 @@
-import { type BoardInstanceItemType } from '../../types'
+import { BINGO_SIZE, type BoardInstanceItemType } from '../../types'
 import '../styles.css'
 import React, { type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled, Paper } from '@mui/material'
 import Box from '@mui/system/Box'
-import { COLOR_BLACKISH, COLOR_HAPPY_YELLOW } from '../../App'
+import { COLOR_BLACKISH, COLOR_HAPPY_YELLOW, COLOR_WHITE } from '../../App'
 
 export interface BoardItemProps {
   item: BoardInstanceItemType
@@ -12,8 +12,8 @@ export interface BoardItemProps {
 }
 
 export default function BoardItem (props: BoardItemProps): ReactElement {
+  const ITEM_HEIGHT = BINGO_SIZE < 5 ? '65px' : '57px'
   const { item, onClick } = props
-
   const { t } = useTranslation()
 
   const handleOnClick = (): void => {
@@ -34,12 +34,12 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
         : null
 
   const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: item.checked ? COLOR_HAPPY_YELLOW : '#fff',
+    backgroundColor: item.checked ? COLOR_HAPPY_YELLOW : COLOR_WHITE,
     ...theme.typography.body2,
     padding: theme.spacing(0.5),
     textAlign: 'left',
     color: COLOR_BLACKISH,
-    height: '57px' // TODO: make height relative to width
+    height: ITEM_HEIGHT // TODO: make height relative to width
   }))
 
   return (

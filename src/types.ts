@@ -1,3 +1,5 @@
+export const BINGO_SIZE = 4 // TODO: FFU make 5
+
 export type BoardInstanceType = Record<string, BoardInstanceItemType>
 
 export interface BoardInstanceItemType {
@@ -9,9 +11,8 @@ export interface BoardInstanceItemType {
   orderIndex: number // FFU
 }
 
-// TODO: make 5*5
-export const BANSKO_BOARD_ITEMS = [...'abcdefghijklmnopabcdefghijklmnopqrstuvwxy']
-// export const BANSKO_BOARD_ITEMS = [...'abcdefghijklmnop']
+export const BANSKO_BOARD_ITEMS = [...'abcdefghijklmnopabcdefghijklmnopqrstuvwxyz']
+  .slice(0, BINGO_SIZE * BINGO_SIZE)
   .map((index: string) => `item_${index}`)
 
 export const WIN_PATTERNS = [

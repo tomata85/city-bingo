@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next'
 import ItemPagesContainer from '../item-pages/ItemPagesContainer'
 import InformationBox from '../infrastructure/InformationBox'
 import Board from './Board'
-import { Box, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import { getHowToPlayInstructions, getItemDescriptions } from '../../io/description-files'
 import Loading from '../infrastructure/Loading'
 

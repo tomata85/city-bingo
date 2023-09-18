@@ -21,6 +21,7 @@ const boardItemFont = {
   fontSize: 11,
   fontWeight: BINGO_SIZE < 5 ? '400' : '800'
 }
+
 const theme = createTheme({
   typography: {
     fontFamily: ['Urbanist', 'sans-serif'].join(','),

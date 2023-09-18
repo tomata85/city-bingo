@@ -11,6 +11,8 @@ import LoginPage from './LoginPage'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import './styles.css'
 import SwipeableEdgeDrawer from './infrastructure/SwipeableDrawer'
+import { SupportUsContainer } from './bottom-drawer/SupportUsContainer'
+import { t } from 'i18next'
 
 export default function Main (): ReactElement {
   const APP_MARGIN = BINGO_SIZE < 5 ? 'auto 30px' : 'auto 15px'
@@ -70,7 +72,9 @@ export default function Main (): ReactElement {
           : (
           <BoardPage user={user} destinationId="Bansko" />
             )}
-          <SwipeableEdgeDrawer title="Learn More">{'hioosh'}</SwipeableEdgeDrawer>
+          <SwipeableEdgeDrawer title={t('drawer_title')}>
+            <SupportUsContainer/>
+          </SwipeableEdgeDrawer>
       </Box>
     </>
   )

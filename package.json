@@ -1,6 +1,6 @@
 {
   "name": "city-bingo",
-  "version": "3.0-alpha",
+  "version": "4.0-alpha",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",

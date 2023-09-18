@@ -6,13 +6,14 @@ import Button from '@mui/material/Button'
 import { useTranslation } from 'react-i18next'
 import AppBar from '@mui/material/AppBar'
 import { Box, Link, Toolbar, Typography } from '@mui/material'
-import { User } from '../types'
+import { BINGO_SIZE, User } from '../types'
 import LoginPage from './LoginPage'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import './styles.css'
 import SwipeableEdgeDrawer from './Infrastructure/SwipeableDrawer'
 
 export default function Main (): ReactElement {
+  const APP_MARGIN = BINGO_SIZE < 5 ? 'auto 30px' : 'auto 15px'
   const { i18n } = useTranslation()
   const [lang, setLang] = useState<string>(i18n.language)
   const [user, setUser] = useState<User>()
@@ -61,7 +62,7 @@ export default function Main (): ReactElement {
           </Toolbar>
         </AppBar>
       </Box>
-      <Box sx={{ margin: 'auto 15px' }}>
+      <Box sx={{ margin: APP_MARGIN }}>
         {user === undefined
           ? (
           <LoginPage onLogin={onLogin} />

@@ -3,9 +3,11 @@ import './App.css'
 import Main from './components/Main'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { resetLocalStorageOnBreakingChange } from './io/local-storage'
+import { BINGO_SIZE } from './types'
 
 export const COLOR_HAPPY_YELLOW = '#FFE300'
 export const COLOR_BLACKISH = '#524856'
+export const COLOR_WHITE = '#fff'
 
 const headerFont = {
   fontFamily: 'Josefin Sans',
@@ -17,7 +19,7 @@ const mainHeaderFont = {
 }
 const boardItemFont = {
   fontSize: 11,
-  fontWeight: '800'
+  fontWeight: BINGO_SIZE < 5 ? '400' : '800'
 }
 const theme = createTheme({
   typography: {

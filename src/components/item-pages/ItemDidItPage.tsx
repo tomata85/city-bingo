@@ -14,8 +14,6 @@ import {
 import Resizer from 'react-image-file-resizer'
 import { ItemPagesProps } from './ItemPagesContainer'
 import { uploadItemImage } from '../../io/aws-lambdas'
-import FooterPane from '../infrastructure/FooterPane'
-import FooterPaneButton from '../infrastructure/FooterPaneButton'
 import { updateBoardItem } from '../../logic/board'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
@@ -152,15 +150,19 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
               />
             </Box>
           )}
-          <FooterPane>
-            <FooterPaneButton
-              text={t('did_it_save')}
-              onClick={onSave}
-              disabled={!canSave}
-              progress={saving}
-            />
-          </FooterPane>
         </Box>
+      </Box>
+      <Box display="flex" justifyContent="center" sx={{ mt: '45px' }}>
+        <Button
+          variant="contained"
+          disabled={!canSave}
+          onClick={onSave}
+          size="large"
+          sx={{ width: '100%' }}
+          type="submit"
+        >
+          {t('did_it_close')}
+        </Button>
       </Box>
     </>
   )

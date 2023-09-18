@@ -1,7 +1,7 @@
 import React, { useState, type ReactElement } from 'react'
 import DidItPage from './ItemDidItPage'
 import { useTranslation } from 'react-i18next'
-import { Box, IconButton, Toolbar, Typography } from '@mui/material'
+import { Box, Fab, IconButton, Toolbar, Typography } from '@mui/material'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import InformationPage from './ItemInformationPage'
 import { BoardInstanceItemType } from '../../types'
@@ -9,9 +9,8 @@ import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext'
 import TabList from '@mui/lab/TabList'
 import TabPanel from '@mui/lab/TabPanel'
-import FooterPane from '../infrastructure/FooterPane'
-import FooterPaneButton from '../infrastructure/FooterPaneButton'
 import ItemReviewsPage from './ItemReviewsPage'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 
 export interface ItemPagesProps {
   item: BoardInstanceItemType
@@ -39,19 +38,6 @@ export default function ItemPagesContainer (
     setTabIndex(newTabIndex)
   }
 
-  const footerButton = item.checked
-    ? (
-    <FooterPaneButton text={t('item_close')} onClick={onCloseButtonClick} />
-      )
-    : (
-    <FooterPaneButton
-      text={t('item_did_it')}
-      onClick={() => {
-        setShowDidIt(true)
-      }}
-    />
-      )
-
   return (
     <>
       <Toolbar sx={{ p: 0, pt: '15px', justifyContent: 'left' }}>
@@ -64,11 +50,7 @@ export default function ItemPagesContainer (
         >
           <ArrowBackIosIcon />
         </IconButton>
-        <Typography
-          variant="h5"
-          component="div"
-          sx={{ flexGrow: 1 }}
-        >
+        <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
           {t(item.id)}
         </Typography>
       </Toolbar>
@@ -84,8 +66,8 @@ export default function ItemPagesContainer (
                 sx={{ p: 0 }}
                 onChange={onTabChanged}
                 aria-label="Item Tabs"
-                textColor='secondary'
-                indicatorColor='primary'
+                textColor="secondary"
+                indicatorColor="primary"
               >
                 <Tab label={t('tabs_info')} value="tabs_info" />
                 <Tab label={t('tabs_reviews')} value="tabs_reviews" />
@@ -95,10 +77,26 @@ export default function ItemPagesContainer (
               <InformationPage {...props} />
             </TabPanel>
             <TabPanel sx={{ p: 0, mt: '10px' }} value="tabs_reviews">
-              <ItemReviewsPage {...props}/>
+              <ItemReviewsPage {...props} />
             </TabPanel>
+            {!item.checked && (
+              <Fab
+                sx={{
+                  m: 0,
+                  top: 'auto',
+                  right: 20,
+                  bottom: 70,
+                  left: 'auto',
+                  position: 'fixed'
+                }}
+                color="primary"
+                variant="extended"
+                onClick={() => { setShowDidIt(true) }}
+              >
+                <CheckCircleOutlineIcon sx={{ mr: 1 }} />I Did It!
+              </Fab>
+            )}
           </TabContext>
-          <FooterPane>{footerButton}</FooterPane>
         </>
           )}
     </>

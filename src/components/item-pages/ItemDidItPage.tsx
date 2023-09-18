@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Checkbox,
+  CircularProgress,
   FormControlLabel,
   FormGroup,
   Rating,
@@ -161,7 +162,13 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
           sx={{ width: '100%' }}
           type="submit"
         >
-          {t('did_it_close')}
+          {saving
+            ? (
+            <CircularProgress color="secondary" />
+              )
+            : (
+                t('did_it_close')
+              )}
         </Button>
       </Box>
     </>

@@ -18,7 +18,7 @@ const mainHeaderFont = {
   fontWeight: '800'
 }
 const boardItemFont = {
-  fontSize: 11,
+  fontSize: 12,
   fontWeight: BINGO_SIZE < 5 ? '400' : '800'
 }
 

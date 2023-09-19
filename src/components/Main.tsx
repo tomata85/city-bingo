@@ -20,7 +20,6 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import './styles.css'
 import { AboutUsPage } from './bottom-drawer/AboutUsPage'
 import { useTranslation } from 'react-i18next'
-import { Stack } from '@mui/system'
 
 const enum DisplayedPages {
   Game,
@@ -29,7 +28,7 @@ const enum DisplayedPages {
 }
 
 export default function Main (): ReactElement {
-  const APP_MARGIN = BINGO_SIZE < 5 ? 'auto 30px 75px' : 'auto 15px 75px'
+  const APP_MARGIN = BINGO_SIZE < 5 ? '75px 30px 75px' : '75px 15px 75px'
   const [user, setUser] = useState<User>()
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0)
   const { t } = useTranslation()

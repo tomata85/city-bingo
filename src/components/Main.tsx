@@ -55,7 +55,7 @@ export default function Main (): ReactElement {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar component="nav" position="static">
+        <AppBar component="nav" position="fixed">
           <Toolbar>
             <Link href="#" underline="none">
               <img src="city-bingo-logo.png" width="35" height="35" />

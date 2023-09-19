@@ -29,7 +29,7 @@ const enum DisplayedPages {
 }
 
 export default function Main (): ReactElement {
-  const APP_MARGIN = BINGO_SIZE < 5 ? 'auto 30px' : 'auto 15px'
+  const APP_MARGIN = BINGO_SIZE < 5 ? 'auto 30px 75px' : 'auto 15px 75px'
   const [user, setUser] = useState<User>()
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0)
   const { t } = useTranslation()

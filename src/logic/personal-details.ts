@@ -3,3 +3,11 @@ export function isEmailValid (email: string): boolean {
   const match = email.match(EMAIL_REGEX)
   return match != null && match.length > 0
 }
+
+export function presentableName (name: string): string {
+  if (name.length > 15) {
+    const initials = name.split(' ').map((namePart) => namePart[0]).join('').toLocaleUpperCase()
+    return initials
+  }
+  return name
+}

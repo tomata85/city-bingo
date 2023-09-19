@@ -1,8 +1,9 @@
 {
   "logo": "City Bingo",
   "slogan": "Traveling? Don't plan - play!",
-  "login_name": "Your Name:",
-  "login_email": "Email Address:",
+  "login_name": "Your full name:",
+  "login_name_helper_text": "We will use your name to thank you later",
+  "login_email": "Email address:",
   "login_save": "Login",
   "main_title": "🇧🇬 Bansko",
   "how_to_play_title": "How to Play?",

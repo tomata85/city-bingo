@@ -20,6 +20,7 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import './styles.css'
 import { AboutUsPage } from './bottom-drawer/AboutUsPage'
 import { useTranslation } from 'react-i18next'
+import { presentableName } from '../logic/personal-details'
 
 const enum DisplayedPages {
   Game,
@@ -69,7 +70,7 @@ export default function Main (): ReactElement {
             </Typography>
             {user != null && (
               <Button color="secondary" startIcon={<FaceIcon />} size="large">
-                {user.name}
+                {presentableName(user.name)}
               </Button>
             )}
           </Toolbar>

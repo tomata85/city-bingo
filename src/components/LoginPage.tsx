@@ -7,7 +7,7 @@ import {
   storeLoggedInUser
 } from '../io/local-storage'
 import Loading from './infrastructure/Loading'
-import { isEmailValid } from '../logic/email'
+import { isEmailValid } from '../logic/personal-details'
 
 export interface LoginPageProps {
   onLogin: (user: User) => void
@@ -81,6 +81,7 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
                   onLogin()
                 }
               }}
+              helperText={t('login_name_helper_text')}
             />
             <TextField
               sx={{

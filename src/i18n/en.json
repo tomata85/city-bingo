@@ -1,11 +1,10 @@
 {
   "logo": "City Bingo",
   "slogan": "Traveling? Don't plan - play!",
-  "drawer_title": "Support Us",
   "login_name": "Your Name:",
   "login_email": "Email Address:",
   "login_save": "Login",
-  "main_title": "Bansko",
+  "main_title": "🇧🇬 Bansko",
   "how_to_play_title": "How to Play?",
   "how_to_play_button": "Got It",
   "item_a": "Hot Springs",
@@ -36,5 +35,7 @@
   "did_it_title": "What did you think?",
   "did_it_selfie": "Snap a photo of your experience:",
   "did_it_review_placeholder": "Anything you'd like to add?",
-  "did_it_next_skip_selfie": "I prefer to skip photo"
+  "bottom_nav_home": "Home",
+  "bottom_nav_about": "About",
+  "bottom_nav_feedback": "Feedback"
 }

@@ -19,6 +19,8 @@ import LocalCafeOutlinedIcon from '@mui/icons-material/LocalCafeOutlined'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import './styles.css'
 import { AboutUsPage } from './bottom-drawer/AboutUsPage'
+import { useTranslation } from 'react-i18next'
+import { Stack } from '@mui/system'
 
 const enum DisplayedPages {
   Game,
@@ -30,6 +32,7 @@ export default function Main (): ReactElement {
   const APP_MARGIN = BINGO_SIZE < 5 ? 'auto 30px' : 'auto 15px'
   const [user, setUser] = useState<User>()
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0)
+  const { t } = useTranslation()
 
   const onLogin = (user: User) => {
     setUser(user)
@@ -66,7 +69,7 @@ export default function Main (): ReactElement {
               City Bingo
             </Typography>
             {user != null && (
-              <Button color="inherit" startIcon={<FaceIcon />} size="large">
+              <Button color="secondary" startIcon={<FaceIcon />} size="large">
                 {user.name}
               </Button>
             )}
@@ -80,17 +83,23 @@ export default function Main (): ReactElement {
       >
         <BottomNavigation value={currentPageIndex}>
           <BottomNavigationAction
-          onClick={() => {
-            setCurrentPageIndex(DisplayedPages.Game)
-          }}
-           icon={<HomeOutlinedIcon />} />
+            onClick={() => {
+              setCurrentPageIndex(DisplayedPages.Game)
+            }}
+            icon={<HomeOutlinedIcon />}
+            label={t('bottom_nav_home')}
+          />
           <BottomNavigationAction
             onClick={() => {
               setCurrentPageIndex(DisplayedPages.AboutUs)
             }}
+            label={t('bottom_nav_about')}
             icon={<LocalCafeOutlinedIcon />}
           />
-          <BottomNavigationAction icon={<ChatBubbleOutlineIcon />} />
+          <BottomNavigationAction
+            label={t('bottom_nav_feedback')}
+            icon={<ChatBubbleOutlineIcon />}
+          />
         </BottomNavigation>
       </Paper>
     </>

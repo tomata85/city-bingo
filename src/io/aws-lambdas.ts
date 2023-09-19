@@ -1,7 +1,7 @@
 import { BoardInstanceType } from '../types'
 
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-const url = 'https://19iqaec2c8.execute-api.eu-west-1.amazonaws.com/default'
+const BASE_URL = 'https://19iqaec2c8.execute-api.eu-west-1.amazonaws.com/default'
 
 function requestOptions (method: string, body?: any) {
   const headers = {
@@ -17,7 +17,7 @@ export async function getBoardFromDB (
   userId: string,
   destination = 'bansko'): Promise<BoardInstanceType | undefined> {
   const response = await call(
-    `${url}/getUser?userId=${userId}&destination=${destination}`,
+    `${BASE_URL}/getUser?userId=${userId}&destination=${destination}`,
     requestOptions('GET'))
 
   const jsonResponse = await response.json()
@@ -30,7 +30,7 @@ export async function getBoardFromDB (
 export async function uploadItemImage (itemId: string, photo: Blob) {
   // TODO use call?
   const res = await fetch(
-      `${url}/getImageUploadLink?itemId=${itemId}`,
+      `${BASE_URL}/getImageUploadLink?itemId=${itemId}`,
       requestOptions('GET'))
 
   // Upload Image
@@ -56,7 +56,7 @@ async function call (url: string, requestOptions: any): Promise<any> {
 export async function updateBoardInstanceInDB (userId: string, boardInstance: BoardInstanceType) {
   // TODO: Rename Lambda?
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-  await call(`${url}/checkItem`, requestOptions('POST', {
+  await call(`${BASE_URL}/checkItem`, requestOptions('POST', {
     id: userId,
     boardInstance_bansko: boardInstance
   }))

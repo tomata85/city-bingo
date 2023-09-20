@@ -61,3 +61,16 @@ export async function updateBoardInstanceInDB (userId: string, boardInstance: Bo
     boardInstance_bansko: boardInstance
   }))
 }
+
+export async function getPlaceDetails (placeId: string) {
+  try {
+    const res = await fetch(
+      `${BASE_URL}/getGoogleMapPlaces?placeId=${placeId}`,
+      requestOptions('GET'))
+
+    const placeDetails = await res.json()
+    return placeDetails
+  } catch (error) {
+    console.error('Error:', error)
+  }
+}

@@ -21,7 +21,6 @@ import './styles.css'
 import { AboutUsPage } from './bottom-drawer/AboutUsPage'
 import { useTranslation } from 'react-i18next'
 import { presentableName } from '../logic/personal-details'
-import { getImage } from '../io/google-maps'
 
 const enum DisplayedPages {
   Game,
@@ -34,14 +33,6 @@ export default function Main (): ReactElement {
   const [user, setUser] = useState<User>()
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0)
   const { t } = useTranslation()
-
-  useEffect(() => {
-    const initialize = async () => {
-      // await getImage()
-    }
-
-    // void initialize()
-  }, [])
 
   const onLogin = (user: User) => {
     setUser(user)

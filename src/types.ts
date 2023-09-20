@@ -35,3 +35,12 @@ export interface User {
   name: string
   id: string
 }
+
+export interface Place {
+  name: string
+  googleMapsLink: string
+  photoUrl: string
+  placeId: string
+  itemId?: string
+  moreInfo?: string
+}

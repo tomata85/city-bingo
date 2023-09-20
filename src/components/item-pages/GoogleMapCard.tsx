@@ -1,26 +1,28 @@
 import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/material'
 import React, { ReactElement } from 'react-markdown/lib/react-markdown'
+import { Place } from '../../types'
 
-export default function GoogleMapCard (): ReactElement {
+export default function GoogleMapCard (props: { place: Place }): ReactElement {
+  const { place } = props
   const onCardClick = () => {
-    window.open('http://www.w3schools.com', '_blank')
+    window.open(place.googleMapsLink, '_blank')
   }
   return (
     <Card sx={{ minWidth: 200 }}>
       <CardActionArea onClick={onCardClick}>
         <CardMedia
           sx={{ height: 100 }}
-          image="bansko-title3.jpg"
-          title="green iguana"
+          // eslint-disable-next-line max-len
+          image={place.photoUrl}
+          title={place.name}
         />
         <CardContent>
-          <Typography variant="h6" component="div">
-            Lizard
+          <Typography variant="body2" component="div">
+          {place.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
+          {/* <Typography variant="body2" color="text.secondary">
+            Maybe I'll have more info here i n
+          </Typography> */}
         </CardContent>
       </CardActionArea>
     </Card>

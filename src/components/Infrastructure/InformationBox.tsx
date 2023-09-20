@@ -16,8 +16,8 @@ export default function InformationBox (
   const { t } = useTranslation()
 
   return (
-    <Box sx={{ mt: '20px' }}>
-      <Alert severity="info" icon={false}>
+    <Box>
+      <Alert severity="info">
         {title != null && <AlertTitle>{title}</AlertTitle>}
         {text}
         {showCloseButton && (

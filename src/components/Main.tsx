@@ -1,4 +1,4 @@
-import React, { type ReactElement, useState, useEffect } from 'react'
+import React, { type ReactElement, useState } from 'react'
 import BoardPage from './board/BoardPage'
 import Button from '@mui/material/Button'
 import AppBar from '@mui/material/AppBar'
@@ -29,7 +29,7 @@ const enum DisplayedPages {
 }
 
 export default function Main (): ReactElement {
-  const APP_MARGIN = BINGO_SIZE < 5 ? '75px 30px 75px' : '75px 15px 75px'
+  const APP_MARGIN = BINGO_SIZE < 5 ? '75px 30px 130px' : '75px 15px 130px'
   const [user, setUser] = useState<User>()
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0)
   const { t } = useTranslation()

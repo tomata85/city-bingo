@@ -37,6 +37,11 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
       itemId: 'item_a',
       placeId: 'ChIJq6qqqlqoqxQR7YoSEV8YGpA'
     }],
+  item_b: [],
+  item_c: [],
+  item_d: [],
+  item_e: [],
+  item_f: [],
   item_g: [
     {
       name: 'Vintage Coffee Shop & Bar - Bansko',
@@ -86,5 +91,13 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqES-uID5q8hHdNGQcWxcocfZ6vIOa8VhKLy6Qx2NPR-C1kqOqBs9QK2r9XJpCQ9oq9h_gDgs3MpdM4ZbSc4NcoFeJPKiSJK8jg=s1600-w400',
       itemId: 'item_h',
       placeId: 'ChIJP0rfCFOvqxQRDBL0FnMus80'
-    }]
+    }],
+  item_i: [],
+  item_j: [],
+  item_k: [],
+  item_l: [],
+  item_m: [],
+  item_n: [],
+  item_o: [],
+  item_p: []
 }

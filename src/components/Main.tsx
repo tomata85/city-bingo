@@ -8,8 +8,10 @@ import {
   Box,
   Link,
   Paper,
+  ThemeProvider,
   Toolbar,
-  Typography
+  Typography,
+  createTheme
 } from '@mui/material'
 import { BINGO_SIZE, User } from '../types'
 import LoginPage from './LoginPage'
@@ -21,6 +23,7 @@ import './styles.css'
 import { AboutUsPage } from './bottom-drawer/AboutUsPage'
 import { useTranslation } from 'react-i18next'
 import { presentableName } from '../logic/personal-details'
+import { COLOR_BLACKISH, COLOR_HAPPY_YELLOW } from '../App'
 
 const enum DisplayedPages {
   Game,
@@ -29,7 +32,14 @@ const enum DisplayedPages {
 }
 
 export default function Main (): ReactElement {
-  const APP_MARGIN = BINGO_SIZE < 5 ? '75px 30px 130px' : '75px 15px 130px'
+  const APP_MARGIN = BINGO_SIZE < 5 ? '75px 20px 130px' : '75px 15px 130px'
+  const NAV_BAR_THEME = createTheme({
+    palette: {
+      primary: { main: COLOR_HAPPY_YELLOW },
+      secondary: { main: COLOR_BLACKISH }
+    }
+  })
+
   const [user, setUser] = useState<User>()
   const [currentPageIndex, setCurrentPageIndex] = useState<number>(0)
   const { t } = useTranslation()
@@ -55,32 +65,35 @@ export default function Main (): ReactElement {
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar component="nav" position="fixed">
-          <Toolbar>
-            <Link href="#" underline="none">
-              <img src="city-bingo-logo.png" width="35" height="35" />
-            </Link>
-            <Typography
-              variant="h6"
-              component="div"
-              textAlign="left"
-              sx={{ pl: '10px', flexGrow: 1 }}
-            >
-              City Bingo
-            </Typography>
-            {user != null && (
-              <Button color="secondary" startIcon={<FaceIcon />} size="large">
-                {presentableName(user.name)}
-              </Button>
-            )}
-          </Toolbar>
-        </AppBar>
+        <ThemeProvider theme={NAV_BAR_THEME}>
+          <AppBar component="nav" position="fixed">
+            <Toolbar>
+              <Link href="#" underline="none">
+                <img src="city-bingo-logo.png" width="35" height="35" />
+              </Link>
+              <Typography
+                variant="h6"
+                component="div"
+                textAlign="left"
+                sx={{ pl: '10px', flexGrow: 1 }}
+              >
+                City Bingo
+              </Typography>
+              {user != null && (
+                <Button color="secondary" startIcon={<FaceIcon />} size="large">
+                  {presentableName(user.name)}
+                </Button>
+              )}
+            </Toolbar>
+          </AppBar>
+        </ThemeProvider>
       </Box>
       <Box sx={{ margin: APP_MARGIN }}>{selectedPage()}</Box>
       <Paper
         sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
         elevation={3}
       >
+        <ThemeProvider theme={NAV_BAR_THEME}>
         <BottomNavigation value={currentPageIndex}>
           <BottomNavigationAction
             onClick={() => {
@@ -101,6 +114,7 @@ export default function Main (): ReactElement {
             icon={<ChatBubbleOutlineIcon />}
           />
         </BottomNavigation>
+        </ThemeProvider>
       </Paper>
     </>
   )

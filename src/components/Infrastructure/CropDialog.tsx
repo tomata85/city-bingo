@@ -1,6 +1,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
 import React, { ReactElement, useRef } from 'react'
 import { Cropper, ReactCropperElement } from 'react-cropper'
+import { useTranslation } from 'react-i18next'
 
 export interface CropDialogProps {
   imageUrl: string
@@ -10,6 +11,7 @@ export interface CropDialogProps {
 
 export function CropDialog (props: CropDialogProps): ReactElement {
   const { open, imageUrl, handleClose } = props
+  const { t } = useTranslation()
   const cropperRef = useRef<ReactCropperElement>(null)
   const onClose = () => {
     const cropper = cropperRef.current?.cropper
@@ -23,11 +25,10 @@ export function CropDialog (props: CropDialogProps): ReactElement {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle>Crop your photo</DialogTitle>
+      <DialogTitle>{t('crop_title')}</DialogTitle>
       <DialogContent>
         <Cropper
           src={imageUrl}
-          // style={{ height: '350px', width: '100%' }}
           aspectRatio={1}
           guides={false}
           ref={cropperRef}
@@ -38,7 +39,7 @@ export function CropDialog (props: CropDialogProps): ReactElement {
           variant="contained"
           onClick={onClose}
         >
-          Close
+          {t('crop_button')}
         </Button>
       </DialogActions>
     </Dialog>

@@ -4,7 +4,7 @@ import React, { type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled, Paper } from '@mui/material'
 import Box from '@mui/system/Box'
-import { COLOR_BLACKISH, COLOR_HAPPY_YELLOW, COLOR_WHITE } from '../../App'
+import { COLOR_TURQUISE, COLOR_WHITE } from '../../App'
 
 export interface BoardItemProps {
   item: BoardInstanceItemType
@@ -20,25 +20,12 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
     onClick(item.id)
   }
 
-  // TODO: bring back image?
-  const textClassName = item.checked ? 'item-text_checked' : 'item-text'
-  const imageCover =
-    item.imageUrl != null
-      ? (
-      <img className="board-item_photo-cover" src={item.imageUrl} />
-        )
-      : item.checked && item.imageUrl == null
-        ? (
-      <img className="board-item_photo-cover" src={'thumb-up.jpg'} />
-          )
-        : null
-
   const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: item.checked ? COLOR_HAPPY_YELLOW : COLOR_WHITE,
-    ...theme.typography.body2,
-    padding: theme.spacing(0.5),
-    textAlign: 'left',
-    color: COLOR_BLACKISH,
+    backgroundColor: item.checked ? COLOR_TURQUISE : COLOR_WHITE,
+    ...theme.typography.body1,
+    padding: theme.spacing(0.75),
+    verticalAlign: 'center',
+    textAlign: 'center',
     height: ITEM_HEIGHT // TODO: make height relative to width
   }))
 

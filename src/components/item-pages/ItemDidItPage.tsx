@@ -4,8 +4,8 @@ import {
   Box,
   Button,
   CircularProgress,
+  Fab,
   Rating,
-  TextField,
   Typography,
   styled
 } from '@mui/material'
@@ -15,14 +15,15 @@ import { updateBoardItem } from '../../logic/board'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import ItemDidItPhotoAlert from './ItemDidItPhotoAlert'
-// import { compressImage } from '../../logic/images'
 import 'cropperjs/dist/cropper.css'
 import { CropDialog } from '../infrastructure/CropDialog'
 import { compressImage } from '../../logic/images'
+import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined'
+import CheckCircleIcon from '@mui/icons-material/CheckCircle'
+import { COLOT_REDISH } from '../../App'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const { item, onClose } = props
-  const [review, setReview] = useState<string>('')
   const [rating, setRating] = useState<number>(0)
 
   const [cropImageUrl, setCropImageUrl] = useState<string>('')
@@ -49,7 +50,6 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
         updatedItem = updateBoardItem(item, {
           checked: true,
           rating,
-          review,
           imageUrl
         })
         onClose(updatedItem)
@@ -89,12 +89,6 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     }
   }
 
-  const StyledRating = styled(Rating)({
-    '& .MuiRating-iconFilled': {
-      color: '#ff6d75' // RED-ish
-    }
-  })
-
   const handleCropClose = (blob: Blob | null) => {
     setShowCropDialog(false)
     if (blob != null) {
@@ -106,42 +100,30 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     setImagePreviewBlob(imageBlob)
   }
 
+  const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: COLOT_REDISH
+    }
+  })
+
   return (
     <>
       <Box>
-        <Typography component="div" sx={{ flexGrow: 1, mt: '10px' }}>
-          {t('did_it_title')}
-        </Typography>
-        <StyledRating
-          sx={{ mt: '10px' }}
-          name="simple-controlled"
-          value={rating}
-          onChange={(_, val) => {
-            setRating(val ?? 0)
-          }}
-          color="primary"
-          icon={<FavoriteIcon fontSize="large" />}
-          emptyIcon={<FavoriteBorderIcon fontSize="large" />}
-        />
-        <TextField
-          sx={{ mt: '15px' }}
-          fullWidth
-          color="secondary"
-          id="outlined-basic"
-          label={t('did_it_review_placeholder')}
-          variant="outlined"
-          multiline
-          value={review}
-          onChange={(event) => {
-            setReview(event.target.value)
-          }}
-        />
-        <p>{t('did_it_selfie')}</p>
         <Box>
-          <Button variant="contained" component="label" onChange={onFileChange}>
-            {t('did_it_browse_file')}
-            <input type="file" hidden />
-          </Button>
+          <Typography sx={{ my: '10px' }} variant="body2">
+            {t('did_it_selfie')}
+          </Typography>
+          <Box display="flex" justifyContent="center">
+            <Button
+              variant="contained"
+              component="label"
+              onChange={onFileChange}
+              startIcon={<AddPhotoAlternateOutlinedIcon />}
+            >
+              {t('did_it_browse_file')}
+              <input type="file" hidden />
+            </Button>
+          </Box>
           <CropDialog
             open={showCropDialog}
             imageUrl={cropImageUrl}
@@ -152,27 +134,64 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
               sx={{
                 mt: '20px'
               }}
+              display="flex"
+              justifyContent="center"
             >
               <img
-                id="experience-photo"
                 src={URL.createObjectURL(imagePreviewBlob)}
-                style={{ borderRadius: '8px' }}
+                style={{ borderRadius: '8px', maxWidth: '60%' }}
               />
             </Box>
           )}
         </Box>
-      </Box>
-      <Box display="flex" justifyContent="center" sx={{ mt: '15px' }}>
-        <Button
-          variant="contained"
-          onClick={onSave}
-          size="large"
-          sx={{ width: '100%' }}
-          type="submit"
+        <Typography
+          variant="body2"
+          component="div"
+          sx={{ flexGrow: 1, mt: '20px' }}
         >
-          {saving ? <CircularProgress color="secondary" /> : t('did_it_close')}
-        </Button>
+          {t('did_it_title')}
+        </Typography>
+        <Box display="flex" justifyContent="center">
+          <StyledRating
+            sx={{ mt: '15px' }}
+            name="simple-controlled"
+            value={rating}
+            onChange={(_, val) => {
+              setRating(val ?? 0)
+            }}
+            color="primary"
+            icon={<FavoriteIcon fontSize="large" />}
+            emptyIcon={<FavoriteBorderIcon />}
+          />
+        </Box>
+
       </Box>
+      <Fab
+        sx={{
+          m: 0,
+          top: 'auto',
+          right: 'auto',
+          bottom: 70,
+          left: 'auto',
+          position: 'fixed',
+          width: '90%'
+        }}
+        size="large"
+        color="primary"
+        variant="extended"
+        onClick={onSave}
+      >
+        {saving
+          ? (
+          <CircularProgress color="secondary" />
+            )
+          : (
+          <>
+            <CheckCircleIcon sx={{ mr: 1 }} />
+            {t('did_it_save')}
+          </>
+            )}
+      </Fab>
       {showDialog && <ItemDidItPhotoAlert onClose={onCloseSkipPhotoDialog} />}
     </>
   )

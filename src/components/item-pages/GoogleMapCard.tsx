@@ -17,8 +17,11 @@ export default function GoogleMapCard (props: { place: Place }): ReactElement {
           title={place.name}
         />
         <CardContent>
-          <Typography variant="body2" component="div">
+          <Typography variant="subtitle1" component="div">
           {place.name}
+          </Typography>
+          <Typography variant="body2" component="div">
+          {place.moreInfo}
           </Typography>
           {/* <Typography variant="body2" color="text.secondary">
             Maybe I'll have more info here i n

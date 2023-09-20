@@ -17,8 +17,11 @@ const mainHeaderFont = {
   ...headerFont,
   fontWeight: '800'
 }
+const subtitle1Font = {
+  fontSize: 14
+}
 const boardItemFont = {
-  fontSize: 12,
+  fontSize: 13,
   fontWeight: BINGO_SIZE < 5 ? '400' : '800'
 }
 
@@ -31,6 +34,7 @@ const theme = createTheme({
     h4: headerFont,
     h5: headerFont,
     h6: headerFont,
+    subtitle1: subtitle1Font,
     body2: boardItemFont
   },
   palette: {

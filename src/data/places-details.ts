@@ -47,35 +47,32 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
       name: 'Vintage Coffee Shop & Bar - Bansko',
       googleMapsLink: 'https://maps.google.com/?cid=3975952830959776058',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqG4Fku51SF1POrszv_o7KZsJqtqTTMpeEwpD39WPN1_2-ImHlLcQx0u_auvf69vA4MDwyxUCOaZJXtnrXiUC0g7nScXTysgr9k=s1600-w400',
-      placeId: 'ChIJqSGnCPuvqxQROvEQxQhsLTc'
+      placeId: 'ChIJqSGnCPuvqxQROvEQxQhsLTc',
+      moreInfo: 'Benches and chairs outside, stools inside. Vegan friendly. Suitable for laptops.'
     },
     {
       name: 'The Snug Bansko',
       googleMapsLink: 'https://maps.google.com/?cid=10613260021718190330',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqEn7QTbFBOHiuj9hQF1ePKw6SRVOovDIsOMOEAd5zU6c16dJElNDv1qdvsuuZPb6DmDpiJCrZtHEC1aggfsFhFzJIG-IowV5GQ=s1600-w400',
       itemId: 'item_g',
-      placeId: 'ChIJm5RpBEyvqxQR-gheH8LfSZM'
+      placeId: 'ChIJm5RpBEyvqxQR-gheH8LfSZM',
+      moreInfo: 'Benches outside, cosy inside. Serves hot drinks, sandwiches and cakes. Vegan friendly. Laptops forbidden.'
     },
     {
       name: 'Le Petit Nicolas',
       googleMapsLink: 'https://maps.google.com/?cid=30130376132255160',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqFUQeEWpoeIH2DuQ2JfeCo8OyRNrC-seyrA9ZO9_jrqben7g6-Xq5Adhg5UIhtCcUanOP6uyxeQYjQ5w-UXfLS354aWMDhMbxo=s1600-w400',
       itemId: 'item_g',
-      placeId: 'ChIJHY6LYKKuqxQRuN1P3moLawA'
+      placeId: 'ChIJHY6LYKKuqxQRuN1P3moLawA',
+      moreInfo: 'Bar stools seating. French bakery. Vegan friendly. Not suitable for laptops.'
     },
     {
       name: 'The French Guy Cafe Bakery',
       googleMapsLink: 'https://maps.google.com/?cid=11147796320832549054',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqFO5L7ZMpHxMBTdXoGRCC8gD3Alf8P39M707dUdZHhwm28Ivv6ci1D7LAVI8lu-lPEPTvwaW15DdiVw6f-nBtpdrfjs_F3F8Ac=s1600-w400',
       itemId: 'item_g',
-      placeId: 'ChIJg0aZGPqvqxQRvnChs7DttJo'
-    },
-    {
-      name: 'Кафене Ретро',
-      googleMapsLink: 'https://maps.google.com/?cid=3363824231392609605',
-      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqGDVf94p-h1ePZmbUUT_aUlJWNXlwunUEwJBP_vgoUjsyu8nuVEKwEmHfF20qgGpZul5-tC-4JlRm6xno1d1pJtunyks8CLp8U=s1600-w400',
-      itemId: 'item_g',
-      placeId: 'ChIJLWX7aKOuqxQRRQUC71C0ri4'
+      placeId: 'ChIJg0aZGPqvqxQRvnChs7DttJo',
+      moreInfo: 'French Bakery. Table seating, with a small garden. Vegan friendly. Laptop friendly.'
     }],
   item_h: [
     {
@@ -83,14 +80,16 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
       googleMapsLink: 'https://maps.google.com/?q=Belizmata+Dam&ftid=0x14abac3a3ac5c841:0xdcf16ef9447dc69',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqEWCukGUmmfPDU6bg8kFxVdv18a3AHU5qTiVgT_SNHwrAKdD8Dgl38Ameq9677-v_WmYHhdLcPRASd5YYafi0DvWpWWZUjLrGQ=s1600-w400',
       itemId: 'item_h',
-      placeId: 'ChIJQcjFOjqsqxQRadxHlO8Wzw0'
+      placeId: 'ChIJQcjFOjqsqxQRadxHlO8Wzw0',
+      moreInfo: 'A beautiful artificial lake. A great place for sunsets.'
     },
     {
       name: 'Krinetz Dam',
       googleMapsLink: 'https://maps.google.com/?cid=14822241870447645196',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqES-uID5q8hHdNGQcWxcocfZ6vIOa8VhKLy6Qx2NPR-C1kqOqBs9QK2r9XJpCQ9oq9h_gDgs3MpdM4ZbSc4NcoFeJPKiSJK8jg=s1600-w400',
       itemId: 'item_h',
-      placeId: 'ChIJP0rfCFOvqxQRDBL0FnMus80'
+      placeId: 'ChIJP0rfCFOvqxQRDBL0FnMus80',
+      moreInfo: 'Has a forest view and a flock of geese who made it their home.'
     }],
   item_i: [],
   item_j: [],

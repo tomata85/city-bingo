@@ -1,4 +1,4 @@
-import React, { useState, type ReactElement, useEffect } from 'react'
+import React, { useState, type ReactElement, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Box,
@@ -15,8 +15,9 @@ import { updateBoardItem } from '../../logic/board'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import ItemDidItPhotoAlert from './ItemDidItPhotoAlert'
-import InformationBox from '../infrastructure/InformationBox'
 import { compressImage } from '../../logic/images'
+import 'cropperjs/dist/cropper.css'
+import { CropDialog } from '../infrastructure/CropDialog'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const { item, onClose } = props
@@ -28,12 +29,15 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [skipPhoto, setSkipPhoto] = useState<boolean>(false)
   const [saving, setSaving] = useState<boolean>(false)
   const [showDialog, setShowDialog] = useState<boolean>(false)
+  const [showCropDialog, setShowCropDialog] = useState<boolean>(false)
+  const [cropImageUrl, setCropImageUrl] = useState<string>('')
+  const [imagePreviewUrl, setImagePreviewUrl] = useState<string>('')
   const { t } = useTranslation()
 
   const onSave = (): void => {
     setSaving(true)
 
-    const canSave = (imagePreviewBlob != null) || skipPhoto
+    const canSave = imagePreviewBlob != null || skipPhoto
     if (canSave) {
       const save = async () => {
         let updatedItem = item
@@ -77,7 +81,9 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     if (file != null) {
       const reader = new FileReader()
       reader.onload = () => {
-        compressImage(file, onImageCompressed)
+        setCropImageUrl(URL.createObjectURL(file))
+        setShowCropDialog(true)
+        // compressImage(file, onImageCompressed)
       }
       reader.readAsDataURL(file)
     }
@@ -93,6 +99,11 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
       color: '#ff6d75' // RED-ish
     }
   })
+
+  const handleCropClose = (url: string) => {
+    setShowCropDialog(false)
+    setImagePreviewUrl(url)
+  }
 
   return (
     <>
@@ -130,7 +141,8 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             {t('did_it_browse_file')}
             <input type="file" hidden />
           </Button>
-          {imagePreviewBlob != null && (
+          <CropDialog open={showCropDialog} imageUrl={cropImageUrl} handleClose={handleCropClose} />
+          {imagePreviewUrl != null && (
             <Box
               sx={{
                 mt: '20px'
@@ -138,14 +150,14 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             >
               <img
                 id="experience-photo"
-                src={URL.createObjectURL(imagePreviewBlob)}
+                src={imagePreviewUrl}
+                style={{ borderRadius: '8px' }}
               />
-              <InformationBox showCloseButton={false} text={'Coming soon: manual photo crop.'}/>
             </Box>
           )}
         </Box>
       </Box>
-      <Box display="flex" justifyContent="center" sx={{ mt: '45px' }}>
+      <Box display="flex" justifyContent="center" sx={{ mt: '15px' }}>
         <Button
           variant="contained"
           onClick={onSave}
@@ -156,7 +168,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
           {saving ? <CircularProgress color="secondary" /> : t('did_it_close')}
         </Button>
       </Box>
-      {showDialog && <ItemDidItPhotoAlert onClose={onCloseSkipPhotoDialog}/>}
+      {showDialog && <ItemDidItPhotoAlert onClose={onCloseSkipPhotoDialog} />}
     </>
   )
 }

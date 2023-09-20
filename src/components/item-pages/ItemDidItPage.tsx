@@ -18,18 +18,21 @@ import ItemDidItPhotoAlert from './ItemDidItPhotoAlert'
 // import { compressImage } from '../../logic/images'
 import 'cropperjs/dist/cropper.css'
 import { CropDialog } from '../infrastructure/CropDialog'
+import { compressImage } from '../../logic/images'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const { item, onClose } = props
   const [review, setReview] = useState<string>('')
   const [rating, setRating] = useState<number>(0)
 
+  const [cropImageUrl, setCropImageUrl] = useState<string>('')
+  const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
+
   const [skipPhoto, setSkipPhoto] = useState<boolean>(false)
   const [saving, setSaving] = useState<boolean>(false)
   const [showDialog, setShowDialog] = useState<boolean>(false)
   const [showCropDialog, setShowCropDialog] = useState<boolean>(false)
-  const [cropImageUrl, setCropImageUrl] = useState<string>('')
-  const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
+
   const { t } = useTranslation()
 
   const onSave = (): void => {
@@ -81,16 +84,10 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
       reader.onload = () => {
         setCropImageUrl(URL.createObjectURL(file))
         setShowCropDialog(true)
-        // compressImage(file, onImageCompressed)
       }
       reader.readAsDataURL(file)
     }
   }
-
-  // const onImageCompressed = (imageBlob: Blob): void => {
-  //   setImagePreviewBlob(imageBlob)
-  //   setSkipPhoto(true)
-  // }
 
   const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {
@@ -100,10 +97,13 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
 
   const handleCropClose = (blob: Blob | null) => {
     setShowCropDialog(false)
-
     if (blob != null) {
-      setImagePreviewBlob(blob)
+      compressImage(blob, onImageCompressed)
     }
+  }
+
+  const onImageCompressed = (imageBlob: Blob): void => {
+    setImagePreviewBlob(imageBlob)
   }
 
   return (
@@ -142,7 +142,11 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             {t('did_it_browse_file')}
             <input type="file" hidden />
           </Button>
-          <CropDialog open={showCropDialog} imageUrl={cropImageUrl} handleClose={handleCropClose} />
+          <CropDialog
+            open={showCropDialog}
+            imageUrl={cropImageUrl}
+            handleClose={handleCropClose}
+          />
           {imagePreviewBlob != null && (
             <Box
               sx={{

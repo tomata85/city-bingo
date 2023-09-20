@@ -97,6 +97,22 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
   item_l: [],
   item_m: [],
   item_n: [],
-  item_o: [],
-  item_p: []
+  item_o: [
+    {
+      name: 'Bansko Gondola Ski Lift',
+      googleMapsLink: 'https://maps.google.com/?cid=13049104285431271440',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqGrXme1GFMVnQNUoYd0mCgTpCaX_EDnlDi08cQEzjqrVhZcgFndjdlNwzimYiAseazxYG0HuKUIdYzhXCAZ4Ebv98ejGrd1pI0=s1600-w400',
+      itemId: 'item_o',
+      placeId: 'ChIJJyYhX52uqxQREJAo4jW7F7U'
+    }
+  ],
+  item_p: [
+    {
+      name: 'Relax zone',
+      googleMapsLink: 'https://maps.google.com/?cid=7520515463806637747',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqEyDhIMwCI-fvl_bkHvK51hPCirJZIdw1wL3HjXwLoSm6-o55THrn6Pe1929Xb-2DqKHrAEON9vcvYcfKnPLeCFatgnDUqDf4A=s1600-w400',
+      itemId: 'item_p',
+      placeId: 'ChIJTcMUwzStqxQRs9YGDPg8Xmg'
+    }
+  ]
 }

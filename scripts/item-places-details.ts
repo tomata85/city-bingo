@@ -1,0 +1,1 @@
+{"name":"Bansko Gondola Ski Lift","googleMapsLink":"https://maps.google.com/?cid=13049104285431271440","photoUrl":"https://lh3.googleusercontent.com/places/ANXAkqGrXme1GFMVnQNUoYd0mCgTpCaX_EDnlDi08cQEzjqrVhZcgFndjdlNwzimYiAseazxYG0HuKUIdYzhXCAZ4Ebv98ejGrd1pI0=s1600-w400","itemId":"item_o","placeId":"ChIJJyYhX52uqxQREJAo4jW7F7U"}

@@ -20,7 +20,7 @@ export default function GoogleMapCard (props: { place: Place }): ReactElement {
           <Typography variant="subtitle1" component="div">
           {place.name}
           </Typography>
-          <Typography variant="body2" component="div">
+          <Typography variant="body1" component="div">
           {place.moreInfo}
           </Typography>
           {/* <Typography variant="body2" color="text.secondary">

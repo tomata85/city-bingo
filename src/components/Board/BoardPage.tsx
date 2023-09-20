@@ -9,11 +9,6 @@ import Board from './Board'
 import {
   Box,
   Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
   Typography
 } from '@mui/material'
 import {
@@ -22,11 +17,19 @@ import {
 } from '../../io/description-files'
 import Loading from '../infrastructure/Loading'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
+import HelpDialog from '../infrastructure/HelpDialog'
 
 export default function BoardPage (props: {
   user: User
   destinationId: string
 }): ReactElement {
+  const TITLE_STYLE = {
+    mt: '100px',
+    mb: '10px',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start'
+  }
+
   const { t, i18n } = useTranslation()
   const { user, destinationId } = props
   const [loading, setLoading] = useState(true)
@@ -36,7 +39,7 @@ export default function BoardPage (props: {
   const [showHelp, setShowHelp] = useState<boolean>(false)
   const [selectedItem, setSelectedItem] =
     useState<BoardInstanceItemType | null>(null)
-  // TODO: is this initilazation a gross hack?
+
   const [board, setBoard] = useState<BoardInstanceType>({})
   const [help, setHelp] = useState<string>('')
 
@@ -83,7 +86,7 @@ export default function BoardPage (props: {
         <>
           <Box
             display="flex"
-            sx={{ mt: '30px', mb: '15px', justifyContent: 'space-between' }}
+            sx={TITLE_STYLE}
           >
             <Typography display="inline" variant="h3">
               {t('main_title')}
@@ -94,10 +97,9 @@ export default function BoardPage (props: {
                 setShowHelp(true)
               }}
             >
-              <HelpOutlineIcon />
+              <HelpOutlineIcon fontSize="large" />
             </Button>
           </Box>
-          {/* <img className="cover-image" src="bansko-title.jpg"/> */}
           {loading
             ? (
             <Loading />
@@ -105,28 +107,7 @@ export default function BoardPage (props: {
             : (
             <>
               <Board user={user} board={board} onClickItem={onClickItem} />
-              <Dialog
-                open={showHelp}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-              >
-                <DialogTitle>{t('how_to_play_title')}</DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                    {help}
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={hideHelp}
-                    autoFocus
-                  >
-                    {t('how_to_play_button')}
-                  </Button>
-                </DialogActions>
-              </Dialog>
+              <HelpDialog helpText={help} open={showHelp} onClose={hideHelp}/>
             </>
               )}
         </>

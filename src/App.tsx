@@ -5,9 +5,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { resetLocalStorageOnBreakingChange } from './io/local-storage'
 import { BINGO_SIZE } from './types'
 
-export const COLOR_HAPPY_YELLOW = '#FFE300'
+export const COLOR_HAPPY_YELLOW = '#FFF300'
 export const COLOR_BLACKISH = '#524856'
 export const COLOR_WHITE = '#fff'
+export const COLOR_TURQUISE = '#A0C7B5'
+export const COLOT_REDISH = '#ff6d75'
 
 const headerFont = {
   fontFamily: 'Josefin Sans',
@@ -18,11 +20,32 @@ const mainHeaderFont = {
   fontWeight: '800'
 }
 const subtitle1Font = {
-  fontSize: 14
+  fontSize: 16,
+  lineHeight: '1.25em',
+  fontFamily: 'Josefin Sans',
+  color: COLOR_BLACKISH
 }
+
+const defaultFont = {
+  fontSize: 16,
+  fontWeight: BINGO_SIZE < 5 ? '400' : '800',
+  letterSpacing: 1,
+  color: COLOR_BLACKISH
+}
+
 const boardItemFont = {
   fontSize: 13,
-  fontWeight: BINGO_SIZE < 5 ? '400' : '800'
+  fontWeight: BINGO_SIZE < 5 ? '400' : '800',
+  letterSpacing: 1,
+  color: 'black'
+}
+
+const buttonFont = {
+  fontWeight: 600,
+  color: COLOR_BLACKISH,
+  palette: {
+    secondary: COLOR_BLACKISH
+  }
 }
 
 const theme = createTheme({
@@ -35,10 +58,12 @@ const theme = createTheme({
     h5: headerFont,
     h6: headerFont,
     subtitle1: subtitle1Font,
-    body2: boardItemFont
+    body1: boardItemFont,
+    body2: defaultFont,
+    button: buttonFont
   },
   palette: {
-    primary: { main: COLOR_HAPPY_YELLOW },
+    primary: { main: COLOR_TURQUISE },
     secondary: { main: COLOR_BLACKISH }
   }
 })

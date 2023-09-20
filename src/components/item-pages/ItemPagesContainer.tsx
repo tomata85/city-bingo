@@ -40,15 +40,15 @@ export default function ItemPagesContainer (
 
   return (
     <>
-      <Toolbar sx={{ p: 0, pt: '15px', justifyContent: 'left' }}>
+      <Toolbar
+        sx={{ mt: '-20px', p: 0, justifyContent: 'left', alignItems: 'flex-end' }}
+      >
         <IconButton
-          size="large"
           edge="start"
-          color="inherit"
           aria-label="menu"
           onClick={onCloseButtonClick}
         >
-          <ArrowBackIosIcon />
+          <ArrowBackIosIcon color={'secondary'} />
         </IconButton>
         <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
           {t(item.id)}
@@ -84,14 +84,18 @@ export default function ItemPagesContainer (
                 sx={{
                   m: 0,
                   top: 'auto',
-                  right: 20,
+                  right: 'auto',
                   bottom: 70,
                   left: 'auto',
-                  position: 'fixed'
+                  position: 'fixed',
+                  width: '90%'
                 }}
+                size="large"
                 color="primary"
                 variant="extended"
-                onClick={() => { setShowDidIt(true) }}
+                onClick={() => {
+                  setShowDidIt(true)
+                }}
               >
                 <CheckCircleOutlineIcon sx={{ mr: 1 }} />I Did It!
               </Fab>

@@ -9,13 +9,14 @@ import {
   Typography,
   styled
 } from '@mui/material'
-import Resizer from 'react-image-file-resizer'
 import { ItemPagesProps } from './ItemPagesContainer'
 import { uploadItemImage } from '../../io/aws-lambdas'
 import { updateBoardItem } from '../../logic/board'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import ItemDidItPhotoAlert from './ItemDidItPhotoAlert'
+import InformationBox from '../infrastructure/InformationBox'
+import { compressImage } from '../../logic/images'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const { item, onClose } = props
@@ -76,28 +77,15 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     if (file != null) {
       const reader = new FileReader()
       reader.onload = () => {
-        compressImage(file)
+        compressImage(file, onImageCompressed)
       }
       reader.readAsDataURL(file)
     }
   }
 
-  const onImageCompressed = (imageBlob: any): void => {
+  const onImageCompressed = (imageBlob: Blob): void => {
     setImagePreviewBlob(imageBlob)
     setSkipPhoto(true)
-  }
-
-  const compressImage = (data: any): void => {
-    Resizer.imageFileResizer(
-      data,
-      1000,
-      1000,
-      'JPEG',
-      100,
-      0,
-      onImageCompressed,
-      'blob'
-    )
   }
 
   const StyledRating = styled(Rating)({
@@ -152,6 +140,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
                 id="experience-photo"
                 src={URL.createObjectURL(imagePreviewBlob)}
               />
+              <InformationBox showCloseButton={false} text={'Coming soon: manual photo crop.'}/>
             </Box>
           )}
         </Box>

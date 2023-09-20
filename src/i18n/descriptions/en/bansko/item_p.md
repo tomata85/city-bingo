@@ -1,1 +1,3 @@
-If you wish to immerse in cold waters during a hot day (or a chilly day, you Wim Hof you), either use the pools available in the hotels, or take a cold plunge in the melted-snow waters in one of the many streams flowing in the forest. One highly pouplar plunge-point the river is at the dam known as the Infinity Pool, but wandering in the forest will reveal other nice spots as well. If we know in person, ask me about it, I’ll take you to my personal favorite ;)
+Those wish to immerse in cold waters during a hot day (or a chilly day, you Wim Hof you), can either use the pools available in the hotels, or take a cold plunge in the melted-snow waters in one of the many streams flowing in the forest. One highly pouplar plunge-point the river is at the dam known as the Infinity Pool, but wandering in the forest will reveal other nice spots as well. If we know in person, ask me about it, I’ll take you to my personal favorite ;)
+
+<!-- TODO: Add the "secret" spot -->

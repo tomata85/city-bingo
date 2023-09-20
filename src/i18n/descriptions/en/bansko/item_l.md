@@ -1,1 +1,1 @@
-[Bansko Park,](https://goo.gl/maps/S8qSok8qrbYG5Wsf9) in the town's northeastern point, is a cute and green place, with grass lawns, trees, and a small artificial lake with a fountain. If you are downtown and don't have the time or eneergy for hiking further, this is the best option for a nature break.
+Bansko Park, in the town's northeastern point, is a lovely and easily-available nature alternative. It stretches across grass lawns, full of trees, with a small artificial lake and a fountain. Totally a chill zone.

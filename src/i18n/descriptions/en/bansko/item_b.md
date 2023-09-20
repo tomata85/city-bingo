@@ -1,5 +1,3 @@
-The Pirin Mountains are unequivocally the most beautiful nature of Bansko. Between the peaks there is green grass, streams, lakes, vegetation, and a view of mountains and valleys stretching into the distance. Hiking can take anywhere between 2 hours and several days. The trails begin at [Vihran Hut](https://goo.gl/maps/AW82T9RxhPQ5WgAd9). Getting to it is in one of the following ways:
+Pirin Nature Reserve - the glory of Bansko. The nature views are really beautiful - mountains, greem grass, streams and lakes. Hiking can take anywhere between 2 hours and several days, so it's a hike available for just about everyone - don't miss it.
 
-- A two-three hour walk on the road or on the ski slope, up the mountain
-- A bus that travels and returns 3 times a day only. [This is the timetable](https://visit-bansko.bg/en/helpful/line-bansko-vihren)
-- Hitchhiking, car rental, taxi: for all car options, there’s a road closure from 8am to 4pm. Then you have to walk another hour on the road on foot.
+Getting to the hike's startpoint (typically Vihren Hut), however, can be a bit tricky. Walking up there takes about 2-3 hours, 1 hour if you use the gondola. There's [a bus](https://visit-bansko.bg/en/helpful/line-bansko-vihren) which travels there and back 3 times a day. You can take a car, a taxi or hitchhike, but note the road closes from 8am to 4pm. The checkpoint is about an hour to the startpoint.

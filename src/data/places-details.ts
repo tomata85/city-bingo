@@ -73,36 +73,36 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
       googleMapsLink: 'https://maps.google.com/?cid=9689502159947073056',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqERCymi5hT8IIFyfQ85ldcAwcwlTNSoB5n9o0gI2e3cfJMySLQrFvcGXsNTtWfLAl4eZ_Z9_BX9u3MRbxBY2x4v1ti35NjwbM0=s1600-w400',
       itemId: 'item_c',
-      placeId: 'ChIJ71_5un6vqxQRIIYGluAGeIY'
+      placeId: 'ChIJ71_5un6vqxQRIIYGluAGeIY',
+      moreInfo: 'Huge triangular slices. Come early, they finish fast.'
     },
     {
       name: 'Le Petit Nicolas',
       googleMapsLink: 'https://maps.google.com/?cid=30130376132255160',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqFUQeEWpoeIH2DuQ2JfeCo8OyRNrC-seyrA9ZO9_jrqben7g6-Xq5Adhg5UIhtCcUanOP6uyxeQYjQ5w-UXfLS354aWMDhMbxo=s1600-w400',
       itemId: 'item_c',
-      placeId: 'ChIJHY6LYKKuqxQRuN1P3moLawA'
-    },
-    {
-      name: 'Баничарница Вихрен',
-      googleMapsLink: 'https://maps.google.com/?cid=5066057379915899457',
-      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqHTtUMNUEQY65QXzwW5r5ywOyItoAPOShHTfS598V5rYHYKWqox6IP1JX7DA2vseF45bmPhX0Axk2DItEh7iLk9eyLXmDfhjxA=s1600-w400',
-      itemId: 'item_c',
-      placeId: 'ChIJKS9ti6qvqxQRQSKijVhATkY'
+      placeId: 'ChIJHY6LYKKuqxQRuN1P3moLawA',
+      moreInfo: 'Vegan; Huge portion.'
     },
     {
       name: 'BILLA Банско',
       googleMapsLink: 'https://maps.google.com/?cid=4125161265611796645',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqHKijsgEjy6Lor6Nc0YBSdo9Oj13AcpNvtvkRRfiRFoVKaMYq-r8rPxjPsRX0xKB7Ouady1jhTrwDqWNOvVSvBJbRlkBCQuMMY=s1600-w400',
       itemId: 'item_c',
-      placeId: 'ChIJ8WjoSVuvqxQRpfD9pVCEPzk'
+      placeId: 'ChIJ8WjoSVuvqxQRpfD9pVCEPzk',
+      moreInfo: 'Good price'
     },
     {
       name: 'Bakery',
       googleMapsLink: 'https://maps.google.com/?cid=4512429125650323031',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqGQs_2l-rSlqKfmSkU9-HOnBvQLAOepCciW5zVHtHjGihXvT2-4x2mZe5_ZAc5OWeXYkL7ZCTMz-FewkwEsZyvdRhQzYDCoPNY=s1600-w400',
       itemId: 'item_c',
-      placeId: 'ChIJFQw8IeKvqxQRV5aDxGFenz4'
+      placeId: 'ChIJFQw8IeKvqxQRV5aDxGFenz4',
+      moreInfo: 'Good price. Extra greasy.'
     }
+    // TODO:
+    // placeId: ChIJD1kgu_CvqxQRXZo6FUFAVIk
+    // moreInfo: Variety of forms and flavors, including potatoes, mushrooms and cabbage.
   ],
   item_d: [
     {
@@ -130,32 +130,36 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
   item_e: [],
   item_f: [
     {
-      name: 'Nestwork Coworking',
-      googleMapsLink: 'https://maps.google.com/?cid=18115300034306133430',
-      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqHPAc5UtWV6-yVco2A-1zl9inYt8V1cPhJw5NlvztgqZCR5DpwB-CJ9KlZkdNU_0kBNDYTE0YTrxwcWIjqQnvLfTijetixtNLA=s1600-w400',
-      itemId: 'item_f',
-      placeId: 'ChIJSYr616WvqxQRtk1w-GZ5Zvs'
-    },
-    {
-      name: 'Apart-Hotel Four Leaf Clover',
-      googleMapsLink: 'https://maps.google.com/?cid=10354704211618039932',
-      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqFJp8L91ZWgtobtjOScl7UJMlncr8xQCzjeqwYBvQQMGkLFtD0GkllPa5rXQ6dl8rnwF618x5xrdvQy9Pzi36fwgjZW2t377rY=s1600-w400',
-      itemId: 'item_f',
-      placeId: 'ChIJV6R_Z6euqxQRfAi8b55Ms48'
-    },
-    {
       name: 'Coworking Bansko',
       googleMapsLink: 'https://maps.google.com/?cid=16818103848329621620',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqFaDSpqoR0fvYFTJhLJUhYl0JNK4IWmcnwXyKrXT5cQyLu6jyR7Hxd1nVqYoTCVqJo3WrwGU_HmNd47d37xK1r-MsD02WGEx0w=s1600-w400',
       itemId: 'item_f',
-      placeId: 'ChIJdTopltN2qxQRdDBRC1joZek'
+      placeId: 'ChIJdTopltN2qxQRdDBRC1joZek',
+      moreInfo: 'Go there if you: want to meet many new people, fast; enjoy a social buzz sounds when working.'
     },
     {
       name: 'Altspace Coworking - Central',
       googleMapsLink: 'https://maps.google.com/?cid=8670628056766092610',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqG2B-CBhVHqPqeswtHrSyphAXLcVcgNAyo4IQwootqZTy7ARcZmKteqzskajy8_ycSF4VzhKNDL4GObqxq5r3-ooijSlg67s2I=s1600-w400',
       itemId: 'item_f',
-      placeId: 'ChIJR1DQsHyvqxQRQhUUV0dCVHg'
+      placeId: 'ChIJR1DQsHyvqxQRQhUUV0dCVHg',
+      moreInfo: 'Go there if you: are long-term in Bansko; prefer quiet conditions for work, and socializing after hours.'
+    },
+    {
+      name: 'Nestwork Coworking',
+      googleMapsLink: 'https://maps.google.com/?cid=18115300034306133430',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqHPAc5UtWV6-yVco2A-1zl9inYt8V1cPhJw5NlvztgqZCR5DpwB-CJ9KlZkdNU_0kBNDYTE0YTrxwcWIjqQnvLfTijetixtNLA=s1600-w400',
+      itemId: 'item_f',
+      placeId: 'ChIJSYr616WvqxQRtk1w-GZ5Zvs',
+      moreInfo: 'Go there if you: are sensitive to workstation conditions; do not need the co-work for community purposes.'
+    },
+    {
+      name: 'Apart-Hotel Four Leaf Clover',
+      googleMapsLink: 'https://maps.google.com/?cid=10354704211618039932',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqFJp8L91ZWgtobtjOScl7UJMlncr8xQCzjeqwYBvQQMGkLFtD0GkllPa5rXQ6dl8rnwF618x5xrdvQy9Pzi36fwgjZW2t377rY=s1600-w400',
+      itemId: 'item_f',
+      placeId: 'ChIJV6R_Z6euqxQRfAi8b55Ms48',
+      moreInfo: 'Go there if you: live in FLC; are interested in connecting with the FLC community; seeking for afforable options.'
     }
   ],
   item_g: [

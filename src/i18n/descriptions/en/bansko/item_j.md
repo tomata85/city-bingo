@@ -1,3 +1,1 @@
-The sunset view in Bansko faces the Pirin mountains and western green fields. My personal recommendation is to watch it from the top of one of the many abandoned buildings. Bring a jacket, a picnic blanket and maybe some wine. Climb the stairs up to the roof and enjoy the open view to the horizon.
-
-If you don't mind walk a bit, you can watch the sunset from the beautiful [Lake Belizmata](https://goo.gl/maps/8mYk9FJSTsB8M7hu8), west of Bansko. If you aren't planning to have dinner at the restaurant by the lake, you might be expected to pay some 3 leva to enter.
+The sunset view in Bansko faces the Pirin mountains and western green fields. Some sunset view options: either go to Balizmata lake, or climb the roof of one of the many abandoned buildings of Bansko.

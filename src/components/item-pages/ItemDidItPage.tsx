@@ -1,4 +1,4 @@
-import React, { useState, type ReactElement, useEffect, useRef } from 'react'
+import React, { useState, type ReactElement, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   Box,
@@ -15,14 +15,12 @@ import { updateBoardItem } from '../../logic/board'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import ItemDidItPhotoAlert from './ItemDidItPhotoAlert'
-import { compressImage } from '../../logic/images'
+// import { compressImage } from '../../logic/images'
 import 'cropperjs/dist/cropper.css'
 import { CropDialog } from '../infrastructure/CropDialog'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const { item, onClose } = props
-
-  const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
   const [review, setReview] = useState<string>('')
   const [rating, setRating] = useState<number>(0)
 
@@ -31,7 +29,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [showDialog, setShowDialog] = useState<boolean>(false)
   const [showCropDialog, setShowCropDialog] = useState<boolean>(false)
   const [cropImageUrl, setCropImageUrl] = useState<string>('')
-  const [imagePreviewUrl, setImagePreviewUrl] = useState<string>('')
+  const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
   const { t } = useTranslation()
 
   const onSave = (): void => {
@@ -89,10 +87,10 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     }
   }
 
-  const onImageCompressed = (imageBlob: Blob): void => {
-    setImagePreviewBlob(imageBlob)
-    setSkipPhoto(true)
-  }
+  // const onImageCompressed = (imageBlob: Blob): void => {
+  //   setImagePreviewBlob(imageBlob)
+  //   setSkipPhoto(true)
+  // }
 
   const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {
@@ -100,9 +98,12 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
     }
   })
 
-  const handleCropClose = (url: string) => {
+  const handleCropClose = (blob: Blob | null) => {
     setShowCropDialog(false)
-    setImagePreviewUrl(url)
+
+    if (blob != null) {
+      setImagePreviewBlob(blob)
+    }
   }
 
   return (
@@ -142,7 +143,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             <input type="file" hidden />
           </Button>
           <CropDialog open={showCropDialog} imageUrl={cropImageUrl} handleClose={handleCropClose} />
-          {imagePreviewUrl != null && (
+          {imagePreviewBlob != null && (
             <Box
               sx={{
                 mt: '20px'
@@ -150,7 +151,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             >
               <img
                 id="experience-photo"
-                src={imagePreviewUrl}
+                src={URL.createObjectURL(imagePreviewBlob)}
                 style={{ borderRadius: '8px' }}
               />
             </Box>

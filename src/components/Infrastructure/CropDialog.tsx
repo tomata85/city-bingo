@@ -5,7 +5,7 @@ import { Cropper, ReactCropperElement } from 'react-cropper'
 export interface CropDialogProps {
   imageUrl: string
   open: boolean
-  handleClose: (croppedImageUrl: string) => void
+  handleClose: (croppedImage: Blob | null) => void
 }
 
 export function CropDialog (props: CropDialogProps): ReactElement {
@@ -13,12 +13,13 @@ export function CropDialog (props: CropDialogProps): ReactElement {
   const cropperRef = useRef<ReactCropperElement>(null)
   const onClose = () => {
     const cropper = cropperRef.current?.cropper
-    handleClose(cropper!.getCroppedCanvas().toDataURL())
+    cropper!.getCroppedCanvas().toBlob((blob) => {
+      handleClose(blob)
+    })
   }
   return (
     <Dialog
       open={open}
-      onClose={handleClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
@@ -35,8 +36,6 @@ export function CropDialog (props: CropDialogProps): ReactElement {
       <DialogActions>
         <Button
           variant="contained"
-          // color="secondary"
-          // size="small"
           onClick={onClose}
         >
           Close

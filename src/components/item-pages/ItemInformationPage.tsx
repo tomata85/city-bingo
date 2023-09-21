@@ -1,7 +1,7 @@
 import React, { type ReactElement } from 'react'
 import { Box, List, Stack, Typography } from '@mui/material'
 import { ItemPagesProps } from './ItemPagesContainer'
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from 'markdown-to-jsx'
 import GoogleMapCard from './GoogleMapCard'
 import { PLACES_DETAILS } from '../../data/places-details'
 import { Place } from '../../types'
@@ -15,11 +15,18 @@ export default function ItemInformationPage (
   const places: Place[] = PLACES_DETAILS[props.item.id]
   const { t } = useTranslation()
 
+  const options = {
+    overrides: {
+      p: {
+        component: Typography,
+        props: { paragraph: true, variant: 'body2' }
+      }
+    }
+  }
+
   return (
     <Box sx={{ mt: '20px' }}>
-      <Typography variant={'body2'}>
-        <ReactMarkdown>{description}</ReactMarkdown>
-      </Typography>
+      <ReactMarkdown options={options}>{description}</ReactMarkdown>
       {places.length > 0 && (
         <>
           <Typography variant={'h6'}>{t('info_places_title')}</Typography>

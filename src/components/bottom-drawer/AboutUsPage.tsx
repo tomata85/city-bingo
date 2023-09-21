@@ -1,23 +1,44 @@
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import React, { ReactElement } from 'react'
-
+import React, { ReactElement, useEffect, useState } from 'react'
+import { getAbout } from '../../io/description-files'
+import ReactMarkdown from 'markdown-to-jsx'
 export function AboutUsPage (): ReactElement {
+  const [about, setAbout] = useState('')
+
+  useEffect(() => {
+    const initialize = async () => {
+      const about = await getAbout('en')
+      setAbout(about)
+
+      // setLoading(false)
+    }
+
+    void initialize()
+  }, [])
+
+  const options = {
+    overrides: {
+      p: {
+        component: Typography,
+        props: { paragraph: true, variant: 'body2' }
+      },
+      a: {
+        props: {
+          target: '_blank',
+          rel: 'noopener noreferrer'
+        }
+      }
+    }
+  }
+
   return (
-    <Box sx={{ mt: '30px', mb: '15px' }}>
+    <Box sx={{ mt: '80px', mb: '15px' }}>
       <Typography display="inline" variant="h3">
         About Us
       </Typography>
       <Box>
-        City Bingo is lovingly done by Talya Stern, together with Oren Chazan.
-        We could not have done it without the supports of these special people:
-
-        ⭐ Dana Golds for design
-        ⭐ This and this for icon from noun project
-        ⭐ ...
-
-        Want to be a supporter as well? here’s how: 1. Buy me a cup of
-        coffee 2. Give feedback!
+        <ReactMarkdown options={options}>{about}</ReactMarkdown>
       </Box>
     </Box>
   )

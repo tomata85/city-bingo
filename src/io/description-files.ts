@@ -23,3 +23,11 @@ export async function getHowToPlayInstructions (lang: string): Promise<string> {
   const howToPlay = await res2.text()
   return howToPlay
 }
+
+// TODO: refactor
+export async function getAbout (lang: string): Promise<string> {
+  const res = await import(`../i18n/descriptions/${lang}/about.md`)
+  const res2 = await fetch(res.default)
+  const about = await res2.text()
+  return about
+}

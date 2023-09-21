@@ -33,8 +33,8 @@ export default function WinDialog (props: InformationBoxProps): ReactElement {
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           Yay you win! You can continue playing.
-          <WinImageList board={board}/>
         </DialogContentText>
+        <WinImageList board={board}/>
       </DialogContent>
       <DialogActions sx={{ p: '20px' }}>
         <Button variant="contained" size="small" onClick={onClose} autoFocus>

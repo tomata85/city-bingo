@@ -23,7 +23,7 @@ export default function InformationBox (
         {showCloseButton && (
           <Box display="flex" justifyContent="flex-end">
             <Button color="inherit" size="small" onClick={onClose}>
-            {t('how_to_play_button')}
+            {t('help_button')}
             </Button>
           </Box>
         )}

@@ -1,12 +1,13 @@
-import React, { type ReactElement } from 'react'
-import { Box, List, Stack, Typography } from '@mui/material'
+import React, { useState, type ReactElement } from 'react'
+import { Box, Button, List, Stack, Typography } from '@mui/material'
 import { ItemPagesProps } from './ItemPagesContainer'
 import ReactMarkdown from 'markdown-to-jsx'
 import GoogleMapCard from './GoogleMapCard'
 import { PLACES_DETAILS } from '../../data/places-details'
 import { Place } from '../../types'
-import InformationBox from '../infrastructure/InformationBox'
 import { useTranslation } from 'react-i18next'
+import PlacesHelpDialog from '../infrastructure/PlacesHelpDialog'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 
 export default function ItemInformationPage (
   props: ItemPagesProps
@@ -14,6 +15,12 @@ export default function ItemInformationPage (
   const { description } = props
   const places: Place[] = PLACES_DETAILS[props.item.id]
   const { t } = useTranslation()
+  const [showPlacesHelpDialog, setShowPlacesHelpDialog] = useState(false)
+  const TITLE_STYLE = {
+    mt: '30px',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start'
+  }
 
   const options = {
     overrides: {
@@ -24,12 +31,28 @@ export default function ItemInformationPage (
     }
   }
 
+  const onClosePlacesHelpDialog = () => {
+    setShowPlacesHelpDialog(false)
+  }
+
   return (
     <Box sx={{ mt: '20px' }}>
       <ReactMarkdown options={options}>{description}</ReactMarkdown>
       {places.length > 0 && (
         <>
-          <Typography variant={'h6'}>{t('info_places_title')}</Typography>
+          <Box display="flex" sx={TITLE_STYLE}>
+            <Typography display="inline" variant={'h6'}>
+              {t('info_places_title')}
+            </Typography>
+            <Button
+              color="secondary"
+              onClick={() => {
+                setShowPlacesHelpDialog(true)
+              }}
+            >
+              <HelpOutlineIcon />
+            </Button>
+          </Box>
           <List
             overflow={'auto'}
             component={Stack}
@@ -41,9 +64,9 @@ export default function ItemInformationPage (
               <GoogleMapCard key={place.placeId} place={place} />
             ))}
           </List>
-          <InformationBox
-            showCloseButton={false}
-            text={t('info_click_place')}
+          <PlacesHelpDialog
+            open={showPlacesHelpDialog}
+            onClose={onClosePlacesHelpDialog}
           />
         </>
       )}

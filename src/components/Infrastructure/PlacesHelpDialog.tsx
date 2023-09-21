@@ -11,12 +11,11 @@ import { useTranslation } from 'react-i18next'
 
 export interface InformationBoxProps {
   open: boolean
-  helpText: string
   onClose: () => void
 }
 
-export default function HelpDialog (props: InformationBoxProps): ReactElement {
-  const { open, helpText, onClose } = props
+export default function PlacesHelpDialog (props: InformationBoxProps): ReactElement {
+  const { open, onClose } = props
   const { t } = useTranslation()
 
   return (
@@ -25,10 +24,10 @@ export default function HelpDialog (props: InformationBoxProps): ReactElement {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle>{t('how_to_play_title')}</DialogTitle>
+      <DialogTitle>{t('info_places_title')}</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          {helpText}
+        {t('info_click_place')}
         </DialogContentText>
       </DialogContent>
       <DialogActions sx={{ p: '15px' }}>

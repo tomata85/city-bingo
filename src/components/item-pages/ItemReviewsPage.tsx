@@ -3,7 +3,7 @@ import { ItemPagesProps } from './ItemPagesContainer'
 import { useTranslation } from 'react-i18next'
 import InformationBox from '../infrastructure/InformationBox'
 import { Box } from '@mui/system'
-import { Rating, TextField, Typography } from '@mui/material'
+import { Rating, Typography } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 
@@ -23,15 +23,6 @@ export default function ItemReviewsPage (props: ItemPagesProps): ReactElement {
           >
             {t('reviews_your_experience')}
           </Typography>
-          <TextField
-            fullWidth
-            id="outlined-basic"
-            variant="outlined"
-            InputProps={{
-              readOnly: true
-            }}
-            value={item.review}
-          />
           <Rating
             sx={{ mt: '5px' }}
             name="simple-controlled"

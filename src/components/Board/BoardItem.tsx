@@ -4,7 +4,7 @@ import React, { type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled, Paper } from '@mui/material'
 import Box from '@mui/system/Box'
-import { COLOR_TURQUISE, COLOR_WHITE } from '../../App'
+import { COLOR_HAPPY_YELLOW, COLOR_TURQUISE, COLOR_WHITE } from '../../App'
 
 export interface BoardItemProps {
   item: BoardInstanceItemType
@@ -20,8 +20,10 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
     onClick(item.id)
   }
 
+  const itemColor = item.isWin ? COLOR_HAPPY_YELLOW : item.checked ? COLOR_TURQUISE : COLOR_WHITE
+
   const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: item.checked ? COLOR_TURQUISE : COLOR_WHITE,
+    backgroundColor: itemColor,
     ...theme.typography.body1,
     padding: theme.spacing(0.75),
     verticalAlign: 'center',

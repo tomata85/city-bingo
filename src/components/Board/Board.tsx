@@ -12,9 +12,6 @@ export default function BoardPage (props: {
   const BOARD_SIZE = 12 / BINGO_SIZE
   const { user, board, onClickItem } = props
 
-  // TODO WIN
-  // const [isWin, setIsWin] = useState<boolean>(false)
-
   useEffect(() => {
     if (Object.keys(board).length > 0) {
       storeBoard(user.id, board)

@@ -9,7 +9,7 @@ export const COLOR_HAPPY_YELLOW = '#FFF300'
 export const COLOR_BLACKISH = '#524856'
 export const COLOR_WHITE = '#fff'
 export const COLOR_TURQUISE = '#A0C7B5'
-export const COLOT_REDISH = '#ff6d75'
+export const COLOR_REDISH = '#ff6d75'
 
 const headerFont = {
   fontFamily: 'Josefin Sans',

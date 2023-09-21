@@ -1,16 +1,18 @@
 import React, { type ReactElement, useState, useEffect, useMemo } from 'react'
 import '../styles.css'
-import { initializeBoard, updateBoard } from '../../logic/board'
+import {
+  getWinningIndexes,
+  initializeBoard,
+  updateBoard,
+  updateBoardItem,
+  getItemsByOrderIndex
+} from '../../logic/board'
 import { BoardInstanceItemType, BoardInstanceType, User } from '../../types'
 import { updateBoardInstanceInDB } from '../../io/aws-lambdas'
 import { useTranslation } from 'react-i18next'
 import ItemPagesContainer from '../item-pages/ItemPagesContainer'
 import Board from './Board'
-import {
-  Box,
-  Button,
-  Typography
-} from '@mui/material'
+import { Box, Button, Typography } from '@mui/material'
 import {
   getHowToPlayInstructions,
   getItemDescriptions
@@ -65,7 +67,16 @@ export default function BoardPage (props: {
   }
 
   const onItemPagesClosed = (updatedItem: BoardInstanceItemType): void => {
-    const updatedBoard = updateBoard(board, updatedItem)
+    let updatedBoard = updateBoard(board, [updatedItem])
+
+    const winningIndexes = getWinningIndexes(updatedBoard)
+    if (winningIndexes.length > 0) {
+      const winningItems = getItemsByOrderIndex(updatedBoard, winningIndexes).map(
+        (item) => updateBoardItem(item, { isWin: true })
+      )
+      updatedBoard = updateBoard(updatedBoard, winningItems)
+    }
+
     setBoard(updatedBoard)
     void updateBoardInstanceInDB(user.id, updatedBoard)
 
@@ -84,10 +95,7 @@ export default function BoardPage (props: {
           )
         : (
         <>
-          <Box
-            display="flex"
-            sx={TITLE_STYLE}
-          >
+          <Box display="flex" sx={TITLE_STYLE}>
             <Typography display="inline" variant="h3">
               {t('main_title')}
             </Typography>
@@ -107,7 +115,7 @@ export default function BoardPage (props: {
             : (
             <>
               <Board user={user} board={board} onClickItem={onClickItem} />
-              <HelpDialog helpText={help} open={showHelp} onClose={hideHelp}/>
+              <HelpDialog helpText={help} open={showHelp} onClose={hideHelp} />
             </>
               )}
         </>

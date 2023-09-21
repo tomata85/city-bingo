@@ -20,7 +20,7 @@ import { CropDialog } from '../infrastructure/CropDialog'
 import { compressImage } from '../../logic/images'
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import { COLOT_REDISH } from '../../App'
+import { COLOR_REDISH } from '../../App'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const { item, onClose } = props
@@ -102,7 +102,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
 
   const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {
-      color: COLOT_REDISH
+      color: COLOR_REDISH
     }
   })
 

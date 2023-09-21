@@ -1,5 +1,5 @@
 import {
-  BANSKO_BOARD_ITEMS, BoardInstanceItemType, BoardInstanceType, WIN_PATTERNS
+  BANSKO_BOARD_ITEMS, BINGO_SIZE, BoardInstanceItemType, BoardInstanceType, WIN_PATTERNS
 } from '../types'
 import { getBoardFromDB } from '../io/aws-lambdas'
 import { getBoardFromStorage } from '../io/local-storage'
@@ -17,14 +17,15 @@ function generateNewBoardInstance (userId: string, destinationId: string): Board
     board[item] = {
       orderIndex: index,
       id: item,
-      checked: false
+      checked: false,
+      isWin: false
     }
   })
 
   return board
 }
 
-export function isBoardWin (board: BoardInstanceType): boolean {
+export function getWinningIndexes (board: BoardInstanceType): number[] {
   const checkedItemIndexs = Object.values(board)
     .filter((item) => item.checked)
     .map((item) => item.orderIndex)
@@ -32,16 +33,24 @@ export function isBoardWin (board: BoardInstanceType): boolean {
   const isPatternMarkedInBoard = (pattern: number[]): boolean =>
     pattern.every(index => checkedItemIndexs.includes(index))
 
-  const win = WIN_PATTERNS.some(pattern => isPatternMarkedInBoard(pattern))
-  return win
+  const winningPatterns = WIN_PATTERNS[BINGO_SIZE]
+    .filter(pattern => isPatternMarkedInBoard(pattern))
+    .flat(1)
+  return winningPatterns
 }
 
 export function updateBoard (
-  board: BoardInstanceType, item: BoardInstanceItemType): BoardInstanceType {
-  return {
+  board: BoardInstanceType, items: BoardInstanceItemType[]): BoardInstanceType {
+  const itemMap = items.reduce<Record<string, BoardInstanceItemType>>((map, item) => {
+    map[item.id] = item
+    return map
+  }, {})
+
+  const updatedBoard = {
     ...board,
-    [item.id]: item
+    ...itemMap
   }
+  return updatedBoard
 }
 
 export function updateBoardItem (
@@ -51,4 +60,11 @@ export function updateBoardItem (
     ...item,
     ...updatedProps
   }
+}
+
+// TODO: this seems hacky
+export function getItemsByOrderIndex (
+  board: BoardInstanceType, indexes: number[]): BoardInstanceItemType[] {
+  const results = Object.values(board).filter(item => indexes.includes(item.orderIndex))
+  return results
 }

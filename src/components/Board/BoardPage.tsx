@@ -1,11 +1,9 @@
 import React, { type ReactElement, useState, useEffect, useMemo } from 'react'
 import '../styles.css'
 import {
-  getWinningIndexes,
   initializeBoard,
   updateBoard,
-  updateBoardItem,
-  getItemsByOrderIndex
+  updateBoardWins
 } from '../../logic/board'
 import { BoardInstanceItemType, BoardInstanceType, User } from '../../types'
 import { updateBoardInstanceInDB } from '../../io/aws-lambdas'
@@ -68,15 +66,7 @@ export default function BoardPage (props: {
 
   const onItemPagesClosed = (updatedItem: BoardInstanceItemType): void => {
     let updatedBoard = updateBoard(board, [updatedItem])
-
-    const winningIndexes = getWinningIndexes(updatedBoard)
-    if (winningIndexes.length > 0) {
-      const winningItems = getItemsByOrderIndex(updatedBoard, winningIndexes).map(
-        (item) => updateBoardItem(item, { isWin: true })
-      )
-      updatedBoard = updateBoard(updatedBoard, winningItems)
-    }
-
+    updatedBoard = updateBoardWins(updatedBoard)
     setBoard(updatedBoard)
     void updateBoardInstanceInDB(user.id, updatedBoard)
 

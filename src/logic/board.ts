@@ -25,7 +25,7 @@ function generateNewBoardInstance (userId: string, destinationId: string): Board
   return board
 }
 
-export function getWinningIndexes (board: BoardInstanceType): number[] {
+function getWinningIndexes (board: BoardInstanceType): number[] {
   const checkedItemIndexs = Object.values(board)
     .filter((item) => item.checked)
     .map((item) => item.orderIndex)
@@ -37,6 +37,18 @@ export function getWinningIndexes (board: BoardInstanceType): number[] {
     .filter(pattern => isPatternMarkedInBoard(pattern))
     .flat(1)
   return winningPatterns
+}
+
+export function updateBoardWins (board: BoardInstanceType): BoardInstanceType {
+  let updatedBoard = board
+  const winningIndexes = getWinningIndexes(updatedBoard)
+  if (winningIndexes.length > 0) {
+    const winningItems = getItemsByOrderIndex(updatedBoard, winningIndexes).map(
+      (item) => updateBoardItem(item, { isWin: true })
+    )
+    updatedBoard = updateBoard(updatedBoard, winningItems)
+  }
+  return updatedBoard
 }
 
 export function updateBoard (
@@ -63,7 +75,7 @@ export function updateBoardItem (
 }
 
 // TODO: this seems hacky
-export function getItemsByOrderIndex (
+function getItemsByOrderIndex (
   board: BoardInstanceType, indexes: number[]): BoardInstanceItemType[] {
   const results = Object.values(board).filter(item => indexes.includes(item.orderIndex))
   return results

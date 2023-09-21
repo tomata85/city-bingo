@@ -100,7 +100,8 @@ export const ITEM_PLACES = {
   //   "ChIJJyYhX52uqxQREJAo4jW7F7U"
   // ],
   // item_p: [
-  //   "ChIJTcMUwzStqxQRs9YGDPg8Xmg"
+  //   "ChIJTcMUwzStqxQRs9YGDPg8Xmg",
+  //   "ChIJhTb9INmtqxQRsL3Eoyfau18"
   // ]
 }
 
@@ -131,14 +132,13 @@ export function getPlaceDetails (itemId: string, placeId: string) {
 }
 
 export function main () {
-  console.log('Starting item places script...')
+  console.log('Running item places script...')
 
   Object.entries(ITEM_PLACES).map(async ([itemId, placesList]) => {
     placesList.map(async (placeId) => {
       getPlaceDetails(itemId, placeId)
     })
-  })
-  console.log('Finished item places script.')
+  }) 
 }
 
 main()

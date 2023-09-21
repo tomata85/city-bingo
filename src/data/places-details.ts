@@ -389,11 +389,18 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
   ],
   item_p: [
     {
-      name: 'Relax zone',
+      name: "The 'Infinity' Pool",
       url: 'https://maps.google.com/?cid=7520515463806637747',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqEyDhIMwCI-fvl_bkHvK51hPCirJZIdw1wL3HjXwLoSm6-o55THrn6Pe1929Xb-2DqKHrAEON9vcvYcfKnPLeCFatgnDUqDf4A=s1600-w400',
       itemId: 'item_p',
       placeId: 'ChIJTcMUwzStqxQRs9YGDPg8Xmg'
+    },
+    {
+      name: "The 'Secret' pool",
+      url: 'https://maps.google.com/?cid=6898347118034206128',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqH6I1uvjqsZc0k32G46RgQZOdB54ESZa2sfGFUpxyiA1wRJEW4OcPHsp5EOhpHfbOVHOJG8-EMWu_cVN1hkF3aKgpLa2sCOBiw=s1600-w400',
+      itemId: 'item_p',
+      placeId: 'ChIJhTb9INmtqxQRsL3Eoyfau18'
     }
   ]
 }

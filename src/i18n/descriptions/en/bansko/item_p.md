@@ -1,1 +1,1 @@
-The forest is full of flowing streams, deep enough in some places to immerse oneself in the snow-cold water. One highly pouplar plunging point is at the dam known as the Infinity Pool, but wandering in the forest will reveal other nice spots as well, unknown to Google Maps. If we know in person, ask me about it, I’ll take you to my personal favorite.
+The forest is full of flowing streams, deep enough in some places to immerse oneself in the snow-cold water. Recommended for Win Hof enthusiasts.

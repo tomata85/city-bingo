@@ -21,7 +21,7 @@ export default function BoardPage (props: {
   return (
     <>
       {Object.keys(board).length > 0 && (
-        <Box sx={{ mt: '50px', flexGrow: 1 }}>
+        <Box sx={{ mt: '10px', flexGrow: 1 }}>
           <Grid container spacing={0.75}>
             {Object.values(board.items)
               .sort((x, y) => x.orderIndex - y.orderIndex)
@@ -30,7 +30,7 @@ export default function BoardPage (props: {
                   <BoardItem
                     key={item.id}
                     item={item}
-                    onClick={(itemId: string) => {
+                    onClick={() => {
                       onClickItem(item)
                     }}
                   />

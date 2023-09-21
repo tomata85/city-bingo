@@ -12,6 +12,7 @@ import {
 import React, { type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BoardInstanceType } from '../../types'
+import { getWinningItems } from '../../logic/board'
 
 export interface InformationBoxProps {
   open: boolean
@@ -47,7 +48,7 @@ export default function WinDialog (props: InformationBoxProps): ReactElement {
 
 function WinImageList (props: { board: BoardInstanceType }): ReactElement {
   const { board } = props
-  const winningItems = Object.values(board.items).filter(item => item.isWin)
+  const winningItems = getWinningItems(board)
   const { t } = useTranslation()
 
   return (

@@ -68,6 +68,14 @@ export function updateBoardItem (
   }
 }
 
+export function getWinningItems (board: BoardInstanceType): BoardInstanceItemType[] {
+  return Object.values(board.items).filter(item => item.isWin)
+}
+
+export function getDoneItems (board: BoardInstanceType): BoardInstanceItemType[] {
+  return Object.values(board.items).filter(item => item.checked)
+}
+
 // TODO: this seems hacky
 function getItemsByOrderIndex (
   board: BoardInstanceType, indexes: number[]): BoardInstanceItemType[] {

@@ -55,7 +55,7 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
             variant="h2"
             component="div"
             textAlign="center"
-            sx={{ mt: '45px' }}
+            sx={{ mt: '120px' }}
           >
             {t('logo')}
           </Typography>

@@ -32,7 +32,7 @@ const enum DisplayedPages {
 }
 
 export default function Main (): ReactElement {
-  const APP_MARGIN = BINGO_SIZE < 5 ? '75px 20px 130px' : '75px 15px 130px'
+  const APP_MARGIN = BINGO_SIZE < 5 ? '56px 20px 130px' : '75px 15px 130px'
   const NAV_BAR_THEME = createTheme({
     palette: {
       primary: { main: COLOR_HAPPY_YELLOW },

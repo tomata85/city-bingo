@@ -26,13 +26,12 @@
 }
 
 /* TODO: integrate to code */
-.MuiBox-root .css-rvzmtt {
-
+#board-page-title {
   background-color: white;
-  margin-left: -30px;
-  margin-right: -30px;
-  padding: 50px 25px 1px;
-  height: 75px;
-  margin-top: -30px;
+  margin-left: -25px;
+  margin-right: -25px;
+  padding: 5px 25px;
+  height: 56px;
+  margin-top: -5px;
   margin-bottom: 0;
 }

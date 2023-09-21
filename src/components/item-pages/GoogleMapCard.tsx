@@ -12,7 +12,6 @@ export default function GoogleMapCard (props: { place: Place }): ReactElement {
       <CardActionArea onClick={onCardClick}>
         <CardMedia
           sx={{ height: 100 }}
-          // eslint-disable-next-line max-len
           image={place.photoUrl}
           title={place.name}
         />

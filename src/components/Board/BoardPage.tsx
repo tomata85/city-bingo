@@ -2,6 +2,8 @@ import React, { type ReactElement, useState, useEffect, useMemo } from 'react'
 import '../styles.css'
 import {
   EMPTY_BOARD,
+  getDoneItems,
+  getWinningItems,
   initializeBoard,
   updateBoard,
   updateBoardWins
@@ -11,7 +13,7 @@ import { updateBoardInstanceInDB } from '../../io/aws-lambdas'
 import { useTranslation } from 'react-i18next'
 import ItemPagesContainer from '../item-pages/ItemPagesContainer'
 import Board from './Board'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, List, Stack, Typography } from '@mui/material'
 import {
   getHowToPlayInstructions,
   getItemDescriptions
@@ -20,16 +22,17 @@ import Loading from '../infrastructure/Loading'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import HelpDialog from '../infrastructure/HelpDialog'
 import WinDialog from '../infrastructure/WinDialog'
+import DoneItemCard from '../item-pages/DoneItemCard'
 
 export default function BoardPage (props: {
   user: User
   destinationId: string
 }): ReactElement {
   const TITLE_STYLE = {
-    mt: '100px',
+    mt: '70px',
     mb: '10px',
     justifyContent: 'space-between',
-    alignItems: 'flex-start'
+    alignItems: 'flex-end'
   }
 
   const { t, i18n } = useTranslation()
@@ -93,8 +96,8 @@ export default function BoardPage (props: {
           )
         : (
         <>
-          <Box display="flex" sx={TITLE_STYLE}>
-            <Typography display="inline" variant="h3">
+          <Box id="board-page-title" display="flex" sx={TITLE_STYLE}>
+            <Typography display="inline" variant="h4">
               {t('main_title')}
             </Typography>
             <Button
@@ -113,6 +116,17 @@ export default function BoardPage (props: {
             : (
             <>
               <Board user={user} board={board} onClickItem={onClickItem} />
+              {/* <List
+                overflow={'auto'}
+                component={Stack}
+                direction={'row'}
+                spacing={1}
+                sx={{ mb: '20px' }}
+              >
+                {getDoneItems(board).map((item) => (
+                  <DoneItemCard key={item.id} item={item} />
+                ))}
+              </List> */}
               <HelpDialog helpText={help} open={showHelp} onClose={hideHelp} />
               <WinDialog
                 board={board}

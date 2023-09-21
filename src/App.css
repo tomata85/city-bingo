@@ -1,6 +1,7 @@
 .App {
   /* Necessary because ReactMarkdown is not supported in MUI typography theme */
   font-family: 'Urbanist', sans-serif;
+  touch-action: none; /* disables pinch zoom */
 }
 
 .App-logo {

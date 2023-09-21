@@ -15,7 +15,7 @@ import ItemPagesContainer from '../item-pages/ItemPagesContainer'
 import Board from './Board'
 import { Box, Button, List, Stack, Typography } from '@mui/material'
 import {
-  getHowToPlayInstructions,
+  getMarkdownText,
   getItemDescriptions
 } from '../../io/description-files'
 import Loading from '../infrastructure/Loading'
@@ -51,7 +51,7 @@ export default function BoardPage (props: {
   useEffect(() => {
     const initialize = async () => {
       const board = await initializeBoard(user.id, destinationId)
-      const howToPlay = await getHowToPlayInstructions(i18n.language)
+      const howToPlay = await getMarkdownText('how-to-play', i18n.language)
       setHelp(howToPlay)
       setBoard(board)
 

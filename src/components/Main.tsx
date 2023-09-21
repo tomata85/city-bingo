@@ -20,7 +20,7 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
 import LocalCafeOutlinedIcon from '@mui/icons-material/LocalCafeOutlined'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import './styles.css'
-import { AboutUsPage } from './bottom-drawer/AboutUsPage'
+import { MenuPage } from './bottom-drawer/MenuPage'
 import { useTranslation } from 'react-i18next'
 import { presentableName } from '../logic/personal-details'
 import { COLOR_BLACKISH, COLOR_HAPPY_YELLOW } from '../App'
@@ -57,7 +57,9 @@ export default function Main (): ReactElement {
         }
         return <LoginPage onLogin={onLogin} />
       case DisplayedPages.AboutUs:
-        return <AboutUsPage />
+        return <MenuPage key="about" pageName="about" />
+      case DisplayedPages.Feedback:
+        return <MenuPage key="feedback" pageName="feedback" />
     }
     return <></>
   }
@@ -94,26 +96,29 @@ export default function Main (): ReactElement {
         elevation={3}
       >
         <ThemeProvider theme={NAV_BAR_THEME}>
-        <BottomNavigation value={currentPageIndex}>
-          <BottomNavigationAction
-            onClick={() => {
-              setCurrentPageIndex(DisplayedPages.Game)
-            }}
-            icon={<HomeOutlinedIcon />}
-            label={t('bottom_nav_home')}
-          />
-          <BottomNavigationAction
-            onClick={() => {
-              setCurrentPageIndex(DisplayedPages.AboutUs)
-            }}
-            label={t('bottom_nav_about')}
-            icon={<LocalCafeOutlinedIcon />}
-          />
-          <BottomNavigationAction
-            label={t('bottom_nav_feedback')}
-            icon={<ChatBubbleOutlineIcon />}
-          />
-        </BottomNavigation>
+          <BottomNavigation value={currentPageIndex}>
+            <BottomNavigationAction
+              onClick={() => {
+                setCurrentPageIndex(DisplayedPages.Game)
+              }}
+              icon={<HomeOutlinedIcon />}
+              label={t('menu_page_home')}
+            />
+            <BottomNavigationAction
+              onClick={() => {
+                setCurrentPageIndex(DisplayedPages.AboutUs)
+              }}
+              label={t('menu_page_about')}
+              icon={<LocalCafeOutlinedIcon />}
+            />
+            <BottomNavigationAction
+              onClick={() => {
+                setCurrentPageIndex(DisplayedPages.Feedback)
+              }}
+              label={t('menu_page_feedback')}
+              icon={<ChatBubbleOutlineIcon />}
+            />
+          </BottomNavigation>
         </ThemeProvider>
       </Paper>
     </>

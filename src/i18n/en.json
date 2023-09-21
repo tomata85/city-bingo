@@ -39,7 +39,7 @@
   "crop_button": "Save",
   "info_places_title": "Notable Places",
   "info_click_place": "Clicking a place will take you away from City Bingo. You can go back to it later in your browser tabs.",
-  "bottom_nav_home": "Home",
-  "bottom_nav_about": "About",
-  "bottom_nav_feedback": "Feedback"
+  "menu_page_home": "Home",
+  "menu_page_about": "About",
+  "menu_page_feedback": "Feedback"
 }

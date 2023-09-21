@@ -1,14 +1,18 @@
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { ReactElement, useEffect, useState } from 'react'
-import { getAbout } from '../../io/description-files'
+import { getMarkdownText } from '../../io/description-files'
 import ReactMarkdown from 'markdown-to-jsx'
-export function AboutUsPage (): ReactElement {
+import { useTranslation } from 'react-i18next'
+
+export function MenuPage (props: { pageName: string }): ReactElement {
   const [about, setAbout] = useState('')
+  const { pageName } = props
+  const { t } = useTranslation()
 
   useEffect(() => {
     const initialize = async () => {
-      const about = await getAbout('en')
+      const about = await getMarkdownText(pageName, 'en')
       setAbout(about)
 
       // setLoading(false)
@@ -35,7 +39,7 @@ export function AboutUsPage (): ReactElement {
   return (
     <Box sx={{ mt: '80px', mb: '15px' }}>
       <Typography display="inline" variant="h3">
-        About Us
+        {t(`menu_page_${pageName}`)}
       </Typography>
       <Box>
         <ReactMarkdown options={options}>{about}</ReactMarkdown>

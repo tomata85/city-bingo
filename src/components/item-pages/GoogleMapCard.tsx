@@ -5,7 +5,7 @@ import { Place } from '../../types'
 export default function GoogleMapCard (props: { place: Place }): ReactElement {
   const { place } = props
   const onCardClick = () => {
-    window.open(place.googleMapsLink, '_blank')
+    window.open(place.url, '_blank')
   }
   return (
     <Card sx={{ minWidth: 200 }}>

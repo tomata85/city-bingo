@@ -1,1 +1,1 @@
-The gondola is a cable car that travels up the mountains and above Pirin forest. Duing summer, its top station of the gondola features beutiful nature views and a water slide park. The gondola ride itself is an experience, overlooking the forest and mountains.
+The gondola is a cable car that travels up the mountains and above Pirin forest. Its top station of the gondola features beutiful nature views, and a water slide park in summertime. The gondola ride itself is an experience, overlooking the forest and mountains.

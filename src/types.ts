@@ -38,7 +38,7 @@ export interface User {
 
 export interface Place {
   name: string
-  googleMapsLink: string
+  url: string
   photoUrl: string
   placeId: string
   itemId?: string

@@ -1,1 +1,1 @@
-My personal favorite of Bansko’s gems - the forest on the south side, right where the town ends and the nature reserve begins. You can access the forest via the road that crosses it, or via the ski slope. The forest has marked trails, flowing streams, benches for sitting and places for a picnic or campfire.
+My personal favorite of Bansko’s gems. The forest has marked trails, flowing streams, benches for sitting and places for a picnic or campfire. Find a trail and go get lost.

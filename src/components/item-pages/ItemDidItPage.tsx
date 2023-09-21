@@ -14,7 +14,6 @@ import { uploadItemImage } from '../../io/aws-lambdas'
 import { updateBoardItem } from '../../logic/board'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import ItemDidItPhotoAlert from './ItemDidItPhotoAlert'
 import 'cropperjs/dist/cropper.css'
 import { CropDialog } from '../infrastructure/CropDialog'
 import { compressImage } from '../../logic/images'
@@ -24,22 +23,25 @@ import { COLOR_REDISH } from '../../App'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const { item, onClose } = props
-  const [rating, setRating] = useState<number>(0)
+  const [rating, setRating] = useState<number | undefined>()
 
   const [cropImageUrl, setCropImageUrl] = useState<string>('')
   const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
-
-  const [skipPhoto, setSkipPhoto] = useState<boolean>(false)
   const [saving, setSaving] = useState<boolean>(false)
-  const [showDialog, setShowDialog] = useState<boolean>(false)
   const [showCropDialog, setShowCropDialog] = useState<boolean>(false)
+  const [canSave, setCanSave] = useState<boolean>(false)
 
   const { t } = useTranslation()
+
+  useEffect(() => {
+    if (rating !== undefined && imagePreviewBlob !== undefined) {
+      setCanSave(true)
+    }
+  }, [rating, imagePreviewBlob])
 
   const onSave = (): void => {
     setSaving(true)
 
-    const canSave = imagePreviewBlob != null || skipPhoto
     if (canSave) {
       const save = async () => {
         let updatedItem = item
@@ -56,24 +58,6 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
       }
 
       void save()
-    } else {
-      setShowDialog(true)
-    }
-  }
-
-  useEffect(() => {
-    if (saving) {
-      onSave()
-    }
-  }, [skipPhoto])
-
-  const onCloseSkipPhotoDialog = (skipPhoto: boolean) => {
-    setShowDialog(false)
-
-    if (skipPhoto) {
-      setSkipPhoto(true)
-    } else {
-      setSaving(false)
     }
   }
 
@@ -160,7 +144,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
               setRating(val ?? 0)
             }}
             color="primary"
-            icon={<FavoriteIcon fontSize="large" />}
+            icon={<FavoriteIcon />}
             emptyIcon={<FavoriteBorderIcon />}
           />
         </Box>
@@ -176,6 +160,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
           position: 'fixed',
           width: '90%'
         }}
+        disabled={!canSave}
         size="large"
         color="primary"
         variant="extended"
@@ -192,7 +177,6 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
           </>
             )}
       </Fab>
-      {showDialog && <ItemDidItPhotoAlert onClose={onCloseSkipPhotoDialog} />}
     </>
   )
 }

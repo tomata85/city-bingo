@@ -1,6 +1,9 @@
 export const BINGO_SIZE = 4 // TODO: FFU make 5
 
-export type BoardInstanceType = Record<string, BoardInstanceItemType>
+export interface BoardInstanceType {
+  isWin: boolean
+  items: Record<string, BoardInstanceItemType>
+}
 
 export interface BoardInstanceItemType {
   id: string

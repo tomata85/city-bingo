@@ -1,6 +1,7 @@
 import React, { type ReactElement, useState, useEffect, useMemo } from 'react'
 import '../styles.css'
 import {
+  EMPTY_BOARD,
   initializeBoard,
   updateBoard,
   updateBoardWins
@@ -40,7 +41,7 @@ export default function BoardPage (props: {
   const [selectedItem, setSelectedItem] =
     useState<BoardInstanceItemType | null>(null)
 
-  const [board, setBoard] = useState<BoardInstanceType>({})
+  const [board, setBoard] = useState<BoardInstanceType>(EMPTY_BOARD)
   const [help, setHelp] = useState<string>('')
 
   useEffect(() => {

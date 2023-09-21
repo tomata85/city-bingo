@@ -11,10 +11,16 @@ export async function initializeBoard (
     generateNewBoardInstance(userId, destinationId)
 }
 
+export const EMPTY_BOARD = {
+  isWin: false,
+  items: {}
+}
+
 function generateNewBoardInstance (userId: string, destinationId: string): BoardInstanceType {
-  const board: BoardInstanceType = {}
+  const board: BoardInstanceType = EMPTY_BOARD
+
   BANSKO_BOARD_ITEMS.forEach((item, index) => {
-    board[item] = {
+    board.items[item] = {
       orderIndex: index,
       id: item,
       checked: false,
@@ -23,20 +29,6 @@ function generateNewBoardInstance (userId: string, destinationId: string): Board
   })
 
   return board
-}
-
-function getWinningIndexes (board: BoardInstanceType): number[] {
-  const checkedItemIndexs = Object.values(board)
-    .filter((item) => item.checked)
-    .map((item) => item.orderIndex)
-
-  const isPatternMarkedInBoard = (pattern: number[]): boolean =>
-    pattern.every(index => checkedItemIndexs.includes(index))
-
-  const winningPatterns = WIN_PATTERNS[BINGO_SIZE]
-    .filter(pattern => isPatternMarkedInBoard(pattern))
-    .flat(1)
-  return winningPatterns
 }
 
 export function updateBoardWins (board: BoardInstanceType): BoardInstanceType {
@@ -58,8 +50,9 @@ export function updateBoard (
     return map
   }, {})
 
-  const updatedBoard = {
-    ...board,
+  const updatedBoard = board
+  updatedBoard.items = {
+    ...updatedBoard.items,
     ...itemMap
   }
   return updatedBoard
@@ -77,6 +70,20 @@ export function updateBoardItem (
 // TODO: this seems hacky
 function getItemsByOrderIndex (
   board: BoardInstanceType, indexes: number[]): BoardInstanceItemType[] {
-  const results = Object.values(board).filter(item => indexes.includes(item.orderIndex))
+  const results = Object.values(board.items).filter(item => indexes.includes(item.orderIndex))
   return results
+}
+
+function getWinningIndexes (board: BoardInstanceType): number[] {
+  const checkedItemIndexs = Object.values(board.items)
+    .filter((item) => item.checked)
+    .map((item) => item.orderIndex)
+
+  const isPatternMarkedInBoard = (pattern: number[]): boolean =>
+    pattern.every(index => checkedItemIndexs.includes(index))
+
+  const winningPatterns = WIN_PATTERNS[BINGO_SIZE]
+    .filter(pattern => isPatternMarkedInBoard(pattern))
+    .flat(1)
+  return winningPatterns
 }

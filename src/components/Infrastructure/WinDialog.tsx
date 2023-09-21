@@ -4,7 +4,10 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle
+  DialogTitle,
+  ImageList,
+  ImageListItem,
+  ImageListItemBar
 } from '@mui/material'
 import React, { type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -30,6 +33,7 @@ export default function WinDialog (props: InformationBoxProps): ReactElement {
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           Yay you win! You can continue playing.
+          <WinImageList board={board}/>
         </DialogContentText>
       </DialogContent>
       <DialogActions sx={{ p: '20px' }}>
@@ -38,5 +42,28 @@ export default function WinDialog (props: InformationBoxProps): ReactElement {
         </Button>
       </DialogActions>
     </Dialog>
+  )
+}
+
+function WinImageList (props: { board: BoardInstanceType }): ReactElement {
+  const { board } = props
+  const winningItems = Object.values(board.items).filter(item => item.isWin)
+  const { t } = useTranslation()
+
+  return (
+    <ImageList cols={2} gap={4}>
+  {winningItems.map((item) => (
+    <ImageListItem sx={{ width: '120px' }} key={item.imageUrl}>
+      {item.imageUrl != null &&
+      <img
+        srcSet={`${item.imageUrl}?w=70&auto=format&dpr=2 2x`}
+        src={`${item.imageUrl}?w=70&auto=format`}
+        alt={t(item.id)}
+        loading="lazy"
+      />}
+      <ImageListItemBar position="below" title={t(item.id)} />
+    </ImageListItem>
+  ))}
+</ImageList>
   )
 }

@@ -133,7 +133,72 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
       placeId: 'ChIJpfGy1mavqxQRLhWrdI_XWDQ'
     }
   ],
-  item_e: [],
+  item_e: [
+    {
+      name: 'Station Bansko by Tsakiris',
+      url: 'https://maps.google.com/?cid=17116977666905606875',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqE3ZRTImALn8iQ305OolunOP9o6sEK4bfLHsd_QMlet1DfJBa-dAyP6Iz20JGva-CmscIs5p02ZDFvGVZHp94pbpD7VPITq-cw=s1600-w400',
+      itemId: 'item_e',
+      placeId: 'ChIJZ2yDou-vqxQR2wo0mH-4i-0',
+      moreInfo: 'Fast food, known for its gyros. Vegans, try the zuccini and falafel wraps'
+    }, {
+      name: 'CHALET YANITZA',
+      url: 'https://maps.google.com/?cid=14105851757468923745',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqGCbsy-FfMkmC6zFgcpWKj3yHK7wjkgG4SsSu1vdKTpbMC_rV0ibkMBd6FPZvxXpzC2WUJ603N2iwWBcF7TiZ2Qz3GwBuWBa40=s1600-w400',
+      itemId: 'item_e',
+      placeId: 'ChIJLxJphqSuqxQRYTdB-m8NwsM',
+      moreInfo: 'Daily Menu. Vegan-friendly; try the spinach fritters.'
+    },
+    {
+      name: 'Tavern Matsurev Khan',
+      url: 'https://maps.google.com/?cid=14394614717426970969',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqFKgmn5GNRGW3gA_Tj2PXBdMOBc_AUNJDUbqTOI3PsrFAsjWlbtfzJmp7G5shsn-D7gXikQ9mVBbX0RMZ1xf9XebzGYmpn6QQA=s1600-w400',
+      itemId: 'item_e',
+      placeId: 'ChIJ354TK6KuqxQRWTHYztHxw8c',
+      moreInfo: 'A classic Bulgarian restaurant.'
+    },
+    {
+      name: '75’s Tasty',
+      url: 'https://maps.google.com/?cid=27039600903396035',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqEZfST13TvkLMSQ0PVXQR6URBb9bKdAiOykhNRmjo27AZNtoi5E8-Ejzd33WUobsWUNd8DCDR9tCW3VWQgnfOX-5yoopwBKpFA=s1600-w400',
+      itemId: 'item_e',
+      placeId: 'ChIJZU6cxXqvqxQRwxq3rl8QYAA',
+      moreInfo: 'Fast food. Vegans, try the chili burrito.'
+    },
+    {
+      name: 'The House',
+      url: 'https://maps.google.com/?cid=15615101148839297353',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqHWS9nFUU1HXdclvLiuILQhqBKBRbvLI3f8vXHcpaRQAPgxEh590uivu22YIJKIyM3XrKSBVU9n0TUOwb1kiZwpN7G57fCwAOs=s1600-w400',
+      itemId: 'item_e',
+      placeId: 'ChIJnVkl_5yuqxQRSUFcNMP7s9g',
+      moreInfo: 'Fancier. Known for its ribs dish. Vegans, try the ratatouille.'
+    },
+    {
+      name: 'Механа Ловна Среща',
+      url: 'https://maps.google.com/?cid=7474915111741326022',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqE2i2cKKOWpMe6mR4R6_laf1wAps0RXb8eWhFK_zGOXzB78vFTNkmuxAFMnl7oFDHKEWNCHO0i65DB98gtD7sZhUDu9QtGEZ5Q=s1600-w400',
+      itemId: 'item_e',
+      placeId: 'ChIJLy3NCqKuqxQRxoKKubA7vGc',
+      moreInfo: 'Classic Bulgarian. Has a lovely garden. Vegans, try the vegetable stew is good.'
+    },
+    {
+      name: 'Casa di Papi',
+      url: 'https://maps.google.com/?cid=15439281333873301384',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqGoNnnmcwXLpgN2bLUa0F1SXfr5Hyf_d10GPpQpP1FWv_sRoB56r4arFzb6xRWeuCazG6cJLODTl7xNgJUSW5hioDVuICFYJu4=s1600-w400',
+      itemId: 'item_e',
+      placeId: 'ChIJLzrrmh-tqxQRiFfWhJJYQ9Y',
+      moreInfo: 'Italian, fancier. Known for its pizzas. Vegans, try the boss salad (gravy on the side).'
+    },
+
+    {
+      name: 'Le Retro Hostel, Bar & Bistro',
+      url: 'https://maps.google.com/?cid=635162503690463741',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqEydfmJl6UYmACGDtnSXAnSgwC80tXWaT2munIXT5oPPChvRp3XQpuf2lud-1kK2ISKdSNMH_afoY-03-kMzgA5Y0F3YMv6V4I=s1600-w400',
+      itemId: 'item_e',
+      placeId: 'ChIJUSD3pKKuqxQR_Skej-6M0Ag',
+      moreInfo: 'Vegan buffet on Friday nights.'
+    }
+  ],
   item_f: [
     {
       name: 'Coworking Bansko',

@@ -55,7 +55,14 @@ export const ITEM_PLACES = {
   //   "ChIJpfGy1mavqxQRLhWrdI_XWDQ"
   // ],
   // item_e: [
-
+  //   "ChIJZ2yDou-vqxQR2wo0mH-4i-0",
+  //   "ChIJLxJphqSuqxQRYTdB-m8NwsM",
+  //   "ChIJ354TK6KuqxQRWTHYztHxw8c",
+  //   "ChIJZU6cxXqvqxQRwxq3rl8QYAA",
+  //   "ChIJnVkl_5yuqxQRSUFcNMP7s9g",
+  //   "ChIJLy3NCqKuqxQRxoKKubA7vGc",
+  //   "ChIJLzrrmh-tqxQRiFfWhJJYQ9Y",
+  //   "ChIJUSD3pKKuqxQR_Skej-6M0Ag"
   // ],
   // item_f: [
   //   "ChIJdTopltN2qxQRdDBRC1joZek",

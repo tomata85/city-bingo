@@ -38,6 +38,7 @@ export function updateBoardWins (board: BoardInstanceType): BoardInstanceType {
     const winningItems = getItemsByOrderIndex(updatedBoard, winningIndexes).map(
       (item) => updateBoardItem(item, { isWin: true })
     )
+    updatedBoard.isWin = true
     updatedBoard = updateBoard(updatedBoard, winningItems)
   }
   return updatedBoard

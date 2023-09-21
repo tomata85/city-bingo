@@ -19,6 +19,7 @@ import {
 import Loading from '../infrastructure/Loading'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import HelpDialog from '../infrastructure/HelpDialog'
+import WinDialog from '../infrastructure/WinDialog'
 
 export default function BoardPage (props: {
   user: User
@@ -40,9 +41,9 @@ export default function BoardPage (props: {
   const [showHelp, setShowHelp] = useState<boolean>(false)
   const [selectedItem, setSelectedItem] =
     useState<BoardInstanceItemType | null>(null)
-
   const [board, setBoard] = useState<BoardInstanceType>(EMPTY_BOARD)
   const [help, setHelp] = useState<string>('')
+  const [showWinDialog, setShowWinDialog] = useState(false)
 
   useEffect(() => {
     const initialize = async () => {
@@ -66,8 +67,14 @@ export default function BoardPage (props: {
   }
 
   const onItemPagesClosed = (updatedItem: BoardInstanceItemType): void => {
+    const formerIsWin = board.isWin
     let updatedBoard = updateBoard(board, [updatedItem])
     updatedBoard = updateBoardWins(updatedBoard)
+
+    if (!formerIsWin && updatedBoard.isWin) {
+      setShowWinDialog(true)
+    }
+
     setBoard(updatedBoard)
     void updateBoardInstanceInDB(user.id, updatedBoard)
 
@@ -107,6 +114,13 @@ export default function BoardPage (props: {
             <>
               <Board user={user} board={board} onClickItem={onClickItem} />
               <HelpDialog helpText={help} open={showHelp} onClose={hideHelp} />
+              <WinDialog
+                board={board}
+                open={showWinDialog}
+                onClose={() => {
+                  setShowWinDialog(false)
+                }}
+              />
             </>
               )}
         </>

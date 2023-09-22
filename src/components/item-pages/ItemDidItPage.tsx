@@ -30,7 +30,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   const { t } = useTranslation()
 
   useEffect(() => {
-    if (rating !== undefined && imagePreviewBlob !== undefined) {
+    if (rating !== null && rating > 0 && imagePreviewBlob !== undefined) {
       setCanSave(true)
     }
   }, [rating, imagePreviewBlob])

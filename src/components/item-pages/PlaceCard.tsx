@@ -39,8 +39,11 @@ export default function PlaceCard (props: { place: Place }): ReactElement {
           </Box>
         </Box>
         <CardContent>
+          <Typography variant="subtitle1" component="div">
+          {place.name}
+          </Typography>
           <Typography variant="body1" component="div">
-            {place.moreInfo}
+          {place.moreInfo}
           </Typography>
         </CardContent>
       </CardActionArea>

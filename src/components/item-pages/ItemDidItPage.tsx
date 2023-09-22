@@ -5,25 +5,21 @@ import {
   Button,
   CircularProgress,
   Fab,
-  Rating,
-  Typography,
-  styled
+  Typography
 } from '@mui/material'
 import { ItemPagesProps } from './ItemPagesContainer'
 import { uploadItemImage } from '../../io/aws-lambdas'
 import { updateBoardItem } from '../../logic/board'
-import FavoriteIcon from '@mui/icons-material/Favorite'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import 'cropperjs/dist/cropper.css'
 import { CropDialog } from '../infrastructure/CropDialog'
 import { compressImage } from '../../logic/images'
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined'
 import CheckCircleIcon from '@mui/icons-material/CheckCircle'
-import { COLOR_REDISH } from '../../App'
+import ItemRating from '../infrastructure/ItemRating'
 
 export default function DidItPage (props: ItemPagesProps): ReactElement {
   const { item, onClose } = props
-  const [rating, setRating] = useState<number | undefined>()
+  const [rating, setRating] = useState<number | null>(null)
 
   const [cropImageUrl, setCropImageUrl] = useState<string>('')
   const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
@@ -51,7 +47,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
         }
         updatedItem = updateBoardItem(item, {
           checked: true,
-          rating,
+          rating: rating ?? 0,
           imageUrl
         })
         onClose(updatedItem)
@@ -83,12 +79,6 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   const onImageCompressed = (imageBlob: Blob): void => {
     setImagePreviewBlob(imageBlob)
   }
-
-  const StyledRating = styled(Rating)({
-    '& .MuiRating-iconFilled': {
-      color: COLOR_REDISH
-    }
-  })
 
   return (
     <>
@@ -135,18 +125,8 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
         >
           {t('did_it_title')}
         </Typography>
-        <Box display="flex" justifyContent="center">
-          <StyledRating
-            sx={{ mt: '15px' }}
-            name="simple-controlled"
-            value={rating}
-            onChange={(_, val) => {
-              setRating(val ?? 0)
-            }}
-            color="primary"
-            icon={<FavoriteIcon />}
-            emptyIcon={<FavoriteBorderIcon />}
-          />
+        <Box display="flex" justifyContent="center" sx={{ mt: '15px' }}>
+          <ItemRating rating={rating} onChange={(val) => { setRating(val ?? 0) }}/>
         </Box>
 
       </Box>

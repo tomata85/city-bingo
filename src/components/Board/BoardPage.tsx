@@ -115,18 +115,23 @@ export default function BoardPage (props: {
               )
             : (
             <>
-              <Board user={user} board={board} onClickItem={onClickItem} />
-              {/* <List
-                overflow={'auto'}
-                component={Stack}
-                direction={'row'}
-                spacing={1}
-                sx={{ mb: '20px' }}
-              >
-                {getDoneItems(board).map((item) => (
-                  <DoneItemCard key={item.id} item={item} />
-                ))}
-              </List> */}
+              <Board user={user} board={board} onClickItem={onClickItem}/>
+              {getDoneItems(board).length > 0 && (
+                <>
+                  <Typography sx={{ mt: '15px' }} variant="h6">{t('done_items_title')}</Typography>
+                  <List
+                    overflow={'auto'}
+                    component={Stack}
+                    direction={'row'}
+                    spacing={1}
+                    sx={{ mt: '-8px' }}
+                  >
+                    {getDoneItems(board).map((item) => (
+                      <DoneItemCard key={item.id} item={item} />
+                    ))}
+                  </List>
+                </>
+              )}
               <HelpDialog helpText={help} open={showHelp} onClose={hideHelp} />
               <WinDialog
                 board={board}

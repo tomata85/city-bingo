@@ -1,7 +1,7 @@
 City Bingo is created by <strong>Talya Stern</strong>, together with <strong>Oren Chazan.</strong><br /> 
 <br /> 
-Many thanks to our contributors:<br /> 
-⭐ <strong>Dana Goldstein</strong> for design ⭐ Ralf Schmitzer for app icon ⭐ Ofri Stern ⭐ Rotem Dekel ⭐ Noa Kessler ⭐
+Many thanks to our contributors<br /> 
+⭐ <strong>Dana Goldstein</strong> for design ⭐ <strong>Yulia Asnis</strong> for inception ⭐ Ralf Schmitzer for app icon ⭐ Ofri Stern ⭐ Rotem Dekel ⭐ Noa Kessler ⭐
 <br />  
 <br />  
 #### Join the Thank You list

@@ -43,5 +43,8 @@
   "menu_page_home": "Home",
   "menu_page_about": "About",
   "menu_page_feedback": "Feedback",
-  "done_items_title": "Look what you've done 👏"
+  "done_items_title": "Look what you've done 👏",
+  "win_dialog_title": "Yay, you win!",
+  "win_dialog_text": "Great job, you won the bingo! The fun isn't over - you can continue to play."
+
 }

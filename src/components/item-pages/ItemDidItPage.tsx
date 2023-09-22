@@ -105,7 +105,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
               startIcon={<AddPhotoAlternateOutlinedIcon />}
             >
               {t('did_it_browse_file')}
-              <input type="file" hidden />
+              <input type="file" accept=".png, .jpg" hidden />
             </Button>
           </Box>
           <CropDialog

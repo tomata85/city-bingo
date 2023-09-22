@@ -5,10 +5,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { resetLocalStorageOnBreakingChange } from './io/local-storage'
 import { BINGO_SIZE } from './types'
 
-export const COLOR_HAPPY_YELLOW = '#EAB341'
+export const COLOR_HAPPY_YELLOW = '#F5A950'
 export const COLOR_BLACKISH = '#524856'
 export const COLOR_WHITE = '#fff'
-export const COLOR_TURQUISE = '#A0C7B5'
+export const COLOR_TURQUISE = '#7FD3AD'
 export const COLOR_REDISH = '#ff6d75'
 
 const headerFont = {

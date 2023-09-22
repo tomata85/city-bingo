@@ -32,6 +32,10 @@ export function MenuPage (props: { pageName: string }): ReactElement {
           target: '_blank',
           rel: 'noopener noreferrer'
         }
+      },
+      h4: {
+        component: Typography,
+        props: { variant: 'h5' }
       }
     }
   }

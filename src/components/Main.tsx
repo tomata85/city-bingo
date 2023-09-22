@@ -16,14 +16,14 @@ import {
 import { BINGO_SIZE, User } from '../types'
 import LoginPage from './LoginPage'
 import FaceIcon from '@mui/icons-material/Face'
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
-import LocalCafeOutlinedIcon from '@mui/icons-material/LocalCafeOutlined'
+import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import './styles.css'
 import { MenuPage } from './bottom-drawer/MenuPage'
 import { useTranslation } from 'react-i18next'
 import { presentableName } from '../logic/personal-details'
 import { COLOR_BLACKISH, COLOR_HAPPY_YELLOW } from '../App'
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 
 const enum DisplayedPages {
   Game,
@@ -109,14 +109,14 @@ export default function Main (): ReactElement {
                 setCurrentPageIndex(DisplayedPages.AboutUs)
               }}
               label={t('menu_page_about')}
-              icon={<LocalCafeOutlinedIcon />}
+              icon={<InfoOutlinedIcon />}
             />
             <BottomNavigationAction
               onClick={() => {
                 setCurrentPageIndex(DisplayedPages.Feedback)
               }}
               label={t('menu_page_feedback')}
-              icon={<ChatBubbleOutlineIcon />}
+              icon={<TextsmsOutlinedIcon />}
             />
           </BottomNavigation>
         </ThemeProvider>

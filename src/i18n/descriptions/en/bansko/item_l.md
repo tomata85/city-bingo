@@ -1,1 +1,1 @@
-Bansko Park, in the town's northeastern point, is a lovely and easily-available nature alternative. It stretches across grass lawns, full of trees, with a small artificial lake and a fountain. Totally a chill zone.
+Bansko Park, in the town's northeastern point, is a lovely and easily-available nature alternative. It stretches across grass lawns, full of trees, with a small artificial lake and a fountain. Totally a chill zone. It also has cafes that serve food, drinks and alcohol.

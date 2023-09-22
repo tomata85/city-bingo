@@ -1,1 +1,1 @@
-The forest is full of flowing streams, deep enough in some places to immerse oneself in the snow-cold water. Recommended for Win Hof enthusiasts.
+The forest is full of flowing streams, deep enough in some places to immerse oneself in the snow-cold water. Recommended for Wim Hof enthusiasts.

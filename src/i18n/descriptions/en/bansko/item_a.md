@@ -1,1 +1,1 @@
-Bansko does not come endowed with a beach, but its alternatives are pools of natual hot springs waters, just a short drive (or taxi drive) away. Most of these pools are part of spa places, so you can enjoy additional sauna, bar and massages as well.
+Bansko does not come endowed with a beach, but its alternatives are pools of natural hot springs waters, just a short drive (or taxi drive) away. Most of these pools are part of spa places, so you can enjoy additional sauna, bar and massages as well.

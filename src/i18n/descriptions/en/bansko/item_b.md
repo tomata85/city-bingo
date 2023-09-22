@@ -1,1 +1,1 @@
-Pirin Nature Reserve - the glory of Bansko. The nature views are really beautiful - mountains, greem grass, streams and lakes. Hiking can take anywhere between 2 hours and several days, so it can suit any audience. Seriously do not miss this.
+Pirin Nature Reserve - the glory of Bansko. The nature views are really beautiful - mountains, green grass, streams and lakes. Hiking can take anywhere between 2 hours and several days, so it can suit any audience. Seriously do not miss this.

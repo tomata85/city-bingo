@@ -1,5 +1,8 @@
 import { Place } from '../types'
 
+// Places ID's finder
+// https://developers.google.com/maps/documentation/places/web-service/place-id
+
 /* eslint-disable max-len */
 export const PLACES_DETAILS: Record<string, Place[]> = {
   item_a: [
@@ -284,11 +287,18 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
     }],
   item_i: [
     {
-      name: 'Rhodope Mountains',
-      url: 'https://maps.google.com/?cid=17270426114700163514',
-      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqFpZIRTG63cRzmrjEpCNazfyuJ3M0gZvQd8XpZ0IWaaBcEvxFUz7MQpknapoZvXswMqbvH3zZDGO2eRXW-msyfjqJzuodUS09M=s1600-w400',
+      name: 'Seven Rila Lakes',
+      url: 'https://maps.google.com/?q=Seven+Rila+Lakes&ftid=0x14aae16dd4f403f3:0x2fcca3080880018f',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqFSHkVWhgkRxmmToScpu_i2fjg9M4OjtwKlSEILhhbjgi0iQcd7U--tFN7-3fFl2fPwEFj4B-v2_Pxdb5aoqwsNw1S6m0IPDuA=s1600-w400',
       itemId: 'item_i',
-      placeId: 'ChIJZ3DQkVkHrRQRujlVdgzhrO8'
+      placeId: 'ChIJ8wP01G3hqhQRjwGACAijzC8'
+    },
+    {
+      name: 'Rila Monastery',
+      url: 'https://maps.google.com/?cid=16180038119511455522',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqEISfMqFW0jnQeFUQYVMRHOfJMbpFatEN3CO2nFT6tg5lSSLpLXRQjICT2PEESVwm48qhye1m7XaHTiK8Knu88zU1-yWLhRer0=s1600-w400',
+      itemId: 'item_i',
+      placeId: 'ChIJGdU6Hb_iqhQRInfCtfEKi-A'
     },
     {
       name: 'Mineral baths Rupite',
@@ -298,27 +308,6 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
       placeId: 'ChIJIx9-lMcuqhQRc4lTT87rwyg'
     },
     {
-      name: 'Melnik',
-      url: 'https://maps.google.com/?q=2820+Melnik,+Bulgaria&ftid=0x14abcd256fe9ef09:0xa00a014cd0d85f0',
-      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqGLrzOzWpJ4Ne7Zt0YAZoVaa1Kr23zm_I7MovAIjrqLWK_DPkNCBrPL1WpejZmNR2ykOGFZF5E4vgENdVt3mPvywrvD_4AHQyY=s1600-w400',
-      itemId: 'item_i',
-      placeId: 'ChIJCe_pbyXNqxQR8IUNzRSgAAo'
-    },
-    {
-      name: "Eagle's Eye",
-      url: 'https://maps.google.com/?cid=9135839875191469845',
-      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqGHVf9iluutX8rt7y0rtOFY8nQdHLRhZTyBgvNhyxALc7Y4xAFGREohW6yoYgjwBKMnSkplOwVqV86c0EnScwFgymfxy4ZhFjA=s1600-w400',
-      itemId: 'item_i',
-      placeId: 'ChIJsdNAyMtkrBQRFfeidfYFyX4'
-    },
-    {
-      name: 'Bezbog Hut',
-      url: 'https://maps.google.com/?cid=7395032681453304154',
-      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqG28wHha2uMdA_BKeTb1CoaZamMtq4gdrVOSW4fD7JzR7NLNoAEfMY9vH4IjB54ZE-NULkJM_Eoo_m0hx4CkOSTK2mYqwLkAw=s1600-w400',
-      itemId: 'item_i',
-      placeId: 'ChIJMbLBNquxqxQRWrltEAtvoGY'
-    },
-    {
       name: 'Beglika wild camping spot',
       url: 'https://maps.google.com/?cid=13725792203190724560',
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqGBgfYQz7jc7JNYpQ_Vcw8IsEn6o1cLxylv4YLxFQ4YYGmoVW5vWpVAqPawgVL5AS51AB7Uv5BwcxRAUMaPInatz6iPJU89mPk=s1600-w400',
@@ -326,25 +315,18 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
       placeId: 'ChIJfaXDlG1_qxQR0GcCVEnPe74'
     },
     {
-      name: 'Seven Rila Lakes',
-      url: 'https://maps.google.com/?q=Seven+Rila+Lakes&ftid=0x14aae16dd4f403f3:0x2fcca3080880018f',
-      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqFSHkVWhgkRxmmToScpu_i2fjg9M4OjtwKlSEILhhbjgi0iQcd7U--tFN7-3fFl2fPwEFj4B-v2_Pxdb5aoqwsNw1S6m0IPDuA=s1600-w400',
+      name: 'Melnik',
+      url: 'https://maps.google.com/?q=2820+Melnik,+Bulgaria&ftid=0x14abcd256fe9ef09:0xa00a014cd0d85f0',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqGLrzOzWpJ4Ne7Zt0YAZoVaa1Kr23zm_I7MovAIjrqLWK_DPkNCBrPL1WpejZmNR2ykOGFZF5E4vgENdVt3mPvywrvD_4AHQyY=s1600-w400',
       itemId: 'item_i',
-      placeId: 'ChIJ8wP01G3hqhQRjwGACAijzC8'
+      placeId: 'ChIJCe_pbyXNqxQR8IUNzRSgAAo'
     },
     {
-      name: "Devil's Throat Cave",
-      url: 'https://maps.google.com/?cid=2648695773451790869',
-      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqGcoWXRvK3XDrPVdjTXtDl_kN-KFMawNPvRpoDnYiiEpPPIXHcRzJtO6sdd-gBjxwlodTjk4_QLecX3fK60dGoKRafCHirPNEg=s1600-w400',
+      name: 'Bezbog Hut',
+      url: 'https://maps.google.com/?cid=7395032681453304154',
+      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqG28wHha2uMdA_BKeTb1CoaZamMtq4gdrVOSW4fD7JzR7NLNoAEfMY9vH4IjB54ZE-NULkJM_Eoo_m0hx4CkOSTK2mYqwLkAw=s1600-w400',
       itemId: 'item_i',
-      placeId: 'ChIJHwID7gBlrBQRFSqsxsUOwiQ'
-    },
-    {
-      name: 'Rila Monastery',
-      url: 'https://maps.google.com/?cid=16180038119511455522',
-      photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqEISfMqFW0jnQeFUQYVMRHOfJMbpFatEN3CO2nFT6tg5lSSLpLXRQjICT2PEESVwm48qhye1m7XaHTiK8Knu88zU1-yWLhRer0=s1600-w400',
-      itemId: 'item_i',
-      placeId: 'ChIJGdU6Hb_iqhQRInfCtfEKi-A'
+      placeId: 'ChIJMbLBNquxqxQRWrltEAtvoGY'
     },
     {
       name: 'Yavorov Hut',
@@ -426,21 +408,29 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
       url: 'https://www.facebook.com/groups/banskosocial',
       photoUrl: 'https://scontent.fsof11-1.fna.fbcdn.net/v/t39.30808-6/327711113_851278726146514_3114497810206253200_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=1ac024&_nc_ohc=8qKe-V4PeiAAX_PcGzv&_nc_ht=scontent.fsof11-1.fna&oh=00_AfB0grvrQpyWSLdsSiS29x_yOlrS087TE9CKqHJSFVyhqg&oe=65107C1E',
       itemId: 'n',
-      placeId: 'not-a-google-place-3'
+      placeId: 'not-a-google-place-1'
     },
     {
       name: 'Kizomba Bansko',
       url: 'https://www.facebook.com/groups/kizombabansko/',
       photoUrl: 'https://scontent.fsof11-1.fna.fbcdn.net/v/t39.30808-6/306943594_8769776996381033_575732595599804729_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=1ac024&_nc_ohc=_ChF_1QQiscAX-Ct99v&_nc_ht=scontent.fsof11-1.fna&oh=00_AfCpfwheD8NXaIEoFUHrJCOo6wTd37NxfGR-VIWkno2XMw&oe=651183E2',
       itemId: 'item_n',
-      placeId: 'not-a-google-place-1'
+      placeId: 'not-a-google-place-2'
     },
     {
       name: 'Salsa Bansko',
       url: 'https://www.facebook.com/groups/SalsaBansko/',
       photoUrl: 'https://scontent.fsof11-1.fna.fbcdn.net/v/t1.18169-9/19601211_10154826718442058_1007515537760435674_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8631f5&_nc_ohc=HxRWwqFOpywAX8ge8UJ&_nc_ht=scontent.fsof11-1.fna&oh=00_AfCdENvu9X-g18u8Z4NXCZBWrvj9Li0cGZMFZHm_mVRcKQ&oe=65332853',
       itemId: 'item_n',
-      placeId: 'not-a-google-place-2'
+      placeId: 'not-a-google-place-3'
+    },
+    {
+      name: 'Bansko Nomad Fest',
+      url: 'https://www.banskonomadfest.com/',
+      photoUrl: 'https://uploads-ssl.webflow.com/641f6f617894bf03ab1834eb/6438e65385eec53cdde6250e_Bansko%20Nomad%20Fest%20Logo.png',
+      itemId: 'item_n',
+      placeId: 'not-a-google-place-4',
+      moreInfo: 'Amongst the largest nomad international events.'
     }
   ],
   item_o: [
@@ -466,6 +456,13 @@ export const PLACES_DETAILS: Record<string, Place[]> = {
       photoUrl: 'https://lh3.googleusercontent.com/places/ANXAkqH6I1uvjqsZc0k32G46RgQZOdB54ESZa2sfGFUpxyiA1wRJEW4OcPHsp5EOhpHfbOVHOJG8-EMWu_cVN1hkF3aKgpLa2sCOBiw=s1600-w400',
       itemId: 'item_p',
       placeId: 'ChIJhTb9INmtqxQRsL3Eoyfau18'
+    },
+    {
+      name: 'Wim Hof breathwork',
+      url: 'https://www.youtube.com/watch?v=tybOi4hjZFQ&ab_channel=WimHof',
+      photoUrl: 'https://yt3.googleusercontent.com/KdRq3QPH32gT0js2nrtTDIoe1jmUelKTKKVaHfJHvotWNHMiwmZehvvZ_tPH24gHg7ccjLdEQw=w2276-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj',
+      itemId: 'item_p',
+      placeId: 'not-a-google-place-1'
     }
   ]
 }

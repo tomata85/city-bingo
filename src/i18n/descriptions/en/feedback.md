@@ -1,3 +1,5 @@
-Coming soon: a place where you can submit your feedback.<br/>
+<i>Coming soon: a form to submit your feedback.</i><br/>
 <br/>
-For the time being,  please send your feedback to [my Whatsapp](https://wa.link/hy2h8j).
+Thank you for using this pre-release version of City Bingo. I hope you enjoy playing.<br/>
+
+I'd appreciate any feedback. Please send any ideas, bugs and screenshots to [my Whatsapp](https://wa.link/hy2h8j).

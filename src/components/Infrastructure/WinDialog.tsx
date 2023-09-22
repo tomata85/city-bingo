@@ -1,18 +1,21 @@
 import {
+  Box,
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar
+  DialogTitle
 } from '@mui/material'
 import React, { type ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BoardInstanceType } from '../../types'
-import { getDoneItems, getWinningItems } from '../../logic/board'
+import { getDoneItems } from '../../logic/board'
+import Carousel from 'react-material-ui-carousel'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import '../styles.css'
+import DoneItemCardForWinDialog from '../item-pages/DoneItemCardForWinDialog'
 
 export interface InformationBoxProps {
   open: boolean
@@ -32,7 +35,7 @@ export default function WinDialog (props: InformationBoxProps): ReactElement {
     >
       <DialogTitle>{t('win_dialog_title')}</DialogTitle>
       <DialogContent>
-        <DialogContentText variant='body2' id="alert-dialog-description">
+        <DialogContentText variant="body2" id="alert-dialog-description">
           {t('win_dialog_text')}
         </DialogContentText>
         <WinImageList board={board} />
@@ -49,23 +52,27 @@ export default function WinDialog (props: InformationBoxProps): ReactElement {
 function WinImageList (props: { board: BoardInstanceType }): ReactElement {
   const { board } = props
   const doneItems = getDoneItems(board)
-  const { t } = useTranslation()
 
   return (
-    <ImageList cols={2} gap={4}>
-      {doneItems.map((item) => (
-        <ImageListItem sx={{ width: '130px' }} key={item.imageUrl}>
-          {item.imageUrl != null && (
-            <img
-              srcSet={`${item.imageUrl}?w=70&auto=format&dpr=2 2x`}
-              src={`${item.imageUrl}?w=70&auto=format`}
-              alt={t(item.id)}
-              loading="lazy"
-            />
-          )}
-          <ImageListItemBar position="top" title={t(item.id)} />
-        </ImageListItem>
-      ))}
-    </ImageList>
+    <Carousel
+      NextIcon={<ArrowBackIosNewIcon />}
+      PrevIcon={<ArrowForwardIosIcon />}
+      swipe={true}
+      animation={'slide'}
+      duration={5}
+      sx={{ mt: '15px' }}
+    >
+      {doneItems.map(
+        (item) =>
+          item.imageUrl != null && (
+            <Box
+              key={item.id}
+              sx={{ width: '100%' }}
+            >
+              <DoneItemCardForWinDialog item={item} />
+            </Box>
+          )
+      )}
+    </Carousel>
   )
 }

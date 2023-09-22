@@ -45,7 +45,7 @@ export default function BoardPage (props: {
     useState<BoardInstanceItemType | null>(null)
   const [board, setBoard] = useState<BoardInstanceType>(EMPTY_BOARD)
   const [help, setHelp] = useState<string>('')
-  const [showWinDialog, setShowWinDialog] = useState(true)
+  const [showWinDialog, setShowWinDialog] = useState(false)
 
   useEffect(() => {
     const initialize = async () => {

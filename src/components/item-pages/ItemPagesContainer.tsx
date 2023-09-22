@@ -41,7 +41,7 @@ export default function ItemPagesContainer (
   return (
     <>
       <Toolbar
-        sx={{ mt: '-20px', p: 0, justifyContent: 'left', alignItems: 'flex-end' }}
+        sx={{ p: 0, justifyContent: 'left', alignItems: 'flex-end' }}
       >
         <IconButton
           edge="start"

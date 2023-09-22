@@ -20,7 +20,7 @@ export default function ItemInformationPage (
     mt: '30px',
     justifyContent: 'space-between',
     alignItems: 'flex-start'
-  }ß∂
+  }
 
   const options = {
     overrides: {
@@ -71,6 +71,5 @@ export default function ItemInformationPage (
         </>
       )}
     </Box>
-    //
   )
 }

@@ -2,7 +2,7 @@ import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@mui/m
 import React, { ReactElement } from 'react'
 import { Place } from '../../types'
 
-export default function GoogleMapCard (props: { place: Place }): ReactElement {
+export default function PlaceCard (props: { place: Place }): ReactElement {
   const { place } = props
   const onCardClick = () => {
     window.open(place.url, '_blank')

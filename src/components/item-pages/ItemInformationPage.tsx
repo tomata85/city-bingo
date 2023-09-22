@@ -2,7 +2,7 @@ import React, { useState, type ReactElement } from 'react'
 import { Box, Button, List, Stack, Typography } from '@mui/material'
 import { ItemPagesProps } from './ItemPagesContainer'
 import ReactMarkdown from 'markdown-to-jsx'
-import GoogleMapCard from './GoogleMapCard'
+import PlaceCard from './PlaceCard'
 import { PLACES_DETAILS } from '../../data/places-details'
 import { Place } from '../../types'
 import { useTranslation } from 'react-i18next'
@@ -20,7 +20,7 @@ export default function ItemInformationPage (
     mt: '30px',
     justifyContent: 'space-between',
     alignItems: 'flex-start'
-  }
+  }ß∂
 
   const options = {
     overrides: {
@@ -61,7 +61,7 @@ export default function ItemInformationPage (
             sx={{ mb: '10px' }}
           >
             {places.map((place) => (
-              <GoogleMapCard key={place.placeId} place={place} />
+              <PlaceCard key={place.placeId} place={place} />
             ))}
           </List>
           <PlacesHelpDialog

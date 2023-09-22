@@ -26,6 +26,13 @@ const subtitle1Font = {
   color: COLOR_BLACKISH
 }
 
+const subtitle2Font = {
+  fontSize: 14,
+  lineHeight: '1.25em',
+  fontFamily: 'Josefin Sans',
+  color: COLOR_BLACKISH
+}
+
 const defaultFont = {
   fontSize: 16,
   fontWeight: BINGO_SIZE < 5 ? '400' : '800',
@@ -58,6 +65,7 @@ const theme = createTheme({
     h5: headerFont,
     h6: headerFont,
     subtitle1: subtitle1Font,
+    subtitle2: subtitle2Font,
     body1: boardItemFont,
     body2: defaultFont,
     button: buttonFont

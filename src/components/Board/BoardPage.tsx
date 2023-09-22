@@ -3,7 +3,6 @@ import '../styles.css'
 import {
   EMPTY_BOARD,
   getDoneItems,
-  getWinningItems,
   initializeBoard,
   updateBoard,
   updateBoardWins
@@ -97,9 +96,18 @@ export default function BoardPage (props: {
         : (
         <>
           <Box id="board-page-title" display="flex" sx={TITLE_STYLE}>
-            <Typography display="inline" variant="h4">
-              {t('main_title')}
-            </Typography>
+            <Box>
+              <Typography display="inline" variant="h4">
+                {t('main_title')}
+              </Typography>
+              <Typography
+                sx={{ ml: '5px', textTransform: 'uppercase' }}
+                display="inline"
+                variant="subtitle2"
+              >
+                {t('main_subtitle')}
+              </Typography>
+            </Box>
             <Button
               color="secondary"
               onClick={() => {
@@ -115,10 +123,12 @@ export default function BoardPage (props: {
               )
             : (
             <>
-              <Board user={user} board={board} onClickItem={onClickItem}/>
+              <Board user={user} board={board} onClickItem={onClickItem} />
               {getDoneItems(board).length > 0 && (
                 <>
-                  <Typography sx={{ mt: '15px' }} variant="h6">{t('done_items_title')}</Typography>
+                  <Typography sx={{ mt: '15px' }} variant="h6">
+                    {t('done_items_title')}
+                  </Typography>
                   <List
                     overflow={'auto'}
                     component={Stack}

@@ -51,22 +51,18 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
           )
         : (
         <>
-          <Typography
-            variant="h2"
-            component="div"
-            textAlign="center"
-            sx={{ mt: '120px' }}
+          <Box
+            display="flex"
+            justifyContent="center"
+            sx={{ mt: '120px', height: '150px', width: '100%' }}
           >
-            {t('logo')}
-          </Typography>
-          <Typography variant="h6" component="div" textAlign="center">
-            {t('slogan')}
-          </Typography>
+            <img src="city-bingo-title.png" />
+          </Box>
+
           <Box sx={{ textAlign: 'left' }}>
             <TextField
               sx={{
-                width: '100%',
-                mt: '45px'
+                width: '100%'
               }}
               id="outlined-basic"
               label={t('login_name')}

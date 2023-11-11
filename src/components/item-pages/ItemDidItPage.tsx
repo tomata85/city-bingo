@@ -30,7 +30,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   const { t } = useTranslation()
 
   useEffect(() => {
-    if (rating !== null && rating > 0 && imagePreviewBlob !== undefined) {
+    if (imagePreviewBlob !== undefined) {
       setCanSave(true)
     }
   }, [rating, imagePreviewBlob])
@@ -118,17 +118,6 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
             </Box>
           )}
         </Box>
-        <Typography
-          variant="body2"
-          component="div"
-          sx={{ flexGrow: 1, mt: '20px' }}
-        >
-          {t('did_it_title')}
-        </Typography>
-        <Box display="flex" justifyContent="center" sx={{ mt: '15px' }}>
-          <ItemRating rating={rating} onChange={(val) => { setRating(val ?? 0) }}/>
-        </Box>
-
       </Box>
       <Fab
         sx={{

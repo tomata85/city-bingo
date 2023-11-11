@@ -16,7 +16,7 @@ export interface ItemPagesProps {
 export default function ItemPagesContainer (
   props: ItemPagesProps
 ): ReactElement {
-  const [showDidIt, setShowDidIt] = useState(false)
+  const [showDidIt, setShowDidIt] = useState(true)
 
   const { item, onClose } = props
   const { t } = useTranslation()

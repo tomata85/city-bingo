@@ -51,15 +51,18 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
           )
         : (
         <>
-          <Box
-            display="flex"
-            justifyContent="center"
-            sx={{ mt: '120px', height: '150px', width: '100%' }}
-          >
-            <img src="city-bingo-title.png" />
-          </Box>
+         <Typography
+            variant="h2"
+            component="div"
+            textAlign="center"
+            sx={{ mt: '120px' }} >
+            {t('logo')}
+          </Typography>
+          <Typography variant="h6" component="div" textAlign="center">
+            {t('slogan')}
+          </Typography>
 
-          <Box sx={{ textAlign: 'left' }}>
+          <Box sx={{ mt: '15px', textAlign: 'left' }}>
             <TextField
               sx={{
                 width: '100%'
@@ -77,7 +80,6 @@ export default function LoginPage (props: LoginPageProps): ReactElement {
                   onLogin()
                 }
               }}
-              helperText={t('login_name_helper_text')}
             />
             <TextField
               sx={{

@@ -1,4 +1,4 @@
-import { BoardInstanceType } from '../types'
+import { BoardInstanceType, DESTINATION_ID } from '../types'
 
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 const BASE_URL = 'https://19iqaec2c8.execute-api.eu-west-1.amazonaws.com/default'
@@ -15,7 +15,7 @@ function requestOptions (method: string, body?: any) {
 
 export async function getBoardFromDB (
   userId: string,
-  destination = 'bansko'): Promise<BoardInstanceType | undefined> {
+  destination = DESTINATION_ID): Promise<BoardInstanceType | undefined> {
   const response = await call(
     `${BASE_URL}/getUser?userId=${userId}&destination=${destination}`,
     requestOptions('GET'))
@@ -54,12 +54,13 @@ async function call (url: string, requestOptions: any): Promise<any> {
 }
 
 export async function updateBoardInstanceInDB (userId: string, boardInstance: BoardInstanceType) {
+  const requestData: any = {
+    id: userId
+  }
+  requestData[`boardInstance_${DESTINATION_ID}`] = boardInstance
   // TODO: Rename Lambda?
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
-  await call(`${BASE_URL}/checkItem`, requestOptions('POST', {
-    id: userId,
-    boardInstance_bansko: boardInstance
-  }))
+  await call(`${BASE_URL}/checkItem`, requestOptions('POST', requestData))
 }
 
 export async function getPlaceDetails (placeId: string) {

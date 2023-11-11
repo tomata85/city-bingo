@@ -1,3 +1,5 @@
+export const DESTINATION_ID = 'ALERTS'
+
 export const BINGO_SIZE = 4 // TODO: FFU make 5
 
 export interface BoardInstanceType {

@@ -13,7 +13,7 @@ import {
   Typography,
   createTheme
 } from '@mui/material'
-import { BINGO_SIZE, User } from '../types'
+import { BINGO_SIZE, DESTINATION_ID, User } from '../types'
 import LoginPage from './LoginPage'
 import FaceIcon from '@mui/icons-material/Face'
 import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined'
@@ -53,7 +53,7 @@ export default function Main (): ReactElement {
     switch (currentPageIndex) {
       case DisplayedPages.Game:
         if (user != null) {
-          return <BoardPage user={user} destinationId="Bansko" />
+          return <BoardPage user={user} destinationId={DESTINATION_ID} />
         }
         return <LoginPage onLogin={onLogin} />
       case DisplayedPages.AboutUs:
@@ -79,7 +79,7 @@ export default function Main (): ReactElement {
                 textAlign="left"
                 sx={{ pl: '10px', flexGrow: 1 }}
               >
-                City Bingo
+                {t('logo')}
               </Typography>
               {user != null && (
                 <Button color="secondary" startIcon={<FaceIcon />} size="large">

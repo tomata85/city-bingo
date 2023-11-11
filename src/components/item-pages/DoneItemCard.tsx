@@ -18,22 +18,6 @@ export default function DoneItemCard (props: {
           image={item.imageUrl}
           title={t(item.id)}
         />
-        <Box
-          sx={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            width: '100%',
-            height: '23%',
-            bgcolor: 'rgba(0, 0, 0, 0.54)',
-            color: 'white',
-            textAlign: 'left',
-            pt: '2px',
-            pl: '5px'
-          }}
-        >
-          <ItemRating rating={item.rating ?? null} readOnly={true} small={true} />
-        </Box>
       </Box>
     </Card>
   )

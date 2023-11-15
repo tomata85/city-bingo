@@ -84,7 +84,7 @@ export default function BoardPage (props: {
   }
 
   return (
-    <>
+    <Box sx={{ pt: '12px' }}>
       {selectedItem != null
         ? (
         <ItemPagesContainer
@@ -102,7 +102,7 @@ export default function BoardPage (props: {
               </Typography>
               <Typography
                 sx={{ ml: '5px', textTransform: 'uppercase' }}
-                display="inline"
+
                 variant="subtitle2"
               >
                 {t('main_subtitle')}
@@ -124,7 +124,7 @@ export default function BoardPage (props: {
             : (
             <>
               <Board user={user} board={board} onClickItem={onClickItem} />
-              {getDoneItems(board).length > 0 && (
+              {getDoneItems(board).filter(i => i.imageUrl != null).length > 0 && (
                 <>
                   <Typography sx={{ mt: '15px' }} variant="h6">
                     {t('done_items_title')}
@@ -137,7 +137,7 @@ export default function BoardPage (props: {
                     sx={{ mt: '-8px' }}
                   >
                     {getDoneItems(board).map((item) => (
-                      <DoneItemCard key={item.id} item={item} />
+                      (item.imageUrl != null) && <DoneItemCard key={item.id} item={item} />
                     ))}
                   </List>
                 </>
@@ -154,6 +154,6 @@ export default function BoardPage (props: {
               )}
         </>
           )}
-    </>
+    </Box>
   )
 }

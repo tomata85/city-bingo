@@ -25,7 +25,7 @@ export default function DidItPage (props: ItemPagesProps): ReactElement {
   const [imagePreviewBlob, setImagePreviewBlob] = useState<Blob | undefined>()
   const [saving, setSaving] = useState<boolean>(false)
   const [showCropDialog, setShowCropDialog] = useState<boolean>(false)
-  const [canSave, setCanSave] = useState<boolean>(false)
+  const [canSave, setCanSave] = useState<boolean>(true)
 
   const { t } = useTranslation()
 

@@ -17,7 +17,9 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
   const { t } = useTranslation()
 
   const handleOnClick = (): void => {
-    onClick(item.id)
+    if (!item.checked) {
+      onClick(item.id)
+    }
   }
 
   const itemColor = item.isWin ? COLOR_HAPPY_YELLOW : item.checked ? COLOR_TURQUISE : COLOR_WHITE
@@ -28,7 +30,7 @@ export default function BoardItem (props: BoardItemProps): ReactElement {
     padding: theme.spacing(0.75),
     verticalAlign: 'center',
     textAlign: 'center',
-    height: ITEM_HEIGHT // TODO: make height relative to width
+    height: ITEM_HEIGHT // TODO: make height relative to width,
   }))
 
   return (
